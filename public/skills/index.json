@@ -1,0 +1,140 @@
+{
+  "skills": [
+    {
+      "id": "reactive_douyin_auto_swipe",
+      "name": "抖音自动刷视频",
+      "description": "打开抖音并自动每隔10秒上滑看下一个短视频",
+      "executionMode": "REACTIVE",
+      "file": "douyin_auto_swipe.json",
+      "updatedAt": "2026-07-18T19:04:53.994Z"
+    },
+    {
+      "id": "reactive_test_element_wait",
+      "name": "反复等待元素测试",
+      "description": "测试 elementVisible 触发 + 冷却 + 多次执行：持续监听屏幕上某个按钮，每次出现就点击，最多 3 次",
+      "executionMode": "REACTIVE",
+      "file": "test_element_wait.json",
+      "updatedAt": "2026-05-11T06:58:17.662Z"
+    },
+    {
+      "id": "reactive_test_repeat_mode_foreground",
+      "name": "REPEAT 模式验证 - 今日头条前台检测",
+      "description": "验证 REPEAT 执行模式的三个核心行为：①当前可见立即执行；②保持可见不重复；③消失再出现后重新执行。步骤：先启动今日头条，然后通过 appInForeground 触发器+REPEAT 模式检测前台切换，每次进入前台都通知一次，保持前台期间不重复触发。",
+      "executionMode": "REACTIVE",
+      "file": "test_repeat_mode_foreground.json",
+      "updatedAt": "2026-05-11T06:58:17.662Z"
+    },
+    {
+      "id": "reactive_test_repeat_mode_foreground_v2",
+      "name": "REPEAT 模式验证 v2 - 前台检测（无自动启动）",
+      "description": "使用前请手动打开今日头条，再启动本技能。验证三个核心行为：①进入前台立即触发；②保持前台不重复；③切走再切回重新触发。技能运行 300 秒后自动结束。",
+      "executionMode": "REACTIVE",
+      "file": "test_repeat_mode_foreground_v2.json",
+      "updatedAt": "2026-05-11T06:58:17.662Z"
+    },
+    {
+      "id": "reactive_test_toutiao",
+      "name": "今日头条测试",
+      "description": "反应式引擎多步实机验证：打开今日头条 -> 等待首页加载 -> 点击热榜",
+      "executionMode": "REACTIVE",
+      "file": "test_toutiao.json",
+      "updatedAt": "2026-05-11T06:58:17.663Z"
+    },
+    {
+      "id": "reactive_test_toutiao_clipboard_delay",
+      "name": "今日头条剪贴板与延时测试",
+      "description": "验证 SetClipboard、Delay、Notify 这类不依赖复杂页面反馈的动作。",
+      "executionMode": "REACTIVE",
+      "file": "test_toutiao_clipboard_delay.json",
+      "updatedAt": "2026-07-26T13:44:45.902Z"
+    },
+    {
+      "id": "reactive_test_toutiao_longtap_input",
+      "name": "今日头条长按搜索框测试",
+      "description": "打开头条首页，点击 ki9 进入搜索框后长按输入框，验证出现输入法入口。",
+      "executionMode": "REACTIVE",
+      "file": "test_toutiao_longtap_input.json",
+      "updatedAt": "2026-05-11T06:58:17.664Z"
+    },
+    {
+      "id": "reactive_test_toutiao_openai_article_flow",
+      "name": "今日头条 OpenAI 文章综合流程测试",
+      "description": "首页进入搜索页，输入 OpenAI，执行搜索，等待结果后滚动查找并点击包含 OpenAI 独家的结果进入详情，读取后通过 toast 展示。",
+      "executionMode": "REACTIVE",
+      "file": "test_toutiao_openai_article_flow.json",
+      "updatedAt": "2026-07-26T13:44:45.904Z"
+    },
+    {
+      "id": "reactive_test_toutiao_openai_article_flow_scroll_path",
+      "name": "今日头条 OpenAI 文章综合流程测试 ScrollPath 版",
+      "description": "首页进入搜索页，输入 OpenAI，执行搜索，等待结果后使用录制滑动路径滚动查找并点击包含 OpenAI 独家的结果进入详情，读取后通过 toast 展示。",
+      "executionMode": "REACTIVE",
+      "file": "test_toutiao_openai_article_flow_scroll_path.json",
+      "updatedAt": "2026-07-26T13:44:45.906Z"
+    },
+    {
+      "id": "reactive_test_toutiao_openai_repeat_flow",
+      "name": "今日头条搜索 OpenAI官宣 + REPEAT 重读测试",
+      "description": "搜索 OpenAI，滚动查找含官宣的文章并进入详情，读取标题后自动按 HOME 离开再重启头条，验证 REPEAT goal 在 appInForeground false→true 过渡时重新触发并再次读取内容。",
+      "executionMode": "REACTIVE",
+      "file": "test_toutiao_openai_repeat_flow.json",
+      "updatedAt": "2026-07-26T13:44:45.908Z"
+    },
+    {
+      "id": "reactive_test_toutiao_paste",
+      "name": "今日头条粘贴测试",
+      "description": "打开头条首页，进入搜索框后执行剪贴板粘贴模式输入。",
+      "executionMode": "REACTIVE",
+      "file": "test_toutiao_paste.json",
+      "updatedAt": "2026-05-11T06:58:17.665Z"
+    },
+    {
+      "id": "reactive_test_toutiao_read_text",
+      "name": "今日头条读取文本测试",
+      "description": "打开头条首页，进入搜索页后读取搜索框文本到变量并播报。",
+      "executionMode": "REACTIVE",
+      "file": "test_toutiao_read_text.json",
+      "updatedAt": "2026-07-26T13:44:45.910Z"
+    },
+    {
+      "id": "reactive_test_toutiao_scroll_to_hot_item",
+      "name": "今日头条热榜滚动定位测试",
+      "description": "打开头条后进入热榜页，滚动查找并点击热榜条目“郑丽文访陆”。",
+      "executionMode": "REACTIVE",
+      "file": "test_toutiao_scroll_to_hot_item.json",
+      "updatedAt": "2026-05-11T06:58:17.666Z"
+    },
+    {
+      "id": "reactive_test_toutiao_swipe_hotlist",
+      "name": "今日头条热榜上滑测试",
+      "description": "打开头条后进入热榜页并执行上滑，验证热榜场景下的 Swipe。",
+      "executionMode": "REACTIVE",
+      "file": "test_toutiao_swipe_hotlist.json",
+      "updatedAt": "2026-05-11T06:58:17.666Z"
+    },
+    {
+      "id": "reactive_test_toutiao_system_back",
+      "name": "今日头条返回键测试",
+      "description": "打开头条搜索页后执行 BACK，验证能回到首页并再次看到听一听开关。",
+      "executionMode": "REACTIVE",
+      "file": "test_toutiao_system_back.json",
+      "updatedAt": "2026-05-11T06:58:17.667Z"
+    },
+    {
+      "id": "reactive_test_toutiao_type_text",
+      "name": "今日头条输入测试",
+      "description": "打开头条首页，进入搜索框后执行 TypeText。",
+      "executionMode": "REACTIVE",
+      "file": "test_toutiao_type_text.json",
+      "updatedAt": "2026-05-11T06:58:17.667Z"
+    },
+    {
+      "id": "reactive_test_wechat",
+      "name": "微信自动打开测试",
+      "description": "反应式引擎实机验证：打开微信 → 等待首页出现 → 播报完成",
+      "executionMode": "REACTIVE",
+      "file": "test_wechat.json",
+      "updatedAt": "2026-05-11T06:58:17.668Z"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  repository_dispatch:
+    types: [skills-updated]
+  schedule:
+    # Pick up skills changes from the core repo even without a dispatch token.
+    - cron: "0 */12 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout website
+        uses: actions/checkout@v4
+
+      - name: Checkout skills from core repo
+        uses: actions/checkout@v4
+        with:
+          repository: kuaiyou-app/kuaiyou-open-source
+          path: _skills_src
+          sparse-checkout: |
+            skills
+            agent-skills
+          sparse-checkout-cone-mode: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Sync skills into public/
+        run: npm run sync-skills
+
+      - name: Build Next.js Website
+        run: npm run build
+
+      - name: Prepare Pages Artifact
+        run: |
+          rm -rf out/skills
+          cp -r public/skills out/skills
+          if [ -d _skills_src/agent-skills ]; then
+            rm -rf out/agent-skills
+            cp -r _skills_src/agent-skills out/agent-skills
+          elif [ -d public/agent-skills ]; then
+            rm -rf out/agent-skills
+            cp -r public/agent-skills out/agent-skills
+          fi
+          test -f out/index.html
+          test -f out/docs/index.html
+          test -f out/skills/index.json
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./out"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
