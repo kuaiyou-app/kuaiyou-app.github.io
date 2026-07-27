@@ -16,6 +16,9 @@ export default function DocsPageContent() {
             </a>
           </li>
           <li>
+            <a href="#install">{t("docs.nav.install")}</a>
+          </li>
+          <li>
             <a href="#quick-start">{t("docs.nav.quick")}</a>
           </li>
           <li>
@@ -44,6 +47,45 @@ export default function DocsPageContent() {
           </div>
         </section>
 
+        <section id="install">
+          <h2>{t("docs.install.title")}</h2>
+          <p>{t("docs.install.p")}</p>
+          <p>
+            <a href={NPM_PACKAGE_URL} target="_blank" rel="noopener noreferrer">
+              {t("docs.install.npmLink")}
+            </a>
+          </p>
+
+          <h3>{t("docs.install.req")}</h3>
+          <ul>
+            <li>{t("docs.install.req.1")}</li>
+            <li>{t("docs.install.req.2")}</li>
+          </ul>
+
+          <h3>{t("docs.install.npx")}</h3>
+          <p>{t("docs.install.npx.desc")}</p>
+          <pre className="code-block code-font">
+            <code>npx -y kuaiyou-mcp-server</code>
+          </pre>
+
+          <h3>{t("docs.install.global")}</h3>
+          <p>{t("docs.install.global.desc")}</p>
+          <pre className="code-block code-font">
+            <code>{`npm install -g kuaiyou-mcp-server
+kuaiyou-mcp-server`}</code>
+          </pre>
+
+          <h3>{t("docs.install.verify")}</h3>
+          <p>{t("docs.install.verify.desc")}</p>
+          <pre className="code-block code-font">
+            <code>npm view kuaiyou-mcp-server version</code>
+          </pre>
+          <div className="alert info">
+            <strong>{t("docs.install.tip.strong")}</strong>{" "}
+            {t("docs.install.tip")}
+          </div>
+        </section>
+
         <section id="quick-start">
           <h2>{t("docs.quick.title")}</h2>
           <p>{t("docs.quick.p")}</p>
@@ -58,11 +100,6 @@ export default function DocsPageContent() {
 
           <h3>{t("docs.quick.start")}</h3>
           <p>{t("docs.quick.npm")}</p>
-          <p>
-            <a href={NPM_PACKAGE_URL} target="_blank" rel="noopener noreferrer">
-              npmjs.com/package/kuaiyou-mcp-server
-            </a>
-          </p>
           <p>{t("docs.quick.lan")}</p>
           <pre className="code-block code-font">
             <code>

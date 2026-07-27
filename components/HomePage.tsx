@@ -27,7 +27,7 @@ export default function HomePage({ skills }: { skills: Skill[] }) {
         <p className="hero-subtitle">{t("home.subtitle")}</p>
 
         <div className="hero-actions">
-          <Link href="/docs#quick-start" className="btn btn-primary">
+          <Link href="/docs#install" className="btn btn-primary">
             {t("home.cta.primary")}
           </Link>
           <a href="#how-it-works" className="btn btn-secondary">
@@ -146,12 +146,23 @@ export default function HomePage({ skills }: { skills: Skill[] }) {
           <li>
             <strong>{t("home.qs.2.strong")}</strong> {t("home.qs.2.rest")}
           </li>
-          <li>{t("home.qs.3")}</li>
+          <li>
+            <strong>{t("home.qs.3.strong")}</strong> {t("home.qs.3.rest")}
+            <pre className="code-block code-font" style={{ marginTop: "0.75rem" }}>
+              <code>{t("home.qs.3.cmd")}</code>
+            </pre>
+            <p style={{ marginTop: "0.5rem", fontSize: "0.9em", opacity: 0.85 }}>
+              {t("home.qs.3.alt")}
+            </p>
+          </li>
           <li>{t("home.qs.4")}</li>
           <li>{t("home.qs.5")}</li>
         </ol>
         <div className="quickstart-actions">
-          <Link href="/docs#quick-start" className="btn btn-primary">
+          <Link href="/docs#install" className="btn btn-primary">
+            {t("home.qs.installGuide")}
+          </Link>
+          <Link href="/docs#quick-start" className="btn btn-secondary">
             {t("home.qs.openGuide")}
           </Link>
           <Link href="/docs#mcp-tools" className="btn btn-secondary">

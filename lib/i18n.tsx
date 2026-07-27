@@ -90,10 +90,14 @@ const zh: Dict = {
   "home.qs.1.rest": "到 Android 手机，并完成基础权限设置。",
   "home.qs.2.strong": "开启 MCP 服务：",
   "home.qs.2.rest": "设置 → 高级设置，点击条目复制连接信息。",
-  "home.qs.3": "在电脑上用 npx -y kuaiyou-mcp-server 启动 MCP（需 Node.js ≥ 18）。",
+  "home.qs.3.strong": "安装 CLI：",
+  "home.qs.3.rest": "电脑需 Node.js ≥ 18，用 npm 安装或 npx 直接运行。",
+  "home.qs.3.cmd": "npm install -g kuaiyou-mcp-server",
+  "home.qs.3.alt": "或免安装：npx -y kuaiyou-mcp-server",
   "home.qs.4": "让 AI 查看当前界面，并开始生成技能。",
   "home.qs.5": "校验技能后下发到手机，并在手机上确认运行。",
   "home.qs.openGuide": "打开安装指南",
+  "home.qs.installGuide": "CLI 安装说明",
   "home.qs.tools": "能力说明",
 
   "home.skills.title": "ReactiveSkill 示例",
@@ -142,6 +146,7 @@ const zh: Dict = {
 
   "docs.navAria": "文档导航",
   "docs.nav.intro": "简介",
+  "docs.nav.install": "安装 CLI",
   "docs.nav.quick": "快速开始",
   "docs.nav.write": "编写第一个技能",
   "docs.nav.tools": "核心能力",
@@ -153,18 +158,36 @@ const zh: Dict = {
   "docs.intro.note.strong": "说明：",
   "docs.intro.note":
     "本仓库开源快游大师 CLI、ReactiveSkill 规范、示例与技能。快游大师 Android App 为闭源，且是端侧执行的必需依赖。",
+  "docs.install.title": "安装快游大师 CLI",
+  "docs.install.p":
+    "快游大师 CLI 即 npm 包 kuaiyou-mcp-server：在电脑本地以 MCP Server 形式运行，供 Cursor / Claude 等 AI 客户端连接手机上的快游大师 App。",
+  "docs.install.npmLink": "在 npm 查看 kuaiyou-mcp-server →",
+  "docs.install.req": "环境要求",
+  "docs.install.req.1": "Node.js ≥ 18（建议 LTS）",
+  "docs.install.req.2": "可访问 npm registry（或已配置可用镜像）",
+  "docs.install.npx": "方式一：npx 免安装（推荐）",
+  "docs.install.npx.desc":
+    "不占用全局环境，每次自动使用最新已发布版本。适合 Cursor / Claude 的 MCP command 配置：",
+  "docs.install.global": "方式二：全局安装",
+  "docs.install.global.desc":
+    "安装后可直接使用命令 kuaiyou-mcp-server（同样可作为 MCP command）：",
+  "docs.install.verify": "确认包可用",
+  "docs.install.verify.desc": "查询 npm 上的当前版本：",
+  "docs.install.tip.strong": "提示：",
+  "docs.install.tip":
+    "该命令是 MCP stdio 服务，在终端单独运行时会等待标准输入；正常用法是交给 AI 客户端拉起，并配置 KUAIYOU_DEVICE_IP / KUAIYOU_MCP_PAIRING_CODE。详见下方「快速开始」。",
   "docs.quick.title": "快速开始",
   "docs.quick.p":
-    "准备好手机端快游大师后，在电脑上启动快游大师 CLI，即可开始生成和运行 ReactiveSkill。",
+    "完成 CLI 安装后，开启手机 MCP 服务，把连接信息交给 AI 客户端即可开始编排技能。",
   "docs.quick.prereq": "1. 前置条件",
-  "docs.quick.prereq.1": "电脑已安装 Node.js ≥ 18（用于 npx / npm 安装 kuaiyou-mcp-server）",
+  "docs.quick.prereq.1": "已按上文安装快游大师 CLI（或使用 npx）",
   "docs.quick.prereq.2": "Android 手机上已安装快游大师 App",
   "docs.quick.prereq.3":
     "局域网模式：在 App「设置 → 高级设置」开启「MCP 服务」，点击条目复制连接信息（含 IP:端口 与配对码）。",
   "docs.quick.prereq.4": "USB 模式：通过数据线连接手机并开启 USB 调试。",
-  "docs.quick.start": "2. 启动 kuaiyou-mcp-server",
+  "docs.quick.start": "2. 启动并连接设备",
   "docs.quick.npm":
-    "包已发布到 npm，可直接用 npx 下载运行，或 npm install -g kuaiyou-mcp-server：",
+    "把 App 复制的环境变量填入启动命令（或写入 AI 客户端 MCP env）：",
   "docs.quick.lan":
     "局域网连接（推荐，替换为 App 显示的 IP:端口 与配对码）：",
   "docs.quick.usb": "USB / ADB 连接（无需 IP；可加 KUAIYOU_ADB_SERIAL）：",
@@ -288,11 +311,14 @@ const en: Dict = {
   "home.qs.2.strong": "Enable MCP Service:",
   "home.qs.2.rest":
     "Settings → Advanced, then tap the row to copy connection info.",
-  "home.qs.3":
-    "On your computer, run npx -y kuaiyou-mcp-server (Node.js ≥ 18).",
+  "home.qs.3.strong": "Install the CLI:",
+  "home.qs.3.rest": "Node.js ≥ 18 required; install via npm or run with npx.",
+  "home.qs.3.cmd": "npm install -g kuaiyou-mcp-server",
+  "home.qs.3.alt": "Or no install: npx -y kuaiyou-mcp-server",
   "home.qs.4": "Let AI inspect the current screen and start creating a skill.",
   "home.qs.5": "Validate the skill, send it to the phone, and confirm the run.",
   "home.qs.openGuide": "Open setup guide",
+  "home.qs.installGuide": "CLI install guide",
   "home.qs.tools": "Capabilities",
 
   "home.skills.title": "ReactiveSkill examples",
@@ -343,6 +369,7 @@ const en: Dict = {
 
   "docs.navAria": "Documentation",
   "docs.nav.intro": "Introduction",
+  "docs.nav.install": "Install CLI",
   "docs.nav.quick": "Quick Start",
   "docs.nav.write": "Write your first skill",
   "docs.nav.tools": "Core capabilities",
@@ -355,19 +382,36 @@ const en: Dict = {
   "docs.intro.note.strong": "Note:",
   "docs.intro.note":
     "This repository open-sources Kuaiyou Master CLI, the ReactiveSkill format, examples, and skills. The Kuaiyou Master Android App is closed source and required for on-device execution.",
+  "docs.install.title": "Install Kuaiyou Master CLI",
+  "docs.install.p":
+    "Kuaiyou Master CLI is the npm package kuaiyou-mcp-server. It runs locally as an MCP server so Cursor / Claude can talk to the Kuaiyou Master app on your phone.",
+  "docs.install.npmLink": "View kuaiyou-mcp-server on npm →",
+  "docs.install.req": "Requirements",
+  "docs.install.req.1": "Node.js ≥ 18 (LTS recommended)",
+  "docs.install.req.2": "Access to the npm registry (or a working mirror)",
+  "docs.install.npx": "Option 1: npx (no install, recommended)",
+  "docs.install.npx.desc":
+    "No global install. Always pulls the latest published version. Ideal for Cursor / Claude MCP command configs:",
+  "docs.install.global": "Option 2: global install",
+  "docs.install.global.desc":
+    "After install you can run kuaiyou-mcp-server directly (also usable as the MCP command):",
+  "docs.install.verify": "Confirm the package is available",
+  "docs.install.verify.desc": "Check the version published on npm:",
+  "docs.install.tip.strong": "Tip:",
+  "docs.install.tip":
+    "This binary is an MCP stdio server. Running it alone in a terminal waits on stdin. Normal use is letting your AI client launch it with KUAIYOU_DEVICE_IP / KUAIYOU_MCP_PAIRING_CODE. See Quick Start below.",
   "docs.quick.title": "Quick Start",
   "docs.quick.p":
-    "After Kuaiyou Master is ready on your phone, start Kuaiyou Master CLI on your computer and begin building ReactiveSkills.",
+    "After installing the CLI, enable MCP Service on the phone and give the connection info to your AI client.",
   "docs.quick.prereq": "1. Prerequisites",
-  "docs.quick.prereq.1":
-    "Node.js ≥ 18 on your computer (for npx / npm install of kuaiyou-mcp-server)",
+  "docs.quick.prereq.1": "Kuaiyou Master CLI installed (or use npx) as above",
   "docs.quick.prereq.2": "Kuaiyou Master installed on an Android phone",
   "docs.quick.prereq.3":
     "LAN mode: enable MCP Service under Settings → Advanced, then tap the row to copy connection info (IP:port + pairing code).",
   "docs.quick.prereq.4": "USB mode: connect the phone with a cable and enable USB debugging.",
-  "docs.quick.start": "2. Start kuaiyou-mcp-server",
+  "docs.quick.start": "2. Start and connect the device",
   "docs.quick.npm":
-    "The package is on npm. Run it with npx, or install globally via npm install -g kuaiyou-mcp-server:",
+    "Put the env vars copied from the app into the start command (or into your AI client MCP env):",
   "docs.quick.lan":
     "LAN connection (recommended; replace with the IP:port and pairing code shown in the app):",
   "docs.quick.usb": "USB / ADB connection (no IP; optional KUAIYOU_ADB_SERIAL):",

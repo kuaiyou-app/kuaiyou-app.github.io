@@ -44,7 +44,7 @@ export default function Navbar() {
 
         <div className="nav-actions">
           <LanguageSwitcher />
-          <Link href="/docs#quick-start" className="nav-docs-btn">
+          <Link href="/docs#install" className="nav-docs-btn">
             <span className="nav-docs-btn-full">{t("nav.getStarted")}</span>
             <span className="nav-docs-btn-short">{t("nav.docs")}</span>
           </Link>

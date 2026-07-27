@@ -20,7 +20,7 @@ export default function Footer() {
             <span className="sr-only">{t("nav.opensNewTab")}</span>
           </a>
           <Link href="/docs">{t("footer.docs")}</Link>
-          <Link href="/docs#quick-start">{t("footer.quick")}</Link>
+          <Link href="/docs#install">{t("footer.quick")}</Link>
           <a href="/#skills">{t("footer.skills")}</a>
         </nav>
       </div>
