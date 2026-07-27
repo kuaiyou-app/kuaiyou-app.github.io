@@ -1,7 +1,31 @@
 "use client";
 
 import { useI18n } from "@/lib/i18n";
-import { NPM_PACKAGE_URL } from "@/lib/site";
+import {
+  AGENT_SKILL_NAME,
+  AGENT_SKILL_RAW_URL,
+  CORE_REPO_URL,
+  NPM_PACKAGE_URL,
+} from "@/lib/site";
+
+const MCP_JSON = `{
+  "mcpServers": {
+    "autoace": {
+      "command": "npx",
+      "args": ["-y", "autoace-cli"],
+      "env": {
+        "KUAIYOU_DEVICE_IP": "192.168.1.100:3847",
+        "KUAIYOU_MCP_PAIRING_CODE": "482917"
+      }
+    }
+  }
+}`;
+
+const CLAUDE_CODE_SKILL = `mkdir -p ~/.claude/skills/autoace
+curl -fsSL ${AGENT_SKILL_RAW_URL} -o ~/.claude/skills/autoace/SKILL.md`;
+
+const CODEX_SKILL = `mkdir -p ~/.codex/skills/autoace
+curl -fsSL ${AGENT_SKILL_RAW_URL} -o ~/.codex/skills/autoace/SKILL.md`;
 
 export default function DocsPageContent() {
   const { t } = useI18n();
@@ -16,7 +40,13 @@ export default function DocsPageContent() {
             </a>
           </li>
           <li>
+            <a href="#names">{t("docs.nav.names")}</a>
+          </li>
+          <li>
             <a href="#install">{t("docs.nav.install")}</a>
+          </li>
+          <li>
+            <a href="#agent-skill">{t("docs.nav.agentSkill")}</a>
           </li>
           <li>
             <a href="#quick-start">{t("docs.nav.quick")}</a>
@@ -41,6 +71,22 @@ export default function DocsPageContent() {
             <strong>{t("docs.intro.note.strong")}</strong>{" "}
             {t("docs.intro.note")}
           </div>
+        </section>
+
+        <section id="names">
+          <h2>{t("docs.names.title")}</h2>
+          <p>{t("docs.names.p")}</p>
+          <ul>
+            <li>
+              <strong>autoace-cli</strong> — {t("docs.names.cli")}
+            </li>
+            <li>
+              <strong>{AGENT_SKILL_NAME}</strong> — {t("docs.names.agent")}
+            </li>
+            <li>
+              <strong>{t("docs.names.skillLabel")}</strong> — {t("docs.names.skill")}
+            </li>
+          </ul>
         </section>
 
         <section id="install">
@@ -82,6 +128,42 @@ autoace-cli`}</code>
           </div>
         </section>
 
+        <section id="agent-skill">
+          <h2>{t("docs.agent.title")}</h2>
+          <p>{t("docs.agent.p")}</p>
+          <p>
+            <a
+              href={`${CORE_REPO_URL}/tree/main/agent-skills/autoace`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {t("docs.agent.repoLink")}
+            </a>
+          </p>
+
+          <h3>{t("docs.agent.claude")}</h3>
+          <pre className="code-block code-font">
+            <code>{CLAUDE_CODE_SKILL}</code>
+          </pre>
+          <p>{t("docs.agent.claude.invoke")}</p>
+
+          <h3>{t("docs.agent.codex")}</h3>
+          <pre className="code-block code-font">
+            <code>{CODEX_SKILL}</code>
+          </pre>
+          <p>{t("docs.agent.codex.invoke")}</p>
+
+          <h3>{t("docs.agent.cursor")}</h3>
+          <p>{t("docs.agent.cursor.desc")}</p>
+
+          <h3>{t("docs.agent.npx")}</h3>
+          <pre className="code-block code-font">
+            <code>
+              {`npx skills add kuaiyou-app/kuaiyou-open-source --path agent-skills/autoace`}
+            </code>
+          </pre>
+        </section>
+
         <section id="quick-start">
           <h2>{t("docs.quick.title")}</h2>
           <p>{t("docs.quick.p")}</p>
@@ -108,24 +190,16 @@ autoace-cli`}</code>
           </pre>
 
           <h3>{t("docs.quick.connect")}</h3>
-          <p>
-            {t("docs.quick.claude")}{" "}
-            <code>claude_desktop_config.json</code>:
-          </p>
+          <p>{t("docs.quick.claude")}</p>
           <pre className="code-block code-font">
-            <code>{`{
-  "mcpServers": {
-    "kuaiyou": {
-      "command": "npx",
-      "args": ["-y", "autoace-cli"],
-      "env": {
-        "KUAIYOU_DEVICE_IP": "192.168.1.100:3847",
-        "KUAIYOU_MCP_PAIRING_CODE": "482917"
-      }
-    }
-  }
-}`}</code>
+            <code>{MCP_JSON}</code>
           </pre>
+          <p>{t("docs.quick.clients")}</p>
+          <ul>
+            <li>{t("docs.quick.clients.1")}</li>
+            <li>{t("docs.quick.clients.2")}</li>
+            <li>{t("docs.quick.clients.3")}</li>
+          </ul>
           <p>{t("docs.quick.compat")}</p>
         </section>
 

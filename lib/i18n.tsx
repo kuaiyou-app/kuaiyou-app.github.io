@@ -148,27 +148,37 @@ const zh: Dict = {
 
   "docs.navAria": "文档导航",
   "docs.nav.intro": "简介",
-  "docs.nav.install": "安装 CLI",
-  "docs.nav.quick": "快速开始",
-  "docs.nav.write": "让 Agent 写第一个技能",
+  "docs.nav.names": "名称说明",
+  "docs.nav.install": "安装 autoace-cli",
+  "docs.nav.agentSkill": "安装 Agent Skill",
+  "docs.nav.quick": "配置 MCP",
+  "docs.nav.write": "写第一个技能",
   "docs.nav.tools": "核心能力",
   "docs.nav.boundaries": "开源边界",
-  "docs.intro.title": "autoace-cli 文档",
+  "docs.intro.title": "autoace 文档",
   "docs.intro.p1":
-    "欢迎使用 autoace-cli。安装电脑端 CLI 后，用自然语言让 AI 生成技能、校验并推送到快游大师 App；手机端确认后本地执行。",
+    "用 autoace-cli（MCP）连接手机，在 Claude Code / Codex / Cursor 等工具里用自然语言生成技能，校验后推送到快游大师本地执行。可选安装 Agent Skill「autoace」以固定工作流。",
   "docs.intro.note.strong": "说明：",
   "docs.intro.note":
-    "本仓库开源电脑端 CLI（autoace-cli）、文档与技能示例。快游大师 Android App 为闭源，且是端侧执行的必需依赖。",
+    "开源：autoace-cli、Agent Skill（autoace）、文档与技能示例。快游大师 Android App 为闭源，且是端侧执行的必需依赖。",
+  "docs.names.title": "名称说明",
+  "docs.names.p": "先分清三个名字，避免装错东西：",
+  "docs.names.cli": "电脑端 MCP CLI（npm 包名 / 命令）。开发联调必装。",
+  "docs.names.agent":
+    "Agent Skill（SKILL.md）。给 Claude Code / Codex / Cursor 的工作流说明；可选但推荐。",
+  "docs.names.skillLabel": "技能",
+  "docs.names.skill":
+    "手机端执行的自动化 JSON。装在快游大师 App 里，不是装进 Claude/Codex 的文件。",
   "docs.install.title": "安装 autoace-cli",
   "docs.install.p":
-    "autoace-cli 是电脑端 MCP 命令行工具（npm 包同名）。在本地运行后，Cursor / Claude 等 AI 客户端即可连接手机上的快游大师 App。",
+    "autoace-cli 是电脑端 MCP 命令行工具（npm 包同名）。配置到 AI 客户端后，即可看屏、校验并推送技能。",
   "docs.install.npmLink": "在 npm 查看 autoace-cli →",
   "docs.install.req": "环境要求",
   "docs.install.req.1": "Node.js ≥ 18（建议 LTS）",
   "docs.install.req.2": "可访问 npm registry（或已配置可用镜像）",
   "docs.install.npx": "方式一：npx 免安装（推荐）",
   "docs.install.npx.desc":
-    "不占用全局环境，每次自动使用最新已发布版本。适合 Cursor / Claude 的 MCP command 配置：",
+    "不占用全局环境，每次使用已发布版本。适合作为各客户端的 MCP command：",
   "docs.install.global": "方式二：全局安装",
   "docs.install.global.desc":
     "安装后可直接使用命令 autoace-cli（同样可作为 MCP command）：",
@@ -176,31 +186,52 @@ const zh: Dict = {
   "docs.install.verify.desc": "查询 npm 上的当前版本：",
   "docs.install.tip.strong": "提示：",
   "docs.install.tip":
-    "该命令是 MCP stdio 服务，在终端单独运行时会等待标准输入；正常用法是交给 AI 客户端拉起，并配置 KUAIYOU_DEVICE_IP / KUAIYOU_MCP_PAIRING_CODE。详见下方「快速开始」。",
-  "docs.quick.title": "快速开始",
+    "该命令是 MCP stdio 服务，在终端单独运行时会等待标准输入；正常用法是交给 AI 客户端拉起，并配置 KUAIYOU_DEVICE_IP / KUAIYOU_MCP_PAIRING_CODE。",
+  "docs.agent.title": "安装 Agent Skill：autoace",
+  "docs.agent.p":
+    "Agent Skill「autoace」教 AI 如何用 MCP 写技能、校验、推送，以及 MCP 不可用时的 HTTP/ADB 回退。它不会把手机端技能 JSON 装进客户端。",
+  "docs.agent.repoLink": "在 GitHub 查看 autoace →",
+  "docs.agent.claude": "Claude Code",
+  "docs.agent.claude.invoke":
+    "个人目录可用；团队可放进项目 .claude/skills/autoace/。调用：/autoace。",
+  "docs.agent.codex": "Codex",
+  "docs.agent.codex.invoke":
+    "也可放到项目 .agents/skills/autoace/。调用：$autoace 或 /skills。若未出现，确认 Codex 已启用 skills 并重启。",
+  "docs.agent.cursor": "Cursor",
+  "docs.agent.cursor.desc":
+    "将 agent-skills/autoace 复制到项目或个人 Agent Skills 目录，新开 Agent 会话后即可按描述自动选用。",
+  "docs.agent.npx": "通用安装（skills CLI）",
+  "docs.quick.title": "配置 MCP 客户端",
   "docs.quick.p":
-    "完成 CLI 安装后，开启手机 MCP 服务，把连接信息交给 AI 客户端即可开始编排技能。",
+    "完成 autoace-cli 后，在手机开启 MCP 服务，把连接信息写入 AI 客户端。MCP server 名称建议使用 autoace。",
   "docs.quick.prereq": "1. 前置条件",
-  "docs.quick.prereq.1": "已按上文安装 autoace-cli（或使用 npx）",
+  "docs.quick.prereq.1": "已按上文可运行 autoace-cli（或使用 npx）",
   "docs.quick.prereq.2": "Android 手机上已安装快游大师 App",
   "docs.quick.prereq.3":
     "局域网模式：在 App「设置 → 高级设置」开启「MCP 服务」，点击条目复制连接信息（含 IP:端口 与配对码）。",
   "docs.quick.prereq.4": "USB 模式：通过数据线连接手机并开启 USB 调试。",
-  "docs.quick.start": "2. 启动并连接设备",
+  "docs.quick.start": "2. 启动命令参考",
   "docs.quick.npm":
     "把 App 复制的环境变量填入启动命令（或写入 AI 客户端 MCP env）：",
   "docs.quick.lan":
     "局域网连接（推荐，替换为 App 显示的 IP:端口 与配对码）：",
   "docs.quick.usb": "USB / ADB 连接（无需 IP；可加 KUAIYOU_ADB_SERIAL）：",
-  "docs.quick.connect": "3. 连接你的 AI 客户端",
-  "docs.quick.claude": "如果你使用支持 MCP 的 AI 客户端，可参考如下配置",
+  "docs.quick.connect": "3. MCP 配置示例（Cursor / Claude Desktop）",
+  "docs.quick.claude": "在支持 MCP 的客户端中加入：",
+  "docs.quick.clients": "其他客户端：",
+  "docs.quick.clients.1":
+    "Claude Code：在其 MCP 配置中增加同上 autoace 条目，重启会话后确认工具列表含 get_ui_tree / push_reactive_skill。",
+  "docs.quick.clients.2":
+    "Codex：在 ~/.codex/config.toml（或当前版本 MCP 配置处）注册同等 command / args / env。",
+  "docs.quick.clients.3":
+    "推荐同时安装 Agent Skill autoace，减少 Agent 走偏。",
   "docs.quick.compat":
-    "autoace-cli 面向常见 AI 客户端接入。文档重点说明怎么用，而不是客户端内部实现。",
-  "docs.write.title": "让 Agent 编写第一个技能",
+    "文档只说明接入方式；各客户端菜单路径可能随版本变化。",
+  "docs.write.title": "写第一个技能",
   "docs.write.lead":
-    "用法是：你用自然语言指挥 AI，AI 通过 MCP 看屏、编写技能、校验并推送到手机。你一般不需要手写 JSON。",
+    "用法：自然语言指挥 AI；AI 通过 autoace-cli MCP 看屏、编写技能、校验并推送。你一般不需要手写 JSON。",
   "docs.write.flow": "推荐流程",
-  "docs.write.flow.1": "确认 Cursor / Claude 已连上 kuaiyou MCP，手机「MCP 服务」已开启。",
+  "docs.write.flow.1": "确认客户端已连接 autoace MCP，手机「MCP 服务」已开启；可选调用 /autoace。",
   "docs.write.flow.2": "在对话里粘贴下方提示词（或按你的目标改写）。",
   "docs.write.flow.3":
     "Agent 应先调用 get_ui_tree / capture_screenshot 了解当前界面。",
@@ -208,9 +239,9 @@ const zh: Dict = {
     "再生成技能，用 validate_kuaiyou_skill 校验，然后 push_reactive_skill 推送到手机。",
   "docs.write.flow.5": "在手机上确认导入并运行；若不准确，继续用自然语言让 Agent 改一版再推。",
   "docs.write.prompt": "可直接粘贴给 Agent 的提示词",
-  "docs.write.prompt.desc": "把下面整段发给已配置好 kuaiyou MCP 的 AI：",
+  "docs.write.prompt.desc": "把下面整段发给已配置好 autoace MCP 的 AI：",
   "docs.write.prompt.sample":
-    "请使用快游大师 MCP：先 capture_screenshot 和 get_ui_tree 查看我现在的手机界面，再写一个技能：当出现「确认」按钮时点击它，最多 3 次、每次间隔约 2 秒。写完先 validate_kuaiyou_skill，通过后 push_reactive_skill 推送到手机。不要使用已移除的 readText / setClipboard，读写请用 storeValue。",
+    "请使用 autoace MCP：先 capture_screenshot 和 get_ui_tree 查看我现在的手机界面，再写一个技能：当出现「确认」按钮时点击它，最多 3 次、每次间隔约 2 秒。写完先 validate_kuaiyou_skill，通过后 push_reactive_skill 推送到手机。不要使用已移除的 readText / setClipboard，读写请用 storeValue。",
   "docs.write.prompt.more": "其他常用说法：",
   "docs.write.prompt.alt1":
     "看一下当前界面，帮我做一个自动点击「每日签到」的技能并推送到手机。",
@@ -219,10 +250,10 @@ const zh: Dict = {
   "docs.write.example": "Agent 可能生成的示例结构（参考）",
   "docs.write.example.desc":
     "下面只是技能 JSON 的形态示意；日常仍以 Agent 生成 + 校验为准。更多样例见仓库",
-  "docs.write.example.end": "。",
+  "docs.write.example.end": "。仓库 examples/skills 是参考 JSON，不是 Agent Skill。",
   "docs.write.tip.strong": "提示：",
   "docs.write.tip":
-    "手机端会在导入/运行前要求确认。技能动作必须是本地可执行的（tap、swipe、delay、storeValue 等），不要依赖运行期云端大模型。",
+    "手机端会在导入/运行前要求确认。技能动作必须是本地可执行的（tap、swipe、delay、storeValue 等）。",
   "docs.tools.title": "核心能力",
   "docs.tools.p": "autoace-cli 当前主要提供这些能力：",
   "docs.tools.1": "获取手机当前界面信息。",
@@ -231,12 +262,12 @@ const zh: Dict = {
   "docs.tools.4": "将技能下发到手机，确认后本地执行。",
   "docs.bound.title": "开源边界",
   "docs.bound.1":
-    "开源：autoace-cli、文档、示例与技能。",
+    "开源：autoace-cli、Agent Skill（autoace）、文档、示例与技能 JSON。",
   "docs.bound.2": "闭源：快游大师 Android App / 手机端执行能力。",
   "docs.bound.3":
     "界面信息会经过你的本地工具。是否继续交给 AI，取决于你连接的客户端。",
   "docs.bound.4":
-    "兼容 Cursor、Claude 等常见 AI 客户端。",
+    "兼容 Claude Code、Codex、Cursor、Claude Desktop 等常见 AI 客户端。",
 
   "footer.brand": "快游大师 CLI",
   "footer.desc":
@@ -392,27 +423,37 @@ const en: Dict = {
 
   "docs.navAria": "Documentation",
   "docs.nav.intro": "Introduction",
-  "docs.nav.install": "Install CLI",
-  "docs.nav.quick": "Quick Start",
-  "docs.nav.write": "Ask the agent for your first skill",
+  "docs.nav.names": "Names",
+  "docs.nav.install": "Install autoace-cli",
+  "docs.nav.agentSkill": "Install Agent Skill",
+  "docs.nav.quick": "Configure MCP",
+  "docs.nav.write": "Write your first skill",
   "docs.nav.tools": "Core capabilities",
   "docs.nav.boundaries": "Open-source boundaries",
-  "docs.intro.title": "autoace-cli docs",
+  "docs.intro.title": "autoace docs",
   "docs.intro.p1":
-    "Welcome to autoace-cli. Install the computer-side CLI, then ask AI to create skills, validate them, and push them to the Kuaiyou Master app for local execution after you confirm.",
+    "Use autoace-cli (MCP) with Claude Code, Codex, Cursor, and similar tools to create skills in natural language, validate them, and push them to Kuaiyou Master for local execution. Optionally install the Agent Skill named autoace.",
   "docs.intro.note.strong": "Note:",
   "docs.intro.note":
-    "This repository open-sources autoace-cli, docs, and skill examples. The Kuaiyou Master Android App is closed source and required for on-device execution.",
+    "Open source: autoace-cli, Agent Skill (autoace), docs, and skill examples. The Kuaiyou Master Android App is closed source and required for on-device execution.",
+  "docs.names.title": "Names",
+  "docs.names.p": "Keep these three distinct:",
+  "docs.names.cli": "Computer-side MCP CLI (npm package / command). Required for development.",
+  "docs.names.agent":
+    "Agent Skill (SKILL.md). Workflow instructions for Claude Code / Codex / Cursor. Optional but recommended.",
+  "docs.names.skillLabel": "skill",
+  "docs.names.skill":
+    "Automation JSON that runs on the phone inside Kuaiyou Master — not a file you install into Claude/Codex.",
   "docs.install.title": "Install autoace-cli",
   "docs.install.p":
-    "autoace-cli is the computer-side MCP CLI (same npm package name). It runs locally so Cursor / Claude can talk to the Kuaiyou Master app on your phone.",
+    "autoace-cli is the computer-side MCP CLI (same npm package name). Once wired into your AI client, it can see the screen, validate skills, and push them.",
   "docs.install.npmLink": "View autoace-cli on npm →",
   "docs.install.req": "Requirements",
   "docs.install.req.1": "Node.js ≥ 18 (LTS recommended)",
   "docs.install.req.2": "Access to the npm registry (or a working mirror)",
   "docs.install.npx": "Option 1: npx (no install, recommended)",
   "docs.install.npx.desc":
-    "No global install. Always pulls the latest published version. Ideal for Cursor / Claude MCP command configs:",
+    "No global install. Uses the published package. Ideal as the MCP command in AI clients:",
   "docs.install.global": "Option 2: global install",
   "docs.install.global.desc":
     "After install you can run autoace-cli directly (also usable as the MCP command):",
@@ -420,33 +461,53 @@ const en: Dict = {
   "docs.install.verify.desc": "Check the version published on npm:",
   "docs.install.tip.strong": "Tip:",
   "docs.install.tip":
-    "This binary is an MCP stdio server. Running it alone in a terminal waits on stdin. Normal use is letting your AI client launch it with KUAIYOU_DEVICE_IP / KUAIYOU_MCP_PAIRING_CODE. See Quick Start below.",
-  "docs.quick.title": "Quick Start",
+    "This binary is an MCP stdio server. Running it alone in a terminal waits on stdin. Normal use is letting your AI client launch it with KUAIYOU_DEVICE_IP / KUAIYOU_MCP_PAIRING_CODE.",
+  "docs.agent.title": "Install Agent Skill: autoace",
+  "docs.agent.p":
+    "The Agent Skill autoace teaches the AI the MCP write → validate → push flow, plus HTTP/ADB fallback. It does not install phone-side skill JSON into the client.",
+  "docs.agent.repoLink": "View autoace on GitHub →",
+  "docs.agent.claude": "Claude Code",
+  "docs.agent.claude.invoke":
+    "Use the personal path above, or share via .claude/skills/autoace/ in a repo. Invoke with /autoace.",
+  "docs.agent.codex": "Codex",
+  "docs.agent.codex.invoke":
+    "Or place under .agents/skills/autoace/ in a project. Invoke with $autoace or /skills. If missing, enable skills in Codex config and restart.",
+  "docs.agent.cursor": "Cursor",
+  "docs.agent.cursor.desc":
+    "Copy agent-skills/autoace into your project or personal Agent Skills directory, then start a new Agent session.",
+  "docs.agent.npx": "Generic install (skills CLI)",
+  "docs.quick.title": "Configure MCP clients",
   "docs.quick.p":
-    "After installing the CLI, enable MCP Service on the phone and give the connection info to your AI client.",
+    "After autoace-cli is available, enable MCP Service on the phone and put the connection info into your AI client. Prefer naming the MCP server autoace.",
   "docs.quick.prereq": "1. Prerequisites",
-  "docs.quick.prereq.1": "autoace-cli installed (or use npx) as above",
+  "docs.quick.prereq.1": "autoace-cli runnable (or npx) as above",
   "docs.quick.prereq.2": "Kuaiyou Master installed on an Android phone",
   "docs.quick.prereq.3":
     "LAN mode: enable MCP Service under Settings → Advanced, then tap the row to copy connection info (IP:port + pairing code).",
   "docs.quick.prereq.4": "USB mode: connect the phone with a cable and enable USB debugging.",
-  "docs.quick.start": "2. Start and connect the device",
+  "docs.quick.start": "2. Launch command reference",
   "docs.quick.npm":
     "Put the env vars copied from the app into the start command (or into your AI client MCP env):",
   "docs.quick.lan":
     "LAN connection (recommended; replace with the IP:port and pairing code shown in the app):",
   "docs.quick.usb": "USB / ADB connection (no IP; optional KUAIYOU_ADB_SERIAL):",
-  "docs.quick.connect": "3. Connect your AI client",
-  "docs.quick.claude":
-    "If your AI client supports MCP, you can use a config like this",
+  "docs.quick.connect": "3. MCP config example (Cursor / Claude Desktop)",
+  "docs.quick.claude": "Add this to an MCP-capable client:",
+  "docs.quick.clients": "Other clients:",
+  "docs.quick.clients.1":
+    "Claude Code: add the same autoace MCP entry, restart, and confirm tools like get_ui_tree / push_reactive_skill appear.",
+  "docs.quick.clients.2":
+    "Codex: register the same command / args / env in ~/.codex/config.toml (or the current Codex MCP settings).",
+  "docs.quick.clients.3":
+    "Also install the Agent Skill autoace so the agent stays on the intended workflow.",
   "docs.quick.compat":
-    "autoace-cli is designed for common AI clients. The docs focus on how to use it, not client internals.",
-  "docs.write.title": "Ask the agent to write your first skill",
+    "These docs cover wiring only; exact menu paths vary by client version.",
+  "docs.write.title": "Write your first skill",
   "docs.write.lead":
-    "Drive it with natural language: the AI uses MCP to see the screen, write a skill, validate it, and push it to the phone. You usually should not hand-write JSON.",
+    "Drive it with natural language: the AI uses autoace-cli MCP to see the screen, write a skill, validate it, and push it. You usually should not hand-write JSON.",
   "docs.write.flow": "Recommended flow",
   "docs.write.flow.1":
-    "Confirm Cursor / Claude is connected to the kuaiyou MCP server and MCP Service is enabled on the phone.",
+    "Confirm the client is connected to autoace MCP and MCP Service is on; optionally run /autoace.",
   "docs.write.flow.2": "Paste one of the prompts below (or adapt it to your goal).",
   "docs.write.flow.3":
     "The agent should call get_ui_tree / capture_screenshot first to understand the screen.",
@@ -456,9 +517,9 @@ const en: Dict = {
     "Confirm import/run on the phone. If it misses, keep chatting so the agent revises and pushes again.",
   "docs.write.prompt": "Prompts you can paste to the agent",
   "docs.write.prompt.desc":
-    "Send the following to an AI client that already has kuaiyou MCP configured:",
+    "Send the following to an AI client that already has autoace MCP configured:",
   "docs.write.prompt.sample":
-    "Use Kuaiyou MCP: first capture_screenshot and get_ui_tree to inspect my phone screen, then write a skill that taps the Confirm button whenever it appears, up to 3 times with about 2s between taps. Validate with validate_kuaiyou_skill, then push_reactive_skill. Do not use removed readText / setClipboard — use storeValue for read/write.",
+    "Use autoace MCP: first capture_screenshot and get_ui_tree to inspect my phone screen, then write a skill that taps the Confirm button whenever it appears, up to 3 times with about 2s between taps. Validate with validate_kuaiyou_skill, then push_reactive_skill. Do not use removed readText / setClipboard — use storeValue for read/write.",
   "docs.write.prompt.more": "Other useful phrasings:",
   "docs.write.prompt.alt1":
     "Look at the current screen, make a skill that taps Daily check-in, and push it to my phone.",
@@ -467,10 +528,11 @@ const en: Dict = {
   "docs.write.example": "Example shape the agent may produce (reference)",
   "docs.write.example.desc":
     "This is only to illustrate skill JSON structure. Day-to-day, prefer agent generation + validation. More samples live under",
-  "docs.write.example.end": ".",
+  "docs.write.example.end":
+    ". Repo examples/skills are reference JSON, not the Agent Skill.",
   "docs.write.tip.strong": "Tip:",
   "docs.write.tip":
-    "The phone asks for confirmation before import/run. Actions must be locally executable (tap, swipe, delay, storeValue, …) — no cloud LLM calls at runtime.",
+    "The phone asks for confirmation before import/run. Actions must be locally executable (tap, swipe, delay, storeValue, …).",
   "docs.tools.title": "Core capabilities",
   "docs.tools.p": "autoace-cli currently focuses on these outcomes:",
   "docs.tools.1": "Read the current phone screen context.",
@@ -479,13 +541,13 @@ const en: Dict = {
   "docs.tools.4": "Send a skill to the phone for local execution after confirmation.",
   "docs.bound.title": "Open-source boundaries",
   "docs.bound.1":
-    "Open source: autoace-cli, docs, examples, and skills.",
+    "Open source: autoace-cli, Agent Skill (autoace), docs, examples, and skill JSON.",
   "docs.bound.2":
     "Closed source: Kuaiyou Master Android App / on-device execution.",
   "docs.bound.3":
     "Screen information passes through your local tooling. Whether it is shared with AI depends on the client you connect.",
   "docs.bound.4":
-    "Works with common AI clients such as Cursor and Claude.",
+    "Works with Claude Code, Codex, Cursor, Claude Desktop, and similar clients.",
 
   "footer.brand": "autoace-cli",
   "footer.desc":
