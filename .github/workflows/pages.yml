@@ -56,18 +56,24 @@ jobs:
 
       - name: Prepare Pages Artifact
         run: |
+          set -euo pipefail
+          test -d out
+          test -d public/skills
+          test -f public/skills/index.json
           rm -rf out/skills
-          cp -r public/skills out/skills
+          mkdir -p out
+          cp -R public/skills out/skills
           if [ -d _skills_src/agent-skills ]; then
             rm -rf out/agent-skills
-            cp -r _skills_src/agent-skills out/agent-skills
+            cp -R _skills_src/agent-skills out/agent-skills
           elif [ -d public/agent-skills ]; then
             rm -rf out/agent-skills
-            cp -r public/agent-skills out/agent-skills
+            cp -R public/agent-skills out/agent-skills
           fi
           test -f out/index.html
           test -f out/docs/index.html
           test -f out/skills/index.json
+          ls out/skills | head
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
