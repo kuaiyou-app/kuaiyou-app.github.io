@@ -1,6 +1,7 @@
 "use client";
 
 import { useI18n } from "@/lib/i18n";
+import { NPM_PACKAGE_URL } from "@/lib/site";
 
 export default function DocsPageContent() {
   const { t } = useI18n();
@@ -56,10 +57,16 @@ export default function DocsPageContent() {
           </ul>
 
           <h3>{t("docs.quick.start")}</h3>
+          <p>{t("docs.quick.npm")}</p>
+          <p>
+            <a href={NPM_PACKAGE_URL} target="_blank" rel="noopener noreferrer">
+              npmjs.com/package/kuaiyou-mcp-server
+            </a>
+          </p>
           <p>{t("docs.quick.lan")}</p>
           <pre className="code-block code-font">
             <code>
-              KUAIYOU_DEVICE_IP=192.168.1.100 npx -y kuaiyou-mcp-server
+              {`KUAIYOU_DEVICE_IP=192.168.1.100:3847 KUAIYOU_MCP_PAIRING_CODE=482917 npx -y kuaiyou-mcp-server`}
             </code>
           </pre>
           <p>{t("docs.quick.usb")}</p>
@@ -79,7 +86,8 @@ export default function DocsPageContent() {
       "command": "npx",
       "args": ["-y", "kuaiyou-mcp-server"],
       "env": {
-        "KUAIYOU_DEVICE_IP": "192.168.1.100"
+        "KUAIYOU_DEVICE_IP": "192.168.1.100:3847",
+        "KUAIYOU_MCP_PAIRING_CODE": "482917"
       }
     }
   }
