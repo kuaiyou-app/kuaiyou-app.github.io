@@ -44,14 +44,13 @@ const zh: Dict = {
   "home.badge": "快游大师 CLI · autoace-cli",
   "home.title.line1": "用 AI 构建",
   "home.title.line2": "Android 自动化技能",
-  "home.title.line3": "",
   "home.subtitle":
     "电脑端 CLI（autoace-cli）让 AI 理解当前 Android 界面，生成技能并下发到手机本地执行。",
   "home.cta.primary": "快速开始 — 5 分钟上手",
   "home.cta.how": "了解工作原理",
   "home.cta.source": "查看源码",
   "home.boundary":
-    "开源部分：电脑端 CLI（autoace-cli）、技能示例与文档。必需运行时：快游大师 App（应用商店可下载）。",
+    "开源包含：电脑端 CLI（autoace-cli）、技能示例与文档。必需运行时：快游大师 App（应用商店可下载）。",
   "home.tags.aria": "产品约束",
   "home.tag.android": "Android系统",
   "home.tag.app": "快游大师自动化引擎",
@@ -154,7 +153,7 @@ const zh: Dict = {
   "docs.nav.quick": "配置 MCP",
   "docs.nav.write": "写第一个技能",
   "docs.nav.tools": "核心能力",
-  "docs.nav.boundaries": "开源边界",
+  "docs.nav.boundaries": "开源说明",
   "docs.intro.title": "autoace 文档",
   "docs.intro.p1":
     "用 autoace-cli（MCP）连接手机，在 Claude Code / Codex / Cursor 等工具里用自然语言生成技能，校验后推送到快游大师本地执行。可选安装 Agent Skill「autoace」以固定工作流。",
@@ -260,7 +259,7 @@ const zh: Dict = {
   "docs.tools.2": "截取当前屏幕。",
   "docs.tools.3": "校验技能是否合法。",
   "docs.tools.4": "将技能下发到手机，确认后本地执行。",
-  "docs.bound.title": "开源边界",
+  "docs.bound.title": "开源说明",
   "docs.bound.1":
     "开源：autoace-cli、Agent Skill（autoace）、文档、示例与技能 JSON。",
   "docs.bound.2": "闭源：快游大师 Android App / 手机端执行能力。",
@@ -315,7 +314,6 @@ const en: Dict = {
   "home.badge": "autoace-cli",
   "home.title.line1": "Build Android",
   "home.title.line2": "automation skills",
-  "home.title.line3": "",
   "home.subtitle":
     "autoace-cli helps AI understand the current Android screen, create a skill, and run it locally on your phone.",
   "home.cta.primary": "Get started — 5 minute setup",
