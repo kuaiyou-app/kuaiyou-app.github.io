@@ -21,8 +21,13 @@ export default function HomePage({ skills }: { skills: Skill[] }) {
           <span className="hero-title-line">{t("home.title.line1")}</span>{" "}
           <span className="hero-title-line gradient-text">
             {t("home.title.line2")}
-          </span>{" "}
-          <span className="hero-title-line">{t("home.title.line3")}</span>
+          </span>
+          {t("home.title.line3") ? (
+            <>
+              {" "}
+              <span className="hero-title-line">{t("home.title.line3")}</span>
+            </>
+          ) : null}
         </h1>
         <p className="hero-subtitle">{t("home.subtitle")}</p>
 

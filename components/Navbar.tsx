@@ -20,8 +20,8 @@ export default function Navbar() {
             ▲
           </span>
           <span className="nav-logo-text">
-            <span className="nav-logo-full">快游大师 CLI</span>
-            <span className="nav-logo-short">CLI</span>
+            <span className="nav-logo-full">{t("nav.brand")}</span>
+            <span className="nav-logo-short">{t("nav.brandShort")}</span>
           </span>
         </Link>
 

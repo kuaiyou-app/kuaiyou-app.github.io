@@ -22,13 +22,15 @@ const zh: Dict = {
   "meta.siteName": "快游大师 CLI",
   "meta.home.title": "快游大师 CLI — 用 AI 构建 Android 自动化技能",
   "meta.home.description":
-    "快游大师 CLI：用 AI 理解 Android 界面，生成并校验 ReactiveSkill，再下发到手机本地执行。",
-  "meta.docs.title": "文档 — 快速开始与 ReactiveSkill 指南",
+    "快游大师 CLI（autoace-cli）：用 AI 理解 Android 界面，生成技能并下发到手机本地执行。",
+  "meta.docs.title": "文档 — 安装与上手指南",
   "meta.docs.description":
-    "了解如何安装快游大师 CLI、连接 AI 客户端，并开始编写与运行 ReactiveSkill。",
+    "了解如何安装 autoace-cli、连接 AI 客户端，并开始让 Agent 编写与运行技能。",
   "meta.notfound.title": "页面未找到",
   "skip.link": "跳到主要内容",
   "nav.primary": "主导航",
+  "nav.brand": "快游大师 CLI",
+  "nav.brandShort": "CLI",
   "nav.home": "首页",
   "nav.docs": "文档",
   "nav.getStarted": "快速开始",
@@ -39,17 +41,17 @@ const zh: Dict = {
   "lang.zh": "中文",
   "lang.en": "EN",
 
-  "home.badge": "快游大师 CLI · ReactiveSkill V2",
+  "home.badge": "快游大师 CLI · autoace-cli",
   "home.title.line1": "用 AI 构建",
   "home.title.line2": "Android 自动化技能",
-  "home.title.line3": "ReactiveSkill",
+  "home.title.line3": "",
   "home.subtitle":
-    "快游大师 CLI 让 AI 理解当前 Android 界面，生成可校验的 ReactiveSkill，并下发到手机本地执行。",
+    "电脑端 CLI（autoace-cli）让 AI 理解当前 Android 界面，生成技能并下发到手机本地执行。",
   "home.cta.primary": "快速开始 — 5 分钟上手",
   "home.cta.how": "了解工作原理",
   "home.cta.source": "查看源码",
   "home.boundary":
-    "开源部分：快游大师 CLI、ReactiveSkill 规范、示例与技能。必需运行时：快游大师 App（可在华为、小米、Vivo、OPPO、荣耀、应用宝等应用商店下载）。",
+    "开源部分：电脑端 CLI（autoace-cli）、技能示例与文档。必需运行时：快游大师 App（应用商店可下载）。",
   "home.tags.aria": "产品约束",
   "home.tag.android": "Android系统",
   "home.tag.app": "快游大师自动化引擎",
@@ -61,22 +63,22 @@ const zh: Dict = {
   "home.how.node1.title": "AI 客户端",
   "home.how.node1.desc": "理解任务并生成技能",
   "home.how.arrow1": "生成技能",
-  "home.how.node2.title": "快游大师 CLI",
+  "home.how.node2.title": "autoace-cli",
   "home.how.node2.desc": "读取界面、校验并下发",
   "home.how.arrow2": "下发到手机",
   "home.how.node3.title": "快游大师",
   "home.how.node3.desc": "确认后在手机本地执行",
   "home.how.sr":
-    "AI 客户端通过快游大师 CLI 读取 Android 界面、生成并校验 ReactiveSkill，再下发到快游大师，用户确认后在手机本地执行。",
+    "AI 客户端通过 autoace-cli 读取 Android 界面、生成并校验技能，再下发到快游大师；用户确认后在手机本地执行。",
 
-  "home.cap.title": "快游大师 CLI 能做什么",
+  "home.cap.title": "autoace-cli 能做什么",
   "home.cap.subtitle": "聚焦结果，而不是工具链细节",
   "home.cap.1.title": "看懂当前界面",
   "home.cap.1.desc":
     "让 AI 获取手机当前页面信息，基于真实界面生成自动化技能。",
-  "home.cap.2.title": "生成 ReactiveSkill",
+  "home.cap.2.title": "生成技能",
   "home.cap.2.desc":
-    "用结构化技能描述自动化流程，比固定坐标脚本更易维护。",
+    "用结构化技能描述自动化流程，比固定坐标更易维护。",
   "home.cap.3.title": "下发前先校验",
   "home.cap.3.desc":
     "先检查技能是否合法，再下发到手机，减少无效调试。",
@@ -85,36 +87,36 @@ const zh: Dict = {
     "技能在手机端确认后本地运行，不依赖运行中的外部模型。",
 
   "home.qs.title": "快速开始",
-  "home.qs.subtitle": "五步开始你的第一个 ReactiveSkill",
+  "home.qs.subtitle": "五步开始你的第一个技能",
   "home.qs.1.strong": "安装快游大师",
   "home.qs.1.rest": "到 Android 手机，并完成基础权限设置。",
   "home.qs.2.strong": "开启 MCP 服务：",
   "home.qs.2.rest": "设置 → 高级设置，点击条目复制连接信息。",
   "home.qs.3.strong": "安装 CLI：",
   "home.qs.3.rest": "电脑需 Node.js ≥ 18，用 npm 安装或 npx 直接运行。",
-  "home.qs.3.cmd": "npm install -g kuaiyou-mcp-server",
-  "home.qs.3.alt": "或免安装：npx -y kuaiyou-mcp-server",
+  "home.qs.3.cmd": "npm install -g autoace-cli",
+  "home.qs.3.alt": "或免安装：npx -y autoace-cli",
   "home.qs.4": "让 AI 查看当前界面，并开始生成技能。",
   "home.qs.5": "校验技能后下发到手机，并在手机上确认运行。",
   "home.qs.openGuide": "打开安装指南",
   "home.qs.installGuide": "CLI 安装说明",
   "home.qs.tools": "能力说明",
 
-  "home.skills.title": "ReactiveSkill 示例",
+  "home.skills.title": "技能示例",
   "home.skills.subtitle":
     "浏览 {examples} 个示例与 {tests} 个兼容性测试技能。下载或复制后，校验并下发到手机运行。",
 
   "home.sec.title": "安全与边界",
   "home.sec.subtitle": "使用前需要了解的关键信息",
-  "home.sec.1": "快游大师 CLI 运行在你的电脑本地。",
+  "home.sec.1": "autoace-cli 运行在你的电脑本地。",
   "home.sec.2":
     "界面信息会在手机与本地工具之间传输；是否继续交给 AI，取决于你使用的客户端。",
-  "home.sec.3": "导入前请审阅 ReactiveSkill。手机端会在运行前要求确认。",
-  "home.sec.4": "兼容常见 AI 客户端。与 Anthropic 无隶属或背书关系。",
+  "home.sec.3": "导入前请审阅技能。手机端会在运行前要求确认。",
+  "home.sec.4": "兼容 Cursor、Claude 等常见 AI 客户端。",
   "home.sec.5":
-    "本仓库开源的是快游大师 CLI；手机端执行能力由快游大师提供，仍为闭源。",
+    "本仓库开源的是电脑端 CLI（autoace-cli）；手机端执行能力由快游大师提供，仍为闭源。",
 
-  "skills.searchAria": "ReactiveSkill",
+  "skills.searchAria": "技能",
   "skills.filterAria": "技能分类",
   "skills.filter.all": "全部",
   "skills.filter.examples": "示例",
@@ -151,17 +153,16 @@ const zh: Dict = {
   "docs.nav.write": "让 Agent 写第一个技能",
   "docs.nav.tools": "核心能力",
   "docs.nav.boundaries": "开源边界",
-  "docs.intro.title": "快游大师 CLI 文档",
+  "docs.intro.title": "autoace-cli 文档",
   "docs.intro.p1":
-    "欢迎使用快游大师 CLI。这里帮助你用 AI 生成、校验并运行 Android 自动化技能。核心对象是",
-  "docs.intro.p1.mid": "，一种可下发到手机本地执行的结构化技能。",
+    "欢迎使用 autoace-cli。安装电脑端 CLI 后，用自然语言让 AI 生成技能、校验并推送到快游大师 App；手机端确认后本地执行。",
   "docs.intro.note.strong": "说明：",
   "docs.intro.note":
-    "本仓库开源快游大师 CLI、ReactiveSkill 规范、示例与技能。快游大师 Android App 为闭源，且是端侧执行的必需依赖。",
-  "docs.install.title": "安装快游大师 CLI",
+    "本仓库开源电脑端 CLI（autoace-cli）、文档与技能示例。快游大师 Android App 为闭源，且是端侧执行的必需依赖。",
+  "docs.install.title": "安装 autoace-cli",
   "docs.install.p":
-    "快游大师 CLI 即 npm 包 kuaiyou-mcp-server：在电脑本地以 MCP Server 形式运行，供 Cursor / Claude 等 AI 客户端连接手机上的快游大师 App。",
-  "docs.install.npmLink": "在 npm 查看 kuaiyou-mcp-server →",
+    "autoace-cli 是电脑端 MCP 命令行工具（npm 包同名）。在本地运行后，Cursor / Claude 等 AI 客户端即可连接手机上的快游大师 App。",
+  "docs.install.npmLink": "在 npm 查看 autoace-cli →",
   "docs.install.req": "环境要求",
   "docs.install.req.1": "Node.js ≥ 18（建议 LTS）",
   "docs.install.req.2": "可访问 npm registry（或已配置可用镜像）",
@@ -170,7 +171,7 @@ const zh: Dict = {
     "不占用全局环境，每次自动使用最新已发布版本。适合 Cursor / Claude 的 MCP command 配置：",
   "docs.install.global": "方式二：全局安装",
   "docs.install.global.desc":
-    "安装后可直接使用命令 kuaiyou-mcp-server（同样可作为 MCP command）：",
+    "安装后可直接使用命令 autoace-cli（同样可作为 MCP command）：",
   "docs.install.verify": "确认包可用",
   "docs.install.verify.desc": "查询 npm 上的当前版本：",
   "docs.install.tip.strong": "提示：",
@@ -180,7 +181,7 @@ const zh: Dict = {
   "docs.quick.p":
     "完成 CLI 安装后，开启手机 MCP 服务，把连接信息交给 AI 客户端即可开始编排技能。",
   "docs.quick.prereq": "1. 前置条件",
-  "docs.quick.prereq.1": "已按上文安装快游大师 CLI（或使用 npx）",
+  "docs.quick.prereq.1": "已按上文安装 autoace-cli（或使用 npx）",
   "docs.quick.prereq.2": "Android 手机上已安装快游大师 App",
   "docs.quick.prereq.3":
     "局域网模式：在 App「设置 → 高级设置」开启「MCP 服务」，点击条目复制连接信息（含 IP:端口 与配对码）。",
@@ -194,22 +195,22 @@ const zh: Dict = {
   "docs.quick.connect": "3. 连接你的 AI 客户端",
   "docs.quick.claude": "如果你使用支持 MCP 的 AI 客户端，可参考如下配置",
   "docs.quick.compat":
-    "快游大师 CLI 面向常见 AI 客户端接入。文档重点说明怎么用，而不是客户端内部实现。",
+    "autoace-cli 面向常见 AI 客户端接入。文档重点说明怎么用，而不是客户端内部实现。",
   "docs.write.title": "让 Agent 编写第一个技能",
   "docs.write.lead":
-    "快游大师 CLI 的用法是：你用自然语言指挥 AI，AI 通过 MCP 看屏、写 ReactiveSkill、校验并推送到手机。你一般不需要手写 JSON。",
+    "用法是：你用自然语言指挥 AI，AI 通过 MCP 看屏、编写技能、校验并推送到手机。你一般不需要手写 JSON。",
   "docs.write.flow": "推荐流程",
   "docs.write.flow.1": "确认 Cursor / Claude 已连上 kuaiyou MCP，手机「MCP 服务」已开启。",
   "docs.write.flow.2": "在对话里粘贴下方提示词（或按你的目标改写）。",
   "docs.write.flow.3":
     "Agent 应先调用 get_ui_tree / capture_screenshot 了解当前界面。",
   "docs.write.flow.4":
-    "再生成 ReactiveSkill，用 validate_kuaiyou_skill 校验，然后 push_reactive_skill 推送到手机。",
+    "再生成技能，用 validate_kuaiyou_skill 校验，然后 push_reactive_skill 推送到手机。",
   "docs.write.flow.5": "在手机上确认导入并运行；若不准确，继续用自然语言让 Agent 改一版再推。",
   "docs.write.prompt": "可直接粘贴给 Agent 的提示词",
   "docs.write.prompt.desc": "把下面整段发给已配置好 kuaiyou MCP 的 AI：",
   "docs.write.prompt.sample":
-    "请使用快游大师 MCP：先 capture_screenshot 和 get_ui_tree 查看我现在的手机界面，再写一个 ReactiveSkill：当出现「确认」按钮时点击它，最多 3 次、每次间隔约 2 秒。写完先 validate_kuaiyou_skill，通过后 push_reactive_skill 推送到手机。不要使用已移除的 readText / setClipboard，读写请用 storeValue。",
+    "请使用快游大师 MCP：先 capture_screenshot 和 get_ui_tree 查看我现在的手机界面，再写一个技能：当出现「确认」按钮时点击它，最多 3 次、每次间隔约 2 秒。写完先 validate_kuaiyou_skill，通过后 push_reactive_skill 推送到手机。不要使用已移除的 readText / setClipboard，读写请用 storeValue。",
   "docs.write.prompt.more": "其他常用说法：",
   "docs.write.prompt.alt1":
     "看一下当前界面，帮我做一个自动点击「每日签到」的技能并推送到手机。",
@@ -217,25 +218,25 @@ const zh: Dict = {
     "刚才没点中，根据最新截图调整目标选择器后再推一版。",
   "docs.write.example": "Agent 可能生成的示例结构（参考）",
   "docs.write.example.desc":
-    "下面只是结果形态示意，便于你理解 ReactiveSkill；日常仍以 Agent 生成 + 校验为准。更多样例见仓库",
+    "下面只是技能 JSON 的形态示意；日常仍以 Agent 生成 + 校验为准。更多样例见仓库",
   "docs.write.example.end": "。",
   "docs.write.tip.strong": "提示：",
   "docs.write.tip":
     "手机端会在导入/运行前要求确认。技能动作必须是本地可执行的（tap、swipe、delay、storeValue 等），不要依赖运行期云端大模型。",
   "docs.tools.title": "核心能力",
-  "docs.tools.p": "快游大师 CLI 当前主要提供这些能力：",
+  "docs.tools.p": "autoace-cli 当前主要提供这些能力：",
   "docs.tools.1": "获取手机当前界面信息。",
   "docs.tools.2": "截取当前屏幕。",
-  "docs.tools.3": "校验 ReactiveSkill 是否合法。",
+  "docs.tools.3": "校验技能是否合法。",
   "docs.tools.4": "将技能下发到手机，确认后本地执行。",
   "docs.bound.title": "开源边界",
   "docs.bound.1":
-    "开源：快游大师 CLI、ReactiveSkill 规范、文档、示例与技能。",
+    "开源：autoace-cli、文档、示例与技能。",
   "docs.bound.2": "闭源：快游大师 Android App / 手机端执行能力。",
   "docs.bound.3":
     "界面信息会经过你的本地工具。是否继续交给 AI，取决于你连接的客户端。",
   "docs.bound.4":
-    "与 Anthropic 无隶属或背书关系。兼容常见 AI 客户端。",
+    "兼容 Cursor、Claude 等常见 AI 客户端。",
 
   "footer.brand": "快游大师 CLI",
   "footer.desc":
@@ -248,26 +249,28 @@ const zh: Dict = {
   "footer.copy":
     "© {year} 快游大师团队。Apache-2.0 开源工具链。",
   "footer.note":
-    "开源快游大师 CLI、规范、文档与技能。快游大师 Android App 运行时为闭源且为执行所必需。兼容常见 AI 客户端；与 Anthropic 无隶属或背书关系。",
+    "开源电脑端 CLI（autoace-cli）、文档与技能示例。快游大师 Android App 为闭源且为执行所必需。",
 
   "notfound.title": "页面未找到",
   "notfound.desc":
-    "该路径不属于快游大师 CLI 站点。请返回首页或查看安装指南。",
+    "该路径不属于本站。请返回首页或查看安装指南。",
   "notfound.home": "返回首页",
   "notfound.docs": "打开快速开始",
 };
 
 const en: Dict = {
-  "meta.siteName": "Kuaiyou Master CLI",
-  "meta.home.title": "Kuaiyou Master CLI — Build Android Automation Skills with AI",
+  "meta.siteName": "autoace-cli",
+  "meta.home.title": "autoace-cli — Build Android automation skills with AI",
   "meta.home.description":
-    "Kuaiyou Master CLI helps AI understand Android screens, create validated ReactiveSkills, and run them locally on your phone.",
-  "meta.docs.title": "Docs — Quick Start and ReactiveSkill Guide",
+    "autoace-cli helps AI understand Android screens, create skills, and run them locally on your phone.",
+  "meta.docs.title": "Docs — Install and get started",
   "meta.docs.description":
-    "Learn how to set up Kuaiyou Master CLI, connect an AI client, and start building ReactiveSkills.",
+    "Learn how to install autoace-cli, connect an AI client, and let the agent build skills.",
   "meta.notfound.title": "Page not found",
   "skip.link": "Skip to main content",
   "nav.primary": "Primary",
+  "nav.brand": "autoace-cli",
+  "nav.brandShort": "CLI",
   "nav.home": "Home",
   "nav.docs": "Docs",
   "nav.getStarted": "Get started",
@@ -278,17 +281,17 @@ const en: Dict = {
   "lang.zh": "中文",
   "lang.en": "EN",
 
-  "home.badge": "Kuaiyou Master CLI · ReactiveSkill V2",
+  "home.badge": "autoace-cli",
   "home.title.line1": "Build Android",
   "home.title.line2": "automation skills",
-  "home.title.line3": "with ReactiveSkill",
+  "home.title.line3": "",
   "home.subtitle":
-    "Kuaiyou Master CLI helps AI understand the current Android screen, create a validated ReactiveSkill, and run it locally on your phone.",
+    "autoace-cli helps AI understand the current Android screen, create a skill, and run it locally on your phone.",
   "home.cta.primary": "Get started — 5 minute setup",
   "home.cta.how": "See how it works",
   "home.cta.source": "View source",
   "home.boundary":
-    "Open source: Kuaiyou Master CLI, ReactiveSkill format, examples, and skills. Required runtime: Kuaiyou Master App (download from Huawei, Xiaomi, vivo, OPPO, Honor, Tencent Appstore, and other app stores).",
+    "Open source: autoace-cli, docs, and skill examples. Required runtime: Kuaiyou Master App (app stores).",
   "home.tags.aria": "Product constraints",
   "home.tag.android": "Android",
   "home.tag.app": "Kuaiyou Master automation engine",
@@ -301,20 +304,20 @@ const en: Dict = {
   "home.how.node1.title": "AI client",
   "home.how.node1.desc": "Understands the task and creates a skill",
   "home.how.arrow1": "Create skill",
-  "home.how.node2.title": "Kuaiyou Master CLI",
+  "home.how.node2.title": "autoace-cli",
   "home.how.node2.desc": "Reads the screen, validates, and sends",
   "home.how.arrow2": "Send to phone",
   "home.how.node3.title": "Kuaiyou Master",
   "home.how.node3.desc": "Confirm and run locally on device",
   "home.how.sr":
-    "An AI client uses Kuaiyou Master CLI to understand the Android screen, create and validate a ReactiveSkill, then send it to Kuaiyou Master for local execution after confirmation.",
+    "An AI client uses autoace-cli to understand the Android screen, create and validate a skill, then send it to Kuaiyou Master for local execution after confirmation.",
 
   "home.cap.title": "What you can do today",
   "home.cap.subtitle": "Focus on outcomes, not tool internals",
   "home.cap.1.title": "Understand the current screen",
   "home.cap.1.desc":
     "Let AI see what is on the phone before creating an automation skill.",
-  "home.cap.2.title": "Create ReactiveSkills",
+  "home.cap.2.title": "Create skills",
   "home.cap.2.desc":
     "Describe automation as structured skills that are easier to reuse than hard-coded coordinates.",
   "home.cap.3.title": "Validate before sending",
@@ -325,7 +328,7 @@ const en: Dict = {
     "After confirmation in Kuaiyou Master, the skill runs on-device without a live external model.",
 
   "home.qs.title": "Quick Start",
-  "home.qs.subtitle": "Five steps to your first ReactiveSkill",
+  "home.qs.subtitle": "Five steps to your first skill",
   "home.qs.1.strong": "Install Kuaiyou Master",
   "home.qs.1.rest": "on Android and finish basic permission setup.",
   "home.qs.2.strong": "Enable MCP Service:",
@@ -333,31 +336,31 @@ const en: Dict = {
     "Settings → Advanced, then tap the row to copy connection info.",
   "home.qs.3.strong": "Install the CLI:",
   "home.qs.3.rest": "Node.js ≥ 18 required; install via npm or run with npx.",
-  "home.qs.3.cmd": "npm install -g kuaiyou-mcp-server",
-  "home.qs.3.alt": "Or no install: npx -y kuaiyou-mcp-server",
+  "home.qs.3.cmd": "npm install -g autoace-cli",
+  "home.qs.3.alt": "Or no install: npx -y autoace-cli",
   "home.qs.4": "Let AI inspect the current screen and start creating a skill.",
   "home.qs.5": "Validate the skill, send it to the phone, and confirm the run.",
   "home.qs.openGuide": "Open setup guide",
   "home.qs.installGuide": "CLI install guide",
   "home.qs.tools": "Capabilities",
 
-  "home.skills.title": "ReactiveSkill examples",
+  "home.skills.title": "Skill examples",
   "home.skills.subtitle":
     "Browse {examples} example and {tests} compatibility-test skills. Download or copy one, then validate and send it to the phone.",
 
   "home.sec.title": "Safety & boundaries",
   "home.sec.subtitle": "What you should know before using it",
-  "home.sec.1": "Kuaiyou Master CLI runs locally on your computer.",
+  "home.sec.1": "autoace-cli runs locally on your computer.",
   "home.sec.2":
     "Screen information moves between the phone and local tooling; whether it is shared with AI depends on the client you use.",
   "home.sec.3":
-    "Review each ReactiveSkill before import. The phone asks for confirmation before running.",
+    "Review each skill before import. The phone asks for confirmation before running.",
   "home.sec.4":
-    "Works with common AI clients. Not affiliated with or endorsed by Anthropic.",
+    "Works with common AI clients such as Cursor and Claude.",
   "home.sec.5":
-    "This repository open-sources Kuaiyou Master CLI. On-device execution is provided by Kuaiyou Master and remains closed source.",
+    "This repository open-sources autoace-cli. On-device execution is provided by Kuaiyou Master and remains closed source.",
 
-  "skills.searchAria": "ReactiveSkill",
+  "skills.searchAria": "技能",
   "skills.filterAria": "Skill category",
   "skills.filter.all": "All",
   "skills.filter.examples": "Examples",
@@ -394,18 +397,16 @@ const en: Dict = {
   "docs.nav.write": "Ask the agent for your first skill",
   "docs.nav.tools": "Core capabilities",
   "docs.nav.boundaries": "Open-source boundaries",
-  "docs.intro.title": "Kuaiyou Master CLI docs",
+  "docs.intro.title": "autoace-cli docs",
   "docs.intro.p1":
-    "Welcome to Kuaiyou Master CLI. This guide helps you create, validate, and run Android automation skills with AI. The core format is",
-  "docs.intro.p1.mid":
-    ", a structured skill that can be sent to the phone for local execution.",
+    "Welcome to autoace-cli. Install the computer-side CLI, then ask AI to create skills, validate them, and push them to the Kuaiyou Master app for local execution after you confirm.",
   "docs.intro.note.strong": "Note:",
   "docs.intro.note":
-    "This repository open-sources Kuaiyou Master CLI, the ReactiveSkill format, examples, and skills. The Kuaiyou Master Android App is closed source and required for on-device execution.",
-  "docs.install.title": "Install Kuaiyou Master CLI",
+    "This repository open-sources autoace-cli, docs, and skill examples. The Kuaiyou Master Android App is closed source and required for on-device execution.",
+  "docs.install.title": "Install autoace-cli",
   "docs.install.p":
-    "Kuaiyou Master CLI is the npm package kuaiyou-mcp-server. It runs locally as an MCP server so Cursor / Claude can talk to the Kuaiyou Master app on your phone.",
-  "docs.install.npmLink": "View kuaiyou-mcp-server on npm →",
+    "autoace-cli is the computer-side MCP CLI (same npm package name). It runs locally so Cursor / Claude can talk to the Kuaiyou Master app on your phone.",
+  "docs.install.npmLink": "View autoace-cli on npm →",
   "docs.install.req": "Requirements",
   "docs.install.req.1": "Node.js ≥ 18 (LTS recommended)",
   "docs.install.req.2": "Access to the npm registry (or a working mirror)",
@@ -414,7 +415,7 @@ const en: Dict = {
     "No global install. Always pulls the latest published version. Ideal for Cursor / Claude MCP command configs:",
   "docs.install.global": "Option 2: global install",
   "docs.install.global.desc":
-    "After install you can run kuaiyou-mcp-server directly (also usable as the MCP command):",
+    "After install you can run autoace-cli directly (also usable as the MCP command):",
   "docs.install.verify": "Confirm the package is available",
   "docs.install.verify.desc": "Check the version published on npm:",
   "docs.install.tip.strong": "Tip:",
@@ -424,7 +425,7 @@ const en: Dict = {
   "docs.quick.p":
     "After installing the CLI, enable MCP Service on the phone and give the connection info to your AI client.",
   "docs.quick.prereq": "1. Prerequisites",
-  "docs.quick.prereq.1": "Kuaiyou Master CLI installed (or use npx) as above",
+  "docs.quick.prereq.1": "autoace-cli installed (or use npx) as above",
   "docs.quick.prereq.2": "Kuaiyou Master installed on an Android phone",
   "docs.quick.prereq.3":
     "LAN mode: enable MCP Service under Settings → Advanced, then tap the row to copy connection info (IP:port + pairing code).",
@@ -439,10 +440,10 @@ const en: Dict = {
   "docs.quick.claude":
     "If your AI client supports MCP, you can use a config like this",
   "docs.quick.compat":
-    "Kuaiyou Master CLI is designed for common AI clients. The docs focus on how to use it, not client internals.",
+    "autoace-cli is designed for common AI clients. The docs focus on how to use it, not client internals.",
   "docs.write.title": "Ask the agent to write your first skill",
   "docs.write.lead":
-    "Kuaiyou Master CLI is meant to be driven by natural language: the AI uses MCP to see the screen, write a ReactiveSkill, validate it, and push it to the phone. You usually should not hand-write JSON.",
+    "Drive it with natural language: the AI uses MCP to see the screen, write a skill, validate it, and push it to the phone. You usually should not hand-write JSON.",
   "docs.write.flow": "Recommended flow",
   "docs.write.flow.1":
     "Confirm Cursor / Claude is connected to the kuaiyou MCP server and MCP Service is enabled on the phone.",
@@ -450,14 +451,14 @@ const en: Dict = {
   "docs.write.flow.3":
     "The agent should call get_ui_tree / capture_screenshot first to understand the screen.",
   "docs.write.flow.4":
-    "Then it should write a ReactiveSkill, run validate_kuaiyou_skill, and push_reactive_skill to the phone.",
+    "Then it should write a skill, run validate_kuaiyou_skill, and push_reactive_skill to the phone.",
   "docs.write.flow.5":
     "Confirm import/run on the phone. If it misses, keep chatting so the agent revises and pushes again.",
   "docs.write.prompt": "Prompts you can paste to the agent",
   "docs.write.prompt.desc":
     "Send the following to an AI client that already has kuaiyou MCP configured:",
   "docs.write.prompt.sample":
-    "Use Kuaiyou MCP: first capture_screenshot and get_ui_tree to inspect my phone screen, then write a ReactiveSkill that taps the Confirm button whenever it appears, up to 3 times with about 2s between taps. Validate with validate_kuaiyou_skill, then push_reactive_skill. Do not use removed readText / setClipboard — use storeValue for read/write.",
+    "Use Kuaiyou MCP: first capture_screenshot and get_ui_tree to inspect my phone screen, then write a skill that taps the Confirm button whenever it appears, up to 3 times with about 2s between taps. Validate with validate_kuaiyou_skill, then push_reactive_skill. Do not use removed readText / setClipboard — use storeValue for read/write.",
   "docs.write.prompt.more": "Other useful phrasings:",
   "docs.write.prompt.alt1":
     "Look at the current screen, make a skill that taps Daily check-in, and push it to my phone.",
@@ -465,28 +466,28 @@ const en: Dict = {
     "That miss-clicked — adjust the target from the latest screenshot and push another version.",
   "docs.write.example": "Example shape the agent may produce (reference)",
   "docs.write.example.desc":
-    "This is only to illustrate ReactiveSkill structure. Day-to-day, prefer agent generation + validation. More samples live under",
+    "This is only to illustrate skill JSON structure. Day-to-day, prefer agent generation + validation. More samples live under",
   "docs.write.example.end": ".",
   "docs.write.tip.strong": "Tip:",
   "docs.write.tip":
     "The phone asks for confirmation before import/run. Actions must be locally executable (tap, swipe, delay, storeValue, …) — no cloud LLM calls at runtime.",
   "docs.tools.title": "Core capabilities",
-  "docs.tools.p": "Kuaiyou Master CLI currently focuses on these outcomes:",
+  "docs.tools.p": "autoace-cli currently focuses on these outcomes:",
   "docs.tools.1": "Read the current phone screen context.",
   "docs.tools.2": "Capture the current screen.",
-  "docs.tools.3": "Validate a ReactiveSkill.",
+  "docs.tools.3": "Validate a skill.",
   "docs.tools.4": "Send a skill to the phone for local execution after confirmation.",
   "docs.bound.title": "Open-source boundaries",
   "docs.bound.1":
-    "Open source: Kuaiyou Master CLI, ReactiveSkill format, docs, examples, and skills.",
+    "Open source: autoace-cli, docs, examples, and skills.",
   "docs.bound.2":
     "Closed source: Kuaiyou Master Android App / on-device execution.",
   "docs.bound.3":
     "Screen information passes through your local tooling. Whether it is shared with AI depends on the client you connect.",
   "docs.bound.4":
-    "Not affiliated with or endorsed by Anthropic. Works with common AI clients.",
+    "Works with common AI clients such as Cursor and Claude.",
 
-  "footer.brand": "Kuaiyou Master CLI",
+  "footer.brand": "autoace-cli",
   "footer.desc":
     "Build Android automation skills with AI and run them locally on your phone.",
   "footer.nav": "Footer",
@@ -497,11 +498,11 @@ const en: Dict = {
   "footer.copy":
     "© {year} Kuaiyou Master Team. Apache-2.0 open source tooling.",
   "footer.note":
-    "Open-source Kuaiyou Master CLI, format, docs, and skills. The Kuaiyou Master Android App runtime is closed source and required for execution. Works with common AI clients; not affiliated with or endorsed by Anthropic.",
+    "Open-source autoace-cli, docs, and skill examples. The Kuaiyou Master Android App runtime is closed source and required for execution.",
 
   "notfound.title": "Page not found",
   "notfound.desc":
-    "That route is not part of the Kuaiyou Master CLI site. Try the homepage or the setup guide.",
+    "That route is not part of this site. Try the homepage or the setup guide.",
   "notfound.home": "Back to homepage",
   "notfound.docs": "Open Quick Start",
 };

@@ -12,7 +12,8 @@ export const GITHUB_REPO_URL = "https://github.com/kuaiyou-app/kuaiyou-website";
 /** Canonical MCP / schema / skills monorepo. */
 export const CORE_REPO_URL = "https://github.com/kuaiyou-app/kuaiyou-open-source";
 
-/** Published MCP server on npm. */
-export const NPM_PACKAGE_URL = "https://www.npmjs.com/package/kuaiyou-mcp-server";
+/** Published MCP CLI on npm. */
+export const NPM_PACKAGE_URL = "https://www.npmjs.com/package/autoace-cli";
+export const NPM_PACKAGE_NAME = "autoace-cli";
 
 export const SKILLS_PUBLIC_PATH = `${SITE_BASE_PATH}/skills`;

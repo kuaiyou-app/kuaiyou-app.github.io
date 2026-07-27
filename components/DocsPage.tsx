@@ -36,11 +36,7 @@ export default function DocsPageContent() {
       <div className="docs-content glass-panel">
         <section id="introduction">
           <h1>{t("docs.intro.title")}</h1>
-          <p>
-            {t("docs.intro.p1")}{" "}
-            <strong>Model Context Protocol (MCP)</strong>{" "}
-            {t("docs.intro.p1.mid")}
-          </p>
+          <p>{t("docs.intro.p1")}</p>
           <div className="alert info">
             <strong>{t("docs.intro.note.strong")}</strong>{" "}
             {t("docs.intro.note")}
@@ -65,20 +61,20 @@ export default function DocsPageContent() {
           <h3>{t("docs.install.npx")}</h3>
           <p>{t("docs.install.npx.desc")}</p>
           <pre className="code-block code-font">
-            <code>npx -y kuaiyou-mcp-server</code>
+            <code>npx -y autoace-cli</code>
           </pre>
 
           <h3>{t("docs.install.global")}</h3>
           <p>{t("docs.install.global.desc")}</p>
           <pre className="code-block code-font">
-            <code>{`npm install -g kuaiyou-mcp-server
-kuaiyou-mcp-server`}</code>
+            <code>{`npm install -g autoace-cli
+autoace-cli`}</code>
           </pre>
 
           <h3>{t("docs.install.verify")}</h3>
           <p>{t("docs.install.verify.desc")}</p>
           <pre className="code-block code-font">
-            <code>npm view kuaiyou-mcp-server version</code>
+            <code>npm view autoace-cli version</code>
           </pre>
           <div className="alert info">
             <strong>{t("docs.install.tip.strong")}</strong>{" "}
@@ -103,12 +99,12 @@ kuaiyou-mcp-server`}</code>
           <p>{t("docs.quick.lan")}</p>
           <pre className="code-block code-font">
             <code>
-              {`KUAIYOU_DEVICE_IP=192.168.1.100:3847 KUAIYOU_MCP_PAIRING_CODE=482917 npx -y kuaiyou-mcp-server`}
+              {`KUAIYOU_DEVICE_IP=192.168.1.100:3847 KUAIYOU_MCP_PAIRING_CODE=482917 npx -y autoace-cli`}
             </code>
           </pre>
           <p>{t("docs.quick.usb")}</p>
           <pre className="code-block code-font">
-            <code>npx -y kuaiyou-mcp-server</code>
+            <code>npx -y autoace-cli</code>
           </pre>
 
           <h3>{t("docs.quick.connect")}</h3>
@@ -121,7 +117,7 @@ kuaiyou-mcp-server`}</code>
   "mcpServers": {
     "kuaiyou": {
       "command": "npx",
-      "args": ["-y", "kuaiyou-mcp-server"],
+      "args": ["-y", "autoace-cli"],
       "env": {
         "KUAIYOU_DEVICE_IP": "192.168.1.100:3847",
         "KUAIYOU_MCP_PAIRING_CODE": "482917"

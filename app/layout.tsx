@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s | 快游大师 CLI",
   },
   description:
-    "快游大师 CLI：用 AI 理解 Android 界面，生成并校验 ReactiveSkill，再下发到手机本地执行。",
+    "快游大师 CLI（autoace-cli）：用 AI 理解 Android 界面，生成技能并下发到手机本地执行。",
   alternates: {
     canonical: "/",
   },
@@ -34,15 +34,13 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: "快游大师 CLI",
     title: "快游大师 CLI — 用 AI 构建 Android 自动化技能",
-    description:
-      "用 AI 理解 Android 界面，创建 ReactiveSkill，并在手机本地执行。",
+    description: "用 AI 理解 Android 界面，创建技能，并在手机本地执行。",
     locale: "zh_CN",
   },
   twitter: {
     card: "summary_large_image",
     title: "快游大师 CLI — 用 AI 构建 Android 自动化技能",
-    description:
-      "快游大师 CLI 帮助你用 AI 构建 Android 自动化技能，并在手机本地执行。",
+    description: "用 AI 构建 Android 自动化技能，并在手机本地执行。",
   },
   robots: {
     index: true,
@@ -60,11 +58,8 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <I18nProvider>
           <DocumentMeta />
-          <a href="#main-content" className="skip-link">
-            跳到主要内容
-          </a>
           <Navbar />
-          <div className="page-shell">{children}</div>
+          {children}
           <Footer />
         </I18nProvider>
       </body>
