@@ -135,9 +135,36 @@ kuaiyou-mcp-server`}</code>
 
         <section id="write-skill">
           <h2>{t("docs.write.title")}</h2>
+          <p>{t("docs.write.lead")}</p>
+
+          <h3>{t("docs.write.flow")}</h3>
+          <ol>
+            <li>{t("docs.write.flow.1")}</li>
+            <li>{t("docs.write.flow.2")}</li>
+            <li>{t("docs.write.flow.3")}</li>
+            <li>{t("docs.write.flow.4")}</li>
+            <li>{t("docs.write.flow.5")}</li>
+          </ol>
+
+          <h3>{t("docs.write.prompt")}</h3>
+          <p>{t("docs.write.prompt.desc")}</p>
+          <pre className="code-block code-font">
+            <code>{t("docs.write.prompt.sample")}</code>
+          </pre>
+          <p>{t("docs.write.prompt.more")}</p>
+          <ul>
+            <li>
+              <code>{t("docs.write.prompt.alt1")}</code>
+            </li>
+            <li>
+              <code>{t("docs.write.prompt.alt2")}</code>
+            </li>
+          </ul>
+
+          <h3>{t("docs.write.example")}</h3>
           <p>
-            {t("docs.write.p")} <code>skills/</code>
-            {t("docs.write.p.end")}
+            {t("docs.write.example.desc")} <code>skills/</code>
+            {t("docs.write.example.end")}
           </p>
           <pre className="code-block code-font">
             <code>{`{

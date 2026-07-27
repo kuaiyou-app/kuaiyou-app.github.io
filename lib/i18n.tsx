@@ -148,7 +148,7 @@ const zh: Dict = {
   "docs.nav.intro": "简介",
   "docs.nav.install": "安装 CLI",
   "docs.nav.quick": "快速开始",
-  "docs.nav.write": "编写第一个技能",
+  "docs.nav.write": "让 Agent 写第一个技能",
   "docs.nav.tools": "核心能力",
   "docs.nav.boundaries": "开源边界",
   "docs.intro.title": "快游大师 CLI 文档",
@@ -195,13 +195,33 @@ const zh: Dict = {
   "docs.quick.claude": "如果你使用支持 MCP 的 AI 客户端，可参考如下配置",
   "docs.quick.compat":
     "快游大师 CLI 面向常见 AI 客户端接入。文档重点说明怎么用，而不是客户端内部实现。",
-  "docs.write.title": "编写第一个技能",
-  "docs.write.p":
-    "ReactiveSkill 是一种结构化自动化技能。它描述“在什么情况下做什么”，比固定坐标脚本更易复用。示例见",
-  "docs.write.p.end": "。",
+  "docs.write.title": "让 Agent 编写第一个技能",
+  "docs.write.lead":
+    "快游大师 CLI 的用法是：你用自然语言指挥 AI，AI 通过 MCP 看屏、写 ReactiveSkill、校验并推送到手机。你一般不需要手写 JSON。",
+  "docs.write.flow": "推荐流程",
+  "docs.write.flow.1": "确认 Cursor / Claude 已连上 kuaiyou MCP，手机「MCP 服务」已开启。",
+  "docs.write.flow.2": "在对话里粘贴下方提示词（或按你的目标改写）。",
+  "docs.write.flow.3":
+    "Agent 应先调用 get_ui_tree / capture_screenshot 了解当前界面。",
+  "docs.write.flow.4":
+    "再生成 ReactiveSkill，用 validate_kuaiyou_skill 校验，然后 push_reactive_skill 推送到手机。",
+  "docs.write.flow.5": "在手机上确认导入并运行；若不准确，继续用自然语言让 Agent 改一版再推。",
+  "docs.write.prompt": "可直接粘贴给 Agent 的提示词",
+  "docs.write.prompt.desc": "把下面整段发给已配置好 kuaiyou MCP 的 AI：",
+  "docs.write.prompt.sample":
+    "请使用快游大师 MCP：先 capture_screenshot 和 get_ui_tree 查看我现在的手机界面，再写一个 ReactiveSkill：当出现「确认」按钮时点击它，最多 3 次、每次间隔约 2 秒。写完先 validate_kuaiyou_skill，通过后 push_reactive_skill 推送到手机。不要使用已移除的 readText / setClipboard，读写请用 storeValue。",
+  "docs.write.prompt.more": "其他常用说法：",
+  "docs.write.prompt.alt1":
+    "看一下当前界面，帮我做一个自动点击「每日签到」的技能并推送到手机。",
+  "docs.write.prompt.alt2":
+    "刚才没点中，根据最新截图调整目标选择器后再推一版。",
+  "docs.write.example": "Agent 可能生成的示例结构（参考）",
+  "docs.write.example.desc":
+    "下面只是结果形态示意，便于你理解 ReactiveSkill；日常仍以 Agent 生成 + 校验为准。更多样例见仓库",
+  "docs.write.example.end": "。",
   "docs.write.tip.strong": "提示：",
   "docs.write.tip":
-    "推送到手机前，先校验技能是否合法。确认无误后再下发，并在手机上确认运行。",
+    "手机端会在导入/运行前要求确认。技能动作必须是本地可执行的（tap、swipe、delay、storeValue 等），不要依赖运行期云端大模型。",
   "docs.tools.title": "核心能力",
   "docs.tools.p": "快游大师 CLI 当前主要提供这些能力：",
   "docs.tools.1": "获取手机当前界面信息。",
@@ -371,7 +391,7 @@ const en: Dict = {
   "docs.nav.intro": "Introduction",
   "docs.nav.install": "Install CLI",
   "docs.nav.quick": "Quick Start",
-  "docs.nav.write": "Write your first skill",
+  "docs.nav.write": "Ask the agent for your first skill",
   "docs.nav.tools": "Core capabilities",
   "docs.nav.boundaries": "Open-source boundaries",
   "docs.intro.title": "Kuaiyou Master CLI docs",
@@ -420,13 +440,36 @@ const en: Dict = {
     "If your AI client supports MCP, you can use a config like this",
   "docs.quick.compat":
     "Kuaiyou Master CLI is designed for common AI clients. The docs focus on how to use it, not client internals.",
-  "docs.write.title": "Write your first skill",
-  "docs.write.p":
-    "A ReactiveSkill is a structured automation skill. It describes when something should happen and what to do next, which is easier to reuse than hard-coded coordinates. See examples under",
-  "docs.write.p.end": ".",
+  "docs.write.title": "Ask the agent to write your first skill",
+  "docs.write.lead":
+    "Kuaiyou Master CLI is meant to be driven by natural language: the AI uses MCP to see the screen, write a ReactiveSkill, validate it, and push it to the phone. You usually should not hand-write JSON.",
+  "docs.write.flow": "Recommended flow",
+  "docs.write.flow.1":
+    "Confirm Cursor / Claude is connected to the kuaiyou MCP server and MCP Service is enabled on the phone.",
+  "docs.write.flow.2": "Paste one of the prompts below (or adapt it to your goal).",
+  "docs.write.flow.3":
+    "The agent should call get_ui_tree / capture_screenshot first to understand the screen.",
+  "docs.write.flow.4":
+    "Then it should write a ReactiveSkill, run validate_kuaiyou_skill, and push_reactive_skill to the phone.",
+  "docs.write.flow.5":
+    "Confirm import/run on the phone. If it misses, keep chatting so the agent revises and pushes again.",
+  "docs.write.prompt": "Prompts you can paste to the agent",
+  "docs.write.prompt.desc":
+    "Send the following to an AI client that already has kuaiyou MCP configured:",
+  "docs.write.prompt.sample":
+    "Use Kuaiyou MCP: first capture_screenshot and get_ui_tree to inspect my phone screen, then write a ReactiveSkill that taps the Confirm button whenever it appears, up to 3 times with about 2s between taps. Validate with validate_kuaiyou_skill, then push_reactive_skill. Do not use removed readText / setClipboard — use storeValue for read/write.",
+  "docs.write.prompt.more": "Other useful phrasings:",
+  "docs.write.prompt.alt1":
+    "Look at the current screen, make a skill that taps Daily check-in, and push it to my phone.",
+  "docs.write.prompt.alt2":
+    "That miss-clicked — adjust the target from the latest screenshot and push another version.",
+  "docs.write.example": "Example shape the agent may produce (reference)",
+  "docs.write.example.desc":
+    "This is only to illustrate ReactiveSkill structure. Day-to-day, prefer agent generation + validation. More samples live under",
+  "docs.write.example.end": ".",
   "docs.write.tip.strong": "Tip:",
   "docs.write.tip":
-    "Validate the skill before sending it to the phone. After delivery, confirm the run on the device.",
+    "The phone asks for confirmation before import/run. Actions must be locally executable (tap, swipe, delay, storeValue, …) — no cloud LLM calls at runtime.",
   "docs.tools.title": "Core capabilities",
   "docs.tools.p": "Kuaiyou Master CLI currently focuses on these outcomes:",
   "docs.tools.1": "Read the current phone screen context.",
