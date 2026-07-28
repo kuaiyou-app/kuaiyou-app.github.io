@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
-  // GitHub project pages: https://kuaiyou-app.github.io/kuaiyou-website/
-  // Must stay in sync with SITE_BASE_PATH in lib/site.ts.
-  basePath: "/kuaiyou-website",
+  // GitHub org pages: https://kuaiyou-app.github.io/ (repo renamed to
+  // kuaiyou-app.github.io). Must stay in sync with SITE_BASE_PATH in lib/site.ts.
+  basePath: "",
   // Export docs/index.html so GitHub Pages directory-style /docs/ routes work.
   trailingSlash: true,
   images: {
