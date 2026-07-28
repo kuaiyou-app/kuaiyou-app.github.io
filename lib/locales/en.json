@@ -81,7 +81,6 @@
   "home.sec.2": "Screen information moves between the phone and local tooling; whether it is shared with AI depends on the client you use.",
   "home.sec.3": "Review each skill before import. The phone asks for confirmation before running.",
   "home.sec.4": "Works with common AI clients such as Cursor and Claude.",
-  "home.sec.5": "This repository open-sources autoace-cli. On-device execution is provided by Kuaiyou Master and remains closed source.",
 
   "skills.searchAria": "Skills",
   "skills.filterAria": "Skill category",
@@ -129,7 +128,7 @@
   "docs.intro.title": "autoace docs",
   "docs.intro.p1": "Use autoace-cli (MCP) with Claude Code, Codex, Cursor, and similar tools to create skills in natural language, validate them, and push them to Kuaiyou Master for local execution. Optionally install the Agent Skill named autoace.",
   "docs.intro.note.strong": "Note:",
-  "docs.intro.note": "Open source: autoace-cli, Agent Skill (autoace), docs, and skill examples. The Kuaiyou Master Android App is closed source and required for on-device execution.",
+  "docs.intro.note": "The Kuaiyou Master Android App is closed source and required for on-device execution. See Open-source boundaries at the end of this page.",
   "docs.names.title": "Names",
   "docs.names.p": "Keep these three distinct:",
   "docs.names.cli": "MCP server / command-line tool (npm package / command). Required to connect AI and your phone.",

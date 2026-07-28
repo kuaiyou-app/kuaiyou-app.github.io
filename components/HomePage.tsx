@@ -203,7 +203,6 @@ export default function HomePage({ skills }: { skills: Skill[] }) {
           <li>{t("home.sec.2")}</li>
           <li>{t("home.sec.3")}</li>
           <li>{t("home.sec.4")}</li>
-          <li>{t("home.sec.5")}</li>
         </ul>
       </section>
     </main>

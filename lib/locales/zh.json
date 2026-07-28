@@ -81,7 +81,6 @@
   "home.sec.2": "界面信息会在手机与本地工具之间传输；是否继续交给 AI，取决于你使用的客户端。",
   "home.sec.3": "导入前请审阅技能。手机端会在运行前要求确认。",
   "home.sec.4": "兼容 Cursor、Claude 等常见 AI 客户端。",
-  "home.sec.5": "本仓库开源的是 autoace-cli 与 Agent Skill；手机端执行能力由快游大师提供，仍为闭源。",
 
   "skills.searchAria": "技能",
   "skills.filterAria": "技能分类",
@@ -129,7 +128,7 @@
   "docs.intro.title": "autoace 文档",
   "docs.intro.p1": "用 autoace-cli（MCP）连接手机，在 Claude Code / Codex / Cursor 等工具里用自然语言生成技能，校验后推送到快游大师本地执行。可选安装 Agent Skill「autoace」以固定工作流。",
   "docs.intro.note.strong": "说明：",
-  "docs.intro.note": "开源：autoace-cli、Agent Skill（autoace）、文档与技能示例。快游大师 Android App 为闭源，且是端侧执行的必需依赖。",
+  "docs.intro.note": "快游大师 Android App 为闭源，且是端侧执行的必需依赖。开源范围详见文末「开源说明」。",
   "docs.names.title": "名称说明",
   "docs.names.p": "先分清三个名字，避免装错东西：",
   "docs.names.cli": "MCP 工具（npm 包名 / 命令）。连接 AI 与手机的桥梁，使用必装。",
