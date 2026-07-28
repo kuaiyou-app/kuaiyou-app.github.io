@@ -45,12 +45,12 @@ const zh: Dict = {
   "home.title.line1": "用 AI 构建",
   "home.title.line2": "Android 自动化技能",
   "home.subtitle":
-    "Agentic Skills Framework（autoace-cli）让 AI 理解当前 Android 界面，生成技能并下发到手机本地执行。",
+    "Agentic Skills（autoace-cli）让 AI 理解当前 Android 界面，生成技能并下发到手机本地执行。",
   "home.cta.primary": "快速开始 — 5 分钟上手",
   "home.cta.how": "了解工作原理",
   "home.cta.source": "查看源码",
   "home.boundary":
-    "开源包含：Agentic Skills Framework（autoace-cli）、技能示例与文档。必需运行时：快游大师 App（应用商店可下载）。",
+    "开源包含：Agentic Skills（autoace-cli）、技能示例与文档。必需运行时：快游大师 App（应用商店可下载）。",
   "home.tags.aria": "产品约束",
   "home.tag.android": "Android系统",
   "home.tag.app": "快游大师自动化引擎",
@@ -113,7 +113,7 @@ const zh: Dict = {
   "home.sec.3": "导入前请审阅技能。手机端会在运行前要求确认。",
   "home.sec.4": "兼容 Cursor、Claude 等常见 AI 客户端。",
   "home.sec.5":
-    "本仓库开源的是 Agentic Skills Framework（autoace-cli）；手机端执行能力由快游大师提供，仍为闭源。",
+    "本仓库开源的是 Agentic Skills（autoace-cli）；手机端执行能力由快游大师提供，仍为闭源。",
 
   "skills.searchAria": "技能",
   "skills.filterAria": "技能分类",
@@ -162,7 +162,7 @@ const zh: Dict = {
     "开源：autoace-cli、Agent Skill（autoace）、文档与技能示例。快游大师 Android App 为闭源，且是端侧执行的必需依赖。",
   "docs.names.title": "名称说明",
   "docs.names.p": "先分清三个名字，避免装错东西：",
-  "docs.names.cli": "Agentic Skills Framework（npm 包名 / 命令）。开发联调必装。",
+  "docs.names.cli": "Agentic Skills（npm 包名 / 命令）。开发联调必装。",
   "docs.names.agent":
     "Agent Skill（SKILL.md）。给 Claude Code / Codex / Cursor 的工作流说明；可选但推荐。",
   "docs.names.skillLabel": "技能",
@@ -277,7 +277,7 @@ const zh: Dict = {
   "footer.copy":
     "© {year} 快游大师团队。Apache-2.0 开源工具链。",
   "footer.note":
-    "开源 Agentic Skills Framework（autoace-cli）、文档与技能示例。快游大师 Android App 为闭源且为执行所必需。",
+    "开源 Agentic Skills（autoace-cli）、文档与技能示例。快游大师 Android App 为闭源且为执行所必需。",
 
   "notfound.title": "页面未找到",
   "notfound.desc":
@@ -377,7 +377,7 @@ const en: Dict = {
 
   "home.sec.title": "Safety & boundaries",
   "home.sec.subtitle": "What you should know before using it",
-  "home.sec.1": "autoace-cli runs locally as an agentic skills framework.",
+  "home.sec.1": "autoace-cli runs locally as an Agentic Skills.",
   "home.sec.2":
     "Screen information moves between the phone and local tooling; whether it is shared with AI depends on the client you use.",
   "home.sec.3":
@@ -434,7 +434,7 @@ const en: Dict = {
     "Open source: autoace-cli, Agent Skill (autoace), docs, and skill examples. The Kuaiyou Master Android App is closed source and required for on-device execution.",
   "docs.names.title": "Names",
   "docs.names.p": "Keep these three distinct:",
-  "docs.names.cli": "Agentic Skills Framework (npm package / command). Required for development.",
+  "docs.names.cli": "Agentic Skills (npm package / command). Required for development.",
   "docs.names.agent":
     "Agent Skill (SKILL.md). Workflow instructions for Claude Code / Codex / Cursor. Optional but recommended.",
   "docs.names.skillLabel": "skill",
@@ -442,7 +442,7 @@ const en: Dict = {
     "Automation JSON that runs on the phone inside Kuaiyou Master — not a file you install into Claude/Codex.",
   "docs.install.title": "Install autoace-cli",
   "docs.install.p":
-    "autoace-cli is an agentic skills framework (same npm package name). Once wired into your AI client, it can see the screen, validate skills, and push them.",
+    "autoace-cli is an Agentic Skills (same npm package name). Once wired into your AI client, it can see the screen, validate skills, and push them.",
   "docs.install.npmLink": "View autoace-cli on npm →",
   "docs.install.req": "Requirements",
   "docs.install.req.1": "Node.js ≥ 18 (LTS recommended)",
