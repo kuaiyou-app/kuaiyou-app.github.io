@@ -2,7 +2,7 @@
 
 快游大师开源官网（Next.js 14 静态导出 → GitHub Pages）。
 
-- **站点**：https://kuaiyou-app.github.io/kuaiyou-website/
+- **站点**：https://kuaiyou-app.github.io/
 - **本仓**：https://github.com/kuaiyou-app/kuaiyou-website
 - **核心生态仓**（MCP / schema / skills）：https://github.com/kuaiyou-app/kuaiyou-open-source
 
@@ -20,7 +20,7 @@ npm run sync-skills   # optional if public/skills already vendored
 npm run dev
 ```
 
-Open http://localhost:3000/kuaiyou-website/
+Open http://localhost:3000/
 
 ### Skills source
 
@@ -38,4 +38,3 @@ Canonical skills live in `kuaiyou-open-source`. This site vendors a snapshot und
 Push to `main` runs GitHub Pages deploy (`.github/workflows/pages.yml`).
 Enable **Settings → Pages → Source: GitHub Actions** on the repo.
 
-若要挂到组织根域名 `https://kuaiyou-app.github.io/`，把仓库改名为 `kuaiyou-app.github.io`，并把 `basePath` / `SITE_BASE_PATH` 设为空字符串。
