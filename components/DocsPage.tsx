@@ -1,5 +1,6 @@
 "use client";
 
+import CodeBlock from "@/components/CodeBlock";
 import { useI18n } from "@/lib/i18n";
 import {
   AGENT_SKILL_NAME,
@@ -26,6 +27,34 @@ curl -fsSL ${AGENT_SKILL_RAW_URL} -o ~/.claude/skills/autoace/SKILL.md`;
 
 const CODEX_SKILL = `mkdir -p ~/.codex/skills/autoace
 curl -fsSL ${AGENT_SKILL_RAW_URL} -o ~/.codex/skills/autoace/SKILL.md`;
+
+const INSTALL_GLOBAL = `npm install -g autoace-cli
+autoace-cli`;
+
+const INSTALL_SKILLS_CLI = `npx skills add kuaiyou-app/kuaiyou-open-source --skill autoace`;
+
+const MCP_LAN_COMMAND = `KUAIYOU_DEVICE_IP=192.168.1.100:3847 KUAIYOU_MCP_PAIRING_CODE=482917 npx -y autoace-cli`;
+
+const SKILL_EXAMPLE_JSON = `{
+  "id": "reactive_click_confirm",
+  "name": "Click the confirm button",
+  "description": "Tap the confirm button whenever it appears, up to 3 times",
+  "goals": [
+    {
+      "id": "click_confirm",
+      "name": "Click confirm",
+      "trigger": {
+        "type": "elementVisible",
+        "target": { "type": "text", "text": "确认" }
+      },
+      "actions": [
+        { "type": "tap", "target": { "type": "text", "text": "确认" } }
+      ],
+      "constraints": { "maxExecutions": 3, "cooldownMs": 2000 }
+    }
+  ],
+  "termination": { "type": "timeout", "maxDurationMs": 30000 }
+}`;
 
 export default function DocsPageContent() {
   const { t } = useI18n();
@@ -106,22 +135,15 @@ export default function DocsPageContent() {
 
           <h3>{t("docs.install.npx")}</h3>
           <p>{t("docs.install.npx.desc")}</p>
-          <pre className="code-block code-font">
-            <code>npx -y autoace-cli</code>
-          </pre>
+          <CodeBlock code="npx -y autoace-cli" />
 
           <h3>{t("docs.install.global")}</h3>
           <p>{t("docs.install.global.desc")}</p>
-          <pre className="code-block code-font">
-            <code>{`npm install -g autoace-cli
-autoace-cli`}</code>
-          </pre>
+          <CodeBlock code={INSTALL_GLOBAL} />
 
           <h3>{t("docs.install.verify")}</h3>
           <p>{t("docs.install.verify.desc")}</p>
-          <pre className="code-block code-font">
-            <code>npm view autoace-cli version</code>
-          </pre>
+          <CodeBlock code="npm view autoace-cli version" />
           <div className="alert info">
             <strong>{t("docs.install.tip.strong")}</strong>{" "}
             {t("docs.install.tip")}
@@ -142,26 +164,18 @@ autoace-cli`}</code>
           </p>
 
           <h3>{t("docs.agent.claude")}</h3>
-          <pre className="code-block code-font">
-            <code>{CLAUDE_CODE_SKILL}</code>
-          </pre>
+          <CodeBlock code={CLAUDE_CODE_SKILL} />
           <p>{t("docs.agent.claude.invoke")}</p>
 
           <h3>{t("docs.agent.codex")}</h3>
-          <pre className="code-block code-font">
-            <code>{CODEX_SKILL}</code>
-          </pre>
+          <CodeBlock code={CODEX_SKILL} />
           <p>{t("docs.agent.codex.invoke")}</p>
 
           <h3>{t("docs.agent.cursor")}</h3>
           <p>{t("docs.agent.cursor.desc")}</p>
 
           <h3>{t("docs.agent.npx")}</h3>
-          <pre className="code-block code-font">
-            <code>
-              {`npx skills add kuaiyou-app/kuaiyou-open-source --skill autoace`}
-            </code>
-          </pre>
+          <CodeBlock code={INSTALL_SKILLS_CLI} />
         </section>
 
         <section id="quick-start">
@@ -179,21 +193,13 @@ autoace-cli`}</code>
           <h3>{t("docs.quick.start")}</h3>
           <p>{t("docs.quick.npm")}</p>
           <p>{t("docs.quick.lan")}</p>
-          <pre className="code-block code-font">
-            <code>
-              {`KUAIYOU_DEVICE_IP=192.168.1.100:3847 KUAIYOU_MCP_PAIRING_CODE=482917 npx -y autoace-cli`}
-            </code>
-          </pre>
+          <CodeBlock code={MCP_LAN_COMMAND} />
           <p>{t("docs.quick.usb")}</p>
-          <pre className="code-block code-font">
-            <code>npx -y autoace-cli</code>
-          </pre>
+          <CodeBlock code="npx -y autoace-cli" />
 
           <h3>{t("docs.quick.connect")}</h3>
           <p>{t("docs.quick.claude")}</p>
-          <pre className="code-block code-font">
-            <code>{MCP_JSON}</code>
-          </pre>
+          <CodeBlock code={MCP_JSON} />
           <p>{t("docs.quick.clients")}</p>
           <ul>
             <li>{t("docs.quick.clients.1")}</li>
@@ -218,9 +224,7 @@ autoace-cli`}</code>
 
           <h3>{t("docs.write.prompt")}</h3>
           <p>{t("docs.write.prompt.desc")}</p>
-          <pre className="code-block code-font">
-            <code>{t("docs.write.prompt.sample")}</code>
-          </pre>
+          <CodeBlock code={t("docs.write.prompt.sample")} />
           <p>{t("docs.write.prompt.more")}</p>
           <ul>
             <li>
@@ -236,28 +240,7 @@ autoace-cli`}</code>
             {t("docs.write.example.desc")} <code>skills/</code>
             {t("docs.write.example.end")}
           </p>
-          <pre className="code-block code-font">
-            <code>{`{
-  "id": "reactive_click_confirm",
-  "name": "Click the confirm button",
-  "description": "Tap the confirm button whenever it appears, up to 3 times",
-  "goals": [
-    {
-      "id": "click_confirm",
-      "name": "Click confirm",
-      "trigger": {
-        "type": "elementVisible",
-        "target": { "type": "text", "text": "确认" }
-      },
-      "actions": [
-        { "type": "tap", "target": { "type": "text", "text": "确认" } }
-      ],
-      "constraints": { "maxExecutions": 3, "cooldownMs": 2000 }
-    }
-  ],
-  "termination": { "type": "timeout", "maxDurationMs": 30000 }
-}`}</code>
-          </pre>
+          <CodeBlock code={SKILL_EXAMPLE_JSON} />
           <div className="alert info">
             <strong>{t("docs.write.tip.strong")}</strong> {t("docs.write.tip")}
           </div>

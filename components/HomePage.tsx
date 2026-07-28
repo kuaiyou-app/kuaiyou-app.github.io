@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import CodeBlock from "@/components/CodeBlock";
 import SkillsExplorer from "@/components/SkillsExplorer";
 import type { Skill } from "@/lib/skills";
 import { CORE_REPO_URL, SKILLS_PUBLIC_PATH } from "@/lib/site";
@@ -147,9 +148,10 @@ export default function HomePage({ skills }: { skills: Skill[] }) {
           </li>
           <li>
             <strong>{t("home.qs.3.strong")}</strong> {t("home.qs.3.rest")}
-            <pre className="code-block code-font" style={{ marginTop: "0.75rem" }}>
-              <code>{t("home.qs.3.cmd")}</code>
-            </pre>
+            <CodeBlock
+              code={t("home.qs.3.cmd")}
+              style={{ marginTop: "0.75rem" }}
+            />
             <p style={{ marginTop: "0.5rem", fontSize: "0.9em", opacity: 0.85 }}>
               {t("home.qs.3.alt")}
             </p>
