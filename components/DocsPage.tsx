@@ -159,7 +159,7 @@ autoace-cli`}</code>
           <h3>{t("docs.agent.npx")}</h3>
           <pre className="code-block code-font">
             <code>
-              {`npx skills add kuaiyou-app/kuaiyou-open-source --path agent-skills/autoace`}
+              {`npx skills add kuaiyou-app/kuaiyou-open-source --skill autoace`}
             </code>
           </pre>
         </section>
