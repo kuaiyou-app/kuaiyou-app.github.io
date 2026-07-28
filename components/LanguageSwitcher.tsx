@@ -1,8 +1,8 @@
 "use client";
 
-import { useI18n, type Locale } from "@/lib/i18n";
+import { useI18n, type I18nKey, type Locale } from "@/lib/i18n";
 
-const OPTIONS: { id: Locale; labelKey: string }[] = [
+const OPTIONS: { id: Locale; labelKey: I18nKey }[] = [
   { id: "zh", labelKey: "lang.zh" },
   { id: "en", labelKey: "lang.en" },
 ];

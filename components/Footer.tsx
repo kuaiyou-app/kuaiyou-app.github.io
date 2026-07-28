@@ -21,7 +21,7 @@ export default function Footer() {
           </a>
           <Link href="/docs">{t("footer.docs")}</Link>
           <Link href="/docs#install">{t("footer.quick")}</Link>
-          <a href="/#skills">{t("footer.skills")}</a>
+          <Link href="/#skills">{t("footer.skills")}</Link>
         </nav>
       </div>
       <div className="footer-bottom">
