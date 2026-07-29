@@ -11,15 +11,15 @@
   --card-hover-bg: rgba(30, 30, 40, 0.8);
 
   /* Semantic text colors (extracted from 56+ hardcoded rgba values) */
-  --text-primary: var(--text-primary);
-  --text-secondary: var(--text-secondary);
-  --text-muted: var(--text-muted);
-  --text-dim: var(--text-dim);
-  --text-faint: var(--text-faint);
-  --border-subtle: var(--border-subtle);
-  --border-medium: var(--border-medium);
-  --bg-overlay-light: var(--bg-overlay-light);
-  --bg-overlay-medium: var(--bg-overlay-medium);
+  --text-primary: rgba(255, 255, 255, 0.82);
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-muted: rgba(255, 255, 255, 0.62);
+  --text-dim: rgba(255, 255, 255, 0.58);
+  --text-faint: rgba(255, 255, 255, 0.55);
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-medium: rgba(255, 255, 255, 0.16);
+  --bg-overlay-light: rgba(255, 255, 255, 0.05);
+  --bg-overlay-medium: rgba(255, 255, 255, 0.08);
 }
 
 * { box-sizing: border-box; padding: 0; margin: 0; }
