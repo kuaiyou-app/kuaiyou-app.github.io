@@ -54,8 +54,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN">
+    <html lang="zh-CN" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        {/* suppressHydrationWarning: I18nProvider may change lang on client
+        based on localStorage/URL query, causing server-client mismatch. */}
         <I18nProvider>
           <DocumentMeta />
           <Navbar />

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { CORE_REPO_URL } from "@/lib/site";
 import { useI18n } from "@/lib/i18n";
@@ -17,7 +16,8 @@ export default function Navbar() {
     <nav className="navbar glass-panel" aria-label={t("nav.primary")}>
       <div className="nav-container">
         <Link href="/" className="nav-brand">
-          <Image src="/logo.png" alt="Logo" className="logo-icon" width={28} height={28} style={{ borderRadius: '4px' }} />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.png" alt="Logo" className="logo-icon" width={28} height={28} style={{ borderRadius: '4px' }} />
           <span className="nav-logo-text">
             <span className="nav-logo-full">{t("nav.brand")}</span>
             <span className="nav-logo-short">{t("nav.brandShort")}</span>

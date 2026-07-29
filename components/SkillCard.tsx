@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Skill } from "@/lib/skills";
 import { useI18n } from "@/lib/i18n";
 
@@ -16,6 +16,12 @@ export default function SkillCard({ skill, baseUrl }: SkillCardProps) {
   const [copyState, setCopyState] = useState<CopyState>("idle");
   const [jsonUrl, setJsonUrl] = useState("");
   const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (resetTimer.current) clearTimeout(resetTimer.current);
+    };
+  }, []);
 
   const langAttr =
     skill.language === "zh"
