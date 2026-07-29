@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -8,6 +10,7 @@ import { useI18n } from "@/lib/i18n";
 import styles from "./Navbar.module.css";
 
 export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const { t } = useI18n();
   const isHome = pathname === "/" || pathname === "";
@@ -25,11 +28,12 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <div className={styles['nav-links']}>
+        <div className={`${styles['nav-links']} ${menuOpen ? styles['nav-links-open'] : ""}`}>
           <Link
             href="/"
             className={`${styles['nav-link']} ${isHome ? styles.active : ""}`}
             aria-current={isHome ? "page" : undefined}
+            onClick={() => setMenuOpen(false)}
           >
             {t("nav.home")}
           </Link>
@@ -37,6 +41,7 @@ export default function Navbar() {
             href="/docs"
             className={`${styles['nav-link']} ${isDocs ? styles.active : ""}`}
             aria-current={isDocs ? "page" : undefined}
+            onClick={() => setMenuOpen(false)}
           >
             {t("nav.docs")}
           </Link>
@@ -61,6 +66,17 @@ export default function Navbar() {
             <span className={styles['github-btn-label']}>{t("nav.star")}</span>
             <span className="sr-only">{t("nav.opensNewTab")}</span>
           </a>
+          <button
+            type="button"
+            className={styles['hamburger']}
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label={menuOpen ? t("nav.menuClose") : t("nav.menuOpen")}
+            aria-expanded={menuOpen}
+          >
+            <span className={styles['hamburger-line']} />
+            <span className={styles['hamburger-line']} />
+            <span className={styles['hamburger-line']} />
+          </button>
         </div>
       </div>
     </nav>

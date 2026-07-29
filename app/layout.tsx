@@ -36,11 +36,20 @@ export const metadata: Metadata = {
     title: "快游大师 CLI — 用 AI 构建 Android 自动化技能",
     description: "用 AI 理解 Android 界面，创建技能，并在手机本地执行。",
     locale: "zh_CN",
+    images: [
+      {
+        url: `${SITE_URL}/og-image.png`,
+        width: 1200,
+        height: 630,
+        alt: "快游大师 CLI — 用 AI 构建 Android 自动化技能",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "快游大师 CLI — 用 AI 构建 Android 自动化技能",
     description: "用 AI 构建 Android 自动化技能，并在手机本地执行。",
+    images: [`${SITE_URL}/og-image.png`],
   },
   robots: {
     index: true,

@@ -18,6 +18,8 @@
   "lang.switch": "Language",
   "lang.zh": "中文",
   "lang.en": "EN",
+  "nav.menuOpen": "Open menu",
+  "nav.menuClose": "Close menu",
 
   "home.badge": "autoace-cli",
   "home.title.line1": "Build Android",
