@@ -70,7 +70,7 @@ export default function SkillsExplorer({
             <button
               key={item.id}
               type="button"
-              className={`filter-pill ${filter === item.id ? "active" : ""}`}
+              className={`${styles['filter-pill']} ${filter === item.id ? styles.active : ""}`}
               aria-pressed={filter === item.id}
               onClick={() => setFilter(item.id)}
             >

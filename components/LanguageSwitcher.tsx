@@ -1,7 +1,7 @@
 "use client";
 
 import { useI18n, type I18nKey, type Locale } from "@/lib/i18n";
-
+import styles from "./Navbar.module.css";
 const OPTIONS: { id: Locale; labelKey: I18nKey }[] = [
   { id: "zh", labelKey: "lang.zh" },
   { id: "en", labelKey: "lang.en" },
@@ -12,7 +12,7 @@ export default function LanguageSwitcher() {
 
   return (
     <div
-      className="lang-switcher"
+      className={styles['lang-switcher']}
       role="group"
       aria-label={t("lang.switch")}
     >
@@ -20,7 +20,7 @@ export default function LanguageSwitcher() {
         <button
           key={option.id}
           type="button"
-          className={`lang-btn ${locale === option.id ? "active" : ""}`}
+          className={`${styles['lang-btn']} ${locale === option.id ? styles.active : ""}`}
           aria-pressed={locale === option.id}
           onClick={() => setLocale(option.id)}
         >
