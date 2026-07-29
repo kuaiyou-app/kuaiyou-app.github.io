@@ -1,0 +1,165 @@
+        .docs-container {
+          max-width: 1080px;
+          width: 100%;
+          margin: 0 auto;
+          padding: 40px 24px;
+          display: flex;
+          gap: 40px;
+          align-items: flex-start;
+          box-sizing: border-box;
+        }
+
+        .docs-sidebar {
+          flex: 0 0 200px;
+          width: 200px;
+          min-width: 180px;
+          padding: 24px;
+          position: sticky;
+          top: 90px;
+          box-sizing: border-box;
+        }
+
+        .docs-nav {
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          margin: 0;
+          padding: 0;
+        }
+
+        .docs-nav a {
+          color: var(--text-muted);
+          font-size: 0.95rem;
+          display: block;
+          word-break: break-word;
+        }
+
+        .docs-nav a:hover, .docs-nav a.active {
+          color: var(--primary);
+        }
+
+        .docs-content {
+          flex: 1 1 0;
+          min-width: 0;
+          padding: 32px 36px;
+          box-sizing: border-box;
+          overflow-wrap: anywhere;
+        }
+
+        .docs-content section {
+          margin-bottom: 60px;
+        }
+
+        .docs-content h1 {
+          font-size: 2.5rem;
+          margin-bottom: 24px;
+          color: var(--primary);
+        }
+
+        .docs-content h2 {
+          font-size: 1.8rem;
+          margin-bottom: 20px;
+          padding-bottom: 10px;
+          border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .docs-content h3 {
+          font-size: 1.2rem;
+          margin-bottom: 16px;
+          margin-top: 24px;
+        }
+
+        .docs-content p, .docs-content li {
+          color: rgba(255, 255, 255, 0.8);
+          line-height: 1.7;
+          margin-bottom: 16px;
+        }
+
+        .docs-content ul, .docs-content ol {
+          margin-left: 24px;
+          margin-bottom: 16px;
+          padding-left: 0;
+        }
+
+        .alert.info {
+          background: rgba(0, 240, 255, 0.1);
+          border-left: 4px solid var(--primary);
+          padding: 16px;
+          border-radius: 4px;
+          margin: 24px 0;
+        }
+
+        .code-block {
+          background: rgba(0, 0, 0, 0.5);
+          padding: 20px;
+          border-radius: 8px;
+          border: 1px solid var(--border-subtle);
+          overflow-x: auto;
+          max-width: 100%;
+          margin-bottom: 24px;
+          color: #a5d6ff;
+          box-sizing: border-box;
+        }
+
+        .code-block code {
+          white-space: pre;
+          word-break: normal;
+        }
+
+        .code-block-wrapper {
+          position: relative;
+        }
+
+        .code-copy-btn {
+          position: absolute;
+          top: 8px;
+          right: 8px;
+          padding: 4px 10px;
+          font-size: 0.75rem;
+          line-height: 1.4;
+          background: var(--bg-overlay-medium);
+          border: 1px solid var(--border-medium);
+          color: var(--text-secondary);
+          border-radius: 6px;
+          cursor: pointer;
+          transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .code-copy-btn:hover {
+          background: rgba(0, 240, 255, 0.15);
+          border-color: rgba(0, 240, 255, 0.4);
+          color: var(--primary);
+        }
+
+        .code-copy-btn:disabled {
+          opacity: 0.65;
+          cursor: wait;
+        }
+
+        .code-copy-btn[data-state="success"] {
+          color: #7bf1a8;
+          border-color: rgba(123, 241, 168, 0.45);
+        }
+
+        .code-copy-btn[data-state="error"] {
+          color: #ff7b72;
+          border-color: rgba(255, 123, 114, 0.45);
+        }
+
+        @media (max-width: 768px) {
+          .docs-container {
+            flex-direction: column;
+            gap: 20px;
+            padding: 24px 16px;
+          }
+          .docs-sidebar {
+            flex: none;
+            width: 100%;
+            min-width: 0;
+            position: static;
+          }
+          .docs-content {
+            padding: 24px 20px;
+          }
+        }

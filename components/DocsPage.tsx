@@ -8,6 +8,7 @@ import {
   CORE_REPO_URL,
   NPM_PACKAGE_URL,
 } from "@/lib/site";
+import styles from "./DocsPage.module.css";
 
 const MCP_JSON = `{
   "mcpServers": {
@@ -60,11 +61,11 @@ export default function DocsPageContent() {
   const { t } = useI18n();
 
   return (
-    <main id="main-content" className="docs-container animate-fade-in">
-      <nav className="docs-sidebar glass-panel" aria-label={t("docs.navAria")}>
-        <ul className="docs-nav">
+    <main id="main-content" className={`${styles['docs-container']} animate-fade-in`}>
+      <nav className={`${styles['docs-sidebar']} glass-panel`} aria-label={t("docs.navAria")}>
+        <ul className={styles['docs-nav']}>
           <li>
-            <a href="#introduction" className="active">
+            <a href="#introduction" className={styles.active}>
               {t("docs.nav.intro")}
             </a>
           </li>
@@ -92,11 +93,11 @@ export default function DocsPageContent() {
         </ul>
       </nav>
 
-      <div className="docs-content glass-panel">
+      <div className={`${styles['docs-content']} glass-panel`}>
         <section id="introduction">
           <h1>{t("docs.intro.title")}</h1>
           <p>{t("docs.intro.p1")}</p>
-          <div className="alert info">
+          <div className={`${styles.alert} ${styles.info}`}>
             <strong>{t("docs.intro.note.strong")}</strong>{" "}
             {t("docs.intro.note")}
           </div>
@@ -144,7 +145,7 @@ export default function DocsPageContent() {
           <h3>{t("docs.install.verify")}</h3>
           <p>{t("docs.install.verify.desc")}</p>
           <CodeBlock code="npm view autoace-cli version" />
-          <div className="alert info">
+          <div className={`${styles.alert} ${styles.info}`}>
             <strong>{t("docs.install.tip.strong")}</strong>{" "}
             {t("docs.install.tip")}
           </div>
@@ -241,7 +242,7 @@ export default function DocsPageContent() {
             {t("docs.write.example.end")}
           </p>
           <CodeBlock code={SKILL_EXAMPLE_JSON} />
-          <div className="alert info">
+          <div className={`${styles.alert} ${styles.info}`}>
             <strong>{t("docs.write.tip.strong")}</strong> {t("docs.write.tip")}
           </div>
         </section>

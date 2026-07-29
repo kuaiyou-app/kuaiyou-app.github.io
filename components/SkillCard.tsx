@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { Skill } from "@/lib/skills";
 import { useI18n } from "@/lib/i18n";
+import styles from "./SkillCard.module.css";
 
 interface SkillCardProps {
   skill: Skill;
@@ -65,30 +66,30 @@ export default function SkillCard({ skill, baseUrl }: SkillCardProps) {
           : t("skills.copyIdle");
 
   return (
-    <article className="glass-panel skill-card">
-      <div className="card-header">
-        <h3 className="card-title" lang={langAttr}>
+    <article className={`glass-panel ${styles['skill-card']}`}>
+      <div className={styles['card-header']}>
+        <h3 className={styles['card-title']} lang={langAttr}>
           {skill.name}
         </h3>
-        <div className="card-badges">
-          <span className="card-badge category-badge">{categoryLabel}</span>
-          <span className="card-badge mode-badge code-font">
+        <div className={styles['card-badges']}>
+          <span className={`${styles['card-badge']} ${styles['category-badge']}`}>{categoryLabel}</span>
+          <span className={`${styles['card-badge']} ${styles['mode-badge']} code-font`}>
             {skill.executionMode}
           </span>
         </div>
       </div>
 
-      <p className="card-desc" lang={langAttr}>
+      <p className={styles['card-desc']} lang={langAttr}>
         {skill.description}
       </p>
 
-      <div className="card-footer">
-        <div className="card-id code-font" title={skill.id}>
+      <div className={styles['card-footer']}>
+        <div className={`${styles['card-id']} code-font`} title={skill.id}>
           {skill.id}
         </div>
-        <div className="card-actions">
+        <div className={styles['card-actions']}>
           <a
-            className="copy-btn card-link-btn"
+            className={`${styles['copy-btn']} ${styles['card-link-btn']}`}
             href={`${baseUrl}/${skill.file}`}
             target="_blank"
             rel="noopener noreferrer"
@@ -99,7 +100,7 @@ export default function SkillCard({ skill, baseUrl }: SkillCardProps) {
           <button
             type="button"
             onClick={handleCopy}
-            className="copy-btn"
+            className={styles['copy-btn']}
             disabled={copyState === "copying"}
             aria-live="polite"
           >
@@ -109,10 +110,10 @@ export default function SkillCard({ skill, baseUrl }: SkillCardProps) {
       </div>
 
       {copyState === "error" && (
-        <div className="copy-fallback" role="alert">
+        <div className={styles['copy-fallback']} role="alert">
           <p>{t("skills.copyFallback")}</p>
           <input
-            className="copy-fallback-input code-font"
+            className={`${styles['copy-fallback-input']} code-font`}
             readOnly
             value={jsonUrl || `${baseUrl}/${skill.file}`}
             onFocus={(e) => e.currentTarget.select()}

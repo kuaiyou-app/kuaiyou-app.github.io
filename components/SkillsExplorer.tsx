@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import SkillCard from "@/components/SkillCard";
 import type { Skill, SkillCategory } from "@/lib/skills";
 import { useI18n } from "@/lib/i18n";
+import styles from "./HomePage.module.css";
 
 interface SkillsExplorerProps {
   skills: Skill[];
@@ -55,13 +56,13 @@ export default function SkillsExplorer({
 
   return (
     <div
-      className="skills-explorer"
+      className={styles['skills-explorer']}
       role="search"
       aria-label={t("skills.searchAria")}
     >
-      <div className="skills-toolbar">
+      <div className={styles['skills-toolbar']}>
         <div
-          className="filter-pills"
+          className={styles['filter-pills']}
           role="group"
           aria-label={t("skills.filterAria")}
         >
@@ -78,7 +79,7 @@ export default function SkillsExplorer({
           ))}
         </div>
 
-        <div className="search-container">
+        <div className={styles['search-container']}>
           <label htmlFor="skill-search" className="sr-only">
             {t("skills.searchLabel")}
           </label>
@@ -86,7 +87,7 @@ export default function SkillsExplorer({
             id="skill-search"
             type="search"
             placeholder={t("skills.searchPlaceholder")}
-            className="search-input glass-panel code-font"
+            className={`${styles['search-input']} glass-panel code-font`}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             aria-controls="skills-results"
@@ -94,11 +95,11 @@ export default function SkillsExplorer({
         </div>
       </div>
 
-      <p className="skills-result-count" aria-live="polite" id="skills-results">
+      <p className={styles['skills-result-count']} aria-live="polite" id="skills-results">
         {t("skills.result", { count: filteredSkills.length })}
       </p>
 
-      <div className="skills-howto glass-panel">
+      <div className={`${styles['skills-howto']} glass-panel`}>
         <h3>{t("skills.howto.title")}</h3>
         <ol>
           <li>{t("skills.howto.1")}</li>
@@ -110,20 +111,20 @@ export default function SkillsExplorer({
           </li>
           <li>{t("skills.howto.4")}</li>
         </ol>
-        <p className="skills-howto-note">{t("skills.howto.note")}</p>
+        <p className={styles['skills-howto-note']}>{t("skills.howto.note")}</p>
       </div>
 
       {filteredSkills.length > 0 ? (
         <>
-          <ul className="skills-grid">
+          <ul className={styles['skills-grid']}>
             {visibleSkills.map((skill) => (
-              <li key={skill.id} className="skills-grid-item">
+              <li key={skill.id} className={styles['skills-grid-item']}>
                 <SkillCard skill={skill} baseUrl={baseUrl} />
               </li>
             ))}
           </ul>
           {canToggle ? (
-            <div className="skills-more">
+            <div className={styles['skills-more']}>
               <button
                 type="button"
                 className="btn btn-secondary"
@@ -136,7 +137,7 @@ export default function SkillsExplorer({
           ) : null}
         </>
       ) : (
-        <div className="empty-state glass-panel" role="status">
+        <div className={`${styles['empty-state']} glass-panel`} role="status">
           {t("skills.empty", { query: search.trim() || filter })}
         </div>
       )}

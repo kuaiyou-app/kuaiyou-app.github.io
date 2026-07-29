@@ -1,0 +1,40 @@
+/* ── CSS Variables & Reset ── */
+:root {
+  --background: #050508;
+  --foreground: #ededf0;
+  --primary: #00f0ff;
+  --primary-glow: rgba(0, 240, 255, 0.5);
+  --secondary: #00ff41;
+  --secondary-glow: rgba(0, 255, 65, 0.4);
+  --glass-bg: rgba(20, 20, 25, 0.6);
+  --glass-border: var(--border-subtle);
+  --card-hover-bg: rgba(30, 30, 40, 0.8);
+
+  /* Semantic text colors (extracted from 56+ hardcoded rgba values) */
+  --text-primary: var(--text-primary);
+  --text-secondary: var(--text-secondary);
+  --text-muted: var(--text-muted);
+  --text-dim: var(--text-dim);
+  --text-faint: var(--text-faint);
+  --border-subtle: var(--border-subtle);
+  --border-medium: var(--border-medium);
+  --bg-overlay-light: var(--bg-overlay-light);
+  --bg-overlay-medium: var(--bg-overlay-medium);
+}
+
+* { box-sizing: border-box; padding: 0; margin: 0; }
+html { max-width: 100%; overflow-x: clip; }
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  position: relative;
+  max-width: 100%; overflow-x: clip;
+}
+
+a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
+a:hover { color: var(--primary); }
+h1, h2, h3, h4, h5, h6 { font-weight: 700; letter-spacing: -0.02em; }

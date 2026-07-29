@@ -1,0 +1,172 @@
+        .skill-card {
+          padding: 22px;
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
+          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+          height: 100%;
+          min-width: 0;
+        }
+
+        .skill-card:hover {
+          background: var(--card-hover-bg);
+          transform: translateY(-3px);
+          box-shadow: 0 8px 32px rgba(0, 240, 255, 0.1);
+          border-color: rgba(0, 240, 255, 0.3);
+        }
+
+        .card-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          gap: 12px;
+          min-width: 0;
+        }
+
+        .card-title {
+          font-size: 1.05rem;
+          color: #fff;
+          margin: 0;
+          line-height: 1.4;
+          min-width: 0;
+          overflow-wrap: anywhere;
+        }
+
+        .card-badges {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 6px;
+          flex-shrink: 0;
+        }
+
+        .card-badge {
+          background: rgba(0, 255, 65, 0.15);
+          color: var(--secondary);
+          padding: 4px 10px;
+          border-radius: 12px;
+          font-size: 0.72rem;
+          font-weight: 600;
+          letter-spacing: 0.4px;
+          border: 1px solid rgba(0, 255, 65, 0.3);
+          white-space: nowrap;
+        }
+
+        .category-badge {
+          background: rgba(0, 240, 255, 0.12);
+          color: var(--primary);
+          border-color: rgba(0, 240, 255, 0.28);
+        }
+
+        .card-desc {
+          color: var(--text-secondary);
+          font-size: 0.94rem;
+          line-height: 1.55;
+          flex-grow: 1;
+          overflow-wrap: anywhere;
+        }
+
+        .card-footer {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 12px;
+          margin-top: 4px;
+          padding-top: 14px;
+          border-top: 1px solid var(--bg-overlay-light);
+          flex-wrap: wrap;
+          min-width: 0;
+        }
+
+        .card-id {
+          font-size: 0.8rem;
+          color: var(--text-dim);
+          min-width: 0;
+          overflow-wrap: anywhere;
+          flex: 1 1 140px;
+        }
+
+        .card-actions {
+          display: flex;
+          gap: 8px;
+          flex-wrap: wrap;
+        }
+
+        .copy-btn,
+        .card-link-btn {
+          background: var(--bg-overlay-light);
+          border: 1px solid var(--border-subtle);
+          color: var(--foreground);
+          padding: 7px 12px;
+          border-radius: 6px;
+          cursor: pointer;
+          font-size: 0.84rem;
+          font-weight: 500;
+          transition: all 0.2s ease;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+        }
+
+        .copy-btn:hover,
+        .card-link-btn:hover {
+          background: rgba(0, 240, 255, 0.15);
+          border-color: rgba(0, 240, 255, 0.4);
+          color: var(--primary);
+        }
+
+        .copy-btn:disabled {
+          opacity: 0.65;
+          cursor: wait;
+        }
+
+        .copy-fallback {
+          margin-top: 4px;
+          padding: 10px 12px;
+          border-radius: 8px;
+          background: rgba(255, 80, 80, 0.08);
+          border: 1px solid rgba(255, 120, 120, 0.25);
+        }
+
+        .copy-fallback p {
+          color: rgba(255, 210, 210, 0.9);
+          font-size: 0.85rem;
+          margin-bottom: 8px;
+        }
+
+        .copy-fallback-input {
+          width: 100%;
+          background: rgba(0, 0, 0, 0.35);
+          border: 1px solid var(--border-medium);
+          color: #fff;
+          border-radius: 6px;
+          padding: 8px 10px;
+          font-size: 0.8rem;
+        }
+
+        .not-found {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 60vh;
+        }
+
+        .not-found-panel {
+          max-width: 560px;
+          width: 100%;
+          padding: 36px 28px;
+          text-align: center;
+        }
+
+        .not-found-panel h1 {
+          font-size: clamp(1.8rem, 4vw, 2.4rem);
+          margin-bottom: 12px;
+        }
+
+        .not-found-panel p {
+          color: var(--text-secondary);
+          line-height: 1.55;
+          margin-bottom: 22px;
+        }

@@ -13,8 +13,11 @@
     "prebuild": "node ./scripts/sync-skills.mjs",
     "build": "next build",
     "start": "next start",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "lint": "next lint",
     "check:i18n": "node ./scripts/check-i18n.mjs",
+    "compress-images": "node ./scripts/compress-images.mjs",
     "sync-skills": "node ./scripts/sync-skills.mjs"
   },
   "dependencies": {
@@ -23,13 +26,19 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.0",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@typescript-eslint/eslint-plugin": "^8.64.0",
     "@typescript-eslint/parser": "^8.64.0",
+    "@vitejs/plugin-react": "^6.0.4",
     "eslint": "^8.57.1",
     "eslint-config-next": "14.2.35",
-    "typescript": "^5"
+    "jsdom": "^29.1.1",
+    "typescript": "^5",
+    "vitest": "^4.1.10"
   }
 }

@@ -2,6 +2,7 @@
 
 import { useRef, useState, type CSSProperties } from "react";
 import { useI18n } from "@/lib/i18n";
+import styles from "./DocsPage.module.css";
 
 interface CodeBlockProps {
   code: string;
@@ -38,14 +39,14 @@ export default function CodeBlock({ code, style }: CodeBlockProps) {
         : t("code.copyIdle");
 
   return (
-    <div className="code-block-wrapper" style={style}>
-      <pre className="code-block code-font">
+    <div className={styles['code-block-wrapper']} style={style}>
+      <pre className={`${styles['code-block']} code-font`}>
         <code>{code}</code>
       </pre>
       <button
         type="button"
         onClick={handleCopy}
-        className="code-copy-btn"
+        className={styles['code-copy-btn']}
         disabled={copyState === "copying"}
         aria-label={t("code.copyAria")}
         aria-live="polite"
