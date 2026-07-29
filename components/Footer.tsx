@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { CORE_REPO_URL } from "@/lib/site";
+import { CORE_REPO_URL, BILIBILI_URL } from "@/lib/site";
 import { useI18n } from "@/lib/i18n";
 import styles from "./Footer.module.css";
 
@@ -18,6 +18,10 @@ export default function Footer() {
         <nav className={styles['footer-links']} aria-label={t("footer.nav")}>
           <a href={CORE_REPO_URL} target="_blank" rel="noopener noreferrer">
             {t("footer.github")}
+            <span className="sr-only">{t("nav.opensNewTab")}</span>
+          </a>
+          <a href={BILIBILI_URL} target="_blank" rel="noopener noreferrer">
+            {t("nav.bilibili")}
             <span className="sr-only">{t("nav.opensNewTab")}</span>
           </a>
           <Link href="/docs">{t("footer.docs")}</Link>

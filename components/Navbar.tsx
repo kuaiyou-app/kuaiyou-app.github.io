@@ -5,7 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
-import { CORE_REPO_URL } from "@/lib/site";
+import { CORE_REPO_URL, BILIBILI_URL } from "@/lib/site";
 import { useI18n } from "@/lib/i18n";
 import styles from "./Navbar.module.css";
 
@@ -64,6 +64,19 @@ export default function Navbar() {
               ⭐
             </span>
             <span className={styles['github-btn-label']}>{t("nav.star")}</span>
+            <span className="sr-only">{t("nav.opensNewTab")}</span>
+          </a>
+          <a
+            href={BILIBILI_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles['github-btn']}
+            aria-label={t("nav.bilibiliAria")}
+          >
+            <span className={styles['github-icon']} aria-hidden="true" style={{ color: '#00aeec' }}>
+              📺
+            </span>
+            <span className={styles['github-btn-label']}>{t("nav.bilibili")}</span>
             <span className="sr-only">{t("nav.opensNewTab")}</span>
           </a>
           <button

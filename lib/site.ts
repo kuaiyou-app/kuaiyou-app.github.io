@@ -12,6 +12,9 @@ export const GITHUB_REPO_URL = "https://github.com/kuaiyou-app/kuaiyou-app.githu
 /** Canonical MCP / schema / skills monorepo. */
 export const CORE_REPO_URL = "https://github.com/kuaiyou-app/kuaiyou-open-source";
 
+/** Official Bilibili Account */
+export const BILIBILI_URL = "https://space.bilibili.com/3706945288538928";
+
 /** Published MCP CLI on npm. */
 export const NPM_PACKAGE_URL = "https://www.npmjs.com/package/autoace-cli";
 export const NPM_PACKAGE_NAME = "autoace-cli";
