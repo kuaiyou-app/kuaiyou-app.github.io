@@ -28,4 +28,21 @@ describe("HomePage", () => {
       "/screenshots/execution-result.jpg"
     );
   });
+
+  it("promotes install via AI Agent with a copyable prompt", () => {
+    render(
+      <I18nProvider locale="zh">
+        <HomePage locale="zh" skills={[]} />
+      </I18nProvider>
+    );
+
+    const agentLinks = screen.getAllByRole("link", { name: "通过 AI Agent 安装" });
+    expect(agentLinks.length).toBeGreaterThanOrEqual(1);
+    expect(agentLinks[0]).toHaveAttribute("href", "/docs#agent-install");
+    expect(
+      screen.getByText(
+        "帮我安装快游大师 CLI，https://kuaiyou-app.github.io/autoace-cli-installation-guide.md"
+      )
+    ).toBeInTheDocument();
+  });
 });

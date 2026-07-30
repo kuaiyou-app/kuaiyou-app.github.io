@@ -8,6 +8,7 @@ import {
   AGENT_SKILL_RAW_URL,
   AGENT_SKILL_SOURCE_URL,
   APP_DOWNLOAD_URL,
+  CLI_INSTALL_GUIDE_URL,
   NPM_PACKAGE_URL,
 } from "@/lib/site";
 import styles from "./DocsPage.module.css";
@@ -40,6 +41,7 @@ const DOC_NAV_ITEMS = [
   ["introduction", "docs.nav.intro"],
   ["names", "docs.nav.names"],
   ["app-install", "docs.nav.app"],
+  ["agent-install", "docs.nav.agentInstall"],
   ["install", "docs.nav.install"],
   ["agent-skill", "docs.nav.agentSkill"],
   ["quick-start", "docs.nav.quick"],
@@ -162,6 +164,35 @@ export default function DocsPageContent({ locale }: { locale: Locale }) {
           </p>
           <div className={`${styles.alert} ${styles.info}`}>
             <strong>{t("docs.app.note.strong")}</strong> {t("docs.app.note")}
+          </div>
+        </section>
+
+        <section id="agent-install">
+          <h2>{t("docs.agentInstall.title")}</h2>
+          <p>{t("docs.agentInstall.p")}</p>
+
+          <h3>{t("docs.agentInstall.prompt")}</h3>
+          <p>{t("docs.agentInstall.prompt.desc")}</p>
+          <CodeBlock
+            code={t("docs.agentInstall.prompt.text")}
+            analyticsEvent="config_copy"
+            analyticsLabel="agent-install-prompt"
+          />
+          <p>
+            <a
+              href={CLI_INSTALL_GUIDE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-analytics-event="docs_setup"
+              data-analytics-label="agent-install-guide"
+            >
+              {t("docs.agentInstall.guideLink")}
+              <span className="sr-only">{t("nav.opensNewTab")}</span>
+            </a>
+          </p>
+          <div className={`${styles.alert} ${styles.info}`}>
+            <strong>{t("docs.agentInstall.note.strong")}</strong>{" "}
+            {t("docs.agentInstall.note")}
           </div>
         </section>
 

@@ -30,9 +30,9 @@ const SEO_COPY: Record<Locale, Record<PublicRoute, SeoCopy>> = {
     },
     docs: {
       siteName: "快游大师 CLI",
-      title: "文档 — 安装 autoace-cli、连接 App 与配置 MCP",
+      title: "文档 — 通过 AI Agent 安装并配置 MCP",
       description:
-        "安装快游大师 App 与 autoace-cli，配置 MCP 连接和 Agent Skill，并开始创建 Android 自动化技能。",
+        "用可复制提示词让 AI Agent 安装 autoace-cli，配置 MCP 与 Agent Skill，开始创建 Android 自动化技能。",
       imageAlt: "快游大师 CLI 安装与配置文档",
     },
   },
@@ -46,9 +46,9 @@ const SEO_COPY: Record<Locale, Record<PublicRoute, SeoCopy>> = {
     },
     docs: {
       siteName: "autoace-cli",
-      title: "Docs — Install autoace-cli, connect the App, and configure MCP",
+      title: "Docs — Install via AI Agent and configure MCP",
       description:
-        "Install the Kuaiyou Master App and autoace-cli, configure the MCP connection and optional Agent Skill, then build Android automation skills.",
+        "Paste a prompt so an AI Agent installs autoace-cli, configures MCP and the Agent Skill, then build Android automation skills.",
       imageAlt: "autoace-cli installation and setup documentation",
     },
   },

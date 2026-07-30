@@ -29,6 +29,9 @@ export const SECURITY_URL = `${GITHUB_REPO_URL}/security/advisories/new`;
 export const NPM_PACKAGE_URL = "https://www.npmjs.com/package/autoace-cli";
 export const NPM_PACKAGE_NAME = "autoace-cli";
 
+/** Agent-facing CLI install guide (static markdown on Pages). */
+export const CLI_INSTALL_GUIDE_URL = `${SITE_URL}/autoace-cli-installation-guide.md`;
+
 /** Agent Skill name (Claude Code / Codex / Cursor). Distinct from phone-side 技能 JSON. */
 export const AGENT_SKILL_NAME = "autoace";
 

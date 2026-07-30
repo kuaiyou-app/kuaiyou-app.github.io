@@ -43,7 +43,7 @@ export default function HomePage({ skills, locale }: { skills: Skill[]; locale: 
               <span className="sr-only">{t("nav.opensNewTab")}</span>
             </a>
             <Link
-              href={localizedHref(locale, "docs", "app-install")}
+              href={localizedHref(locale, "docs", "agent-install")}
               className="btn btn-secondary"
               data-analytics-event="docs_setup"
               data-analytics-label="hero"
@@ -281,7 +281,7 @@ export default function HomePage({ skills, locale }: { skills: Skill[]; locale: 
         </ol>
         <div className={styles['quickstart-actions']}>
           <Link
-            href={localizedHref(locale, "docs", "install")}
+            href={localizedHref(locale, "docs", "agent-install")}
             className="btn btn-primary"
             data-analytics-event="docs_setup"
             data-analytics-label="home-quickstart-app"

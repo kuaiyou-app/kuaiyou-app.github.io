@@ -9,7 +9,7 @@ describe("static SEO", () => {
   it("creates locale-specific canonical, alternate, and social metadata", () => {
     expect(createPageMetadata("en", "docs")).toMatchObject({
       title: {
-        absolute: "Docs — Install autoace-cli, connect the App, and configure MCP",
+        absolute: "Docs — Install via AI Agent and configure MCP",
       },
       alternates: {
         canonical: "/en/docs/",

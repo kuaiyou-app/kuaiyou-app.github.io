@@ -50,7 +50,7 @@ export default function Footer() {
           </a>
           <Link href={localizedHref(locale, "docs")}>{t("footer.docs")}</Link>
           <Link
-            href={localizedHref(locale, "docs", "app-install")}
+            href={localizedHref(locale, "docs", "agent-install")}
             data-analytics-event="docs_setup"
             data-analytics-label="footer"
           >
