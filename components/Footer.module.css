@@ -20,6 +20,13 @@
   flex-wrap: wrap;
 }
 
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
 .footer-logo-text {
   font-weight: 700;
   font-size: 1.2rem;
