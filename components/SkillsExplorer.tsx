@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import SkillCard from "@/components/SkillCard";
 import type { Skill, SkillCategory } from "@/lib/skills";
 import { useI18n } from "@/lib/i18n";
@@ -13,7 +13,8 @@ interface SkillsExplorerProps {
 
 type Filter = "all" | SkillCategory;
 
-const DEFAULT_VISIBLE_COUNT = 6;
+// Initial fallback for SSR
+const INITIAL_VISIBLE_COUNT = 6;
 
 export default function SkillsExplorer({
   skills,
@@ -23,6 +24,8 @@ export default function SkillsExplorer({
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState<Filter>("all");
   const [expanded, setExpanded] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_COUNT);
+  const gridRef = useRef<HTMLUListElement>(null);
 
   const filters: { id: Filter; label: string }[] = [
     { id: "all", label: t("skills.filter.all") },
@@ -44,15 +47,34 @@ export default function SkillsExplorer({
     });
   }, [skills, search, filter]);
 
-  // Filter/search changes should re-collapse to the first 6 of the current result set.
+  // Filter/search changes should re-collapse.
   useEffect(() => {
     setExpanded(false);
   }, [search, filter]);
 
+  // Dynamically calculate how many items to show based on grid width
+  // grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr))
+  // gap: 24px
+  useEffect(() => {
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const width = entry.contentRect.width;
+        // Calculate columns: (width + gap) / (minColumnWidth + gap)
+        const cols = Math.max(1, Math.floor((width + 24) / 324));
+        // Always show exactly 2 rows
+        setVisibleCount(cols * 2);
+      }
+    });
+
+    const el = gridRef.current;
+    if (el) observer.observe(el);
+    return () => observer.disconnect();
+  }, [expanded]); // Re-bind observer if grid mounts/unmounts
+
   const visibleSkills = expanded
     ? filteredSkills
-    : filteredSkills.slice(0, DEFAULT_VISIBLE_COUNT);
-  const canToggle = filteredSkills.length > DEFAULT_VISIBLE_COUNT;
+    : filteredSkills.slice(0, visibleCount);
+  const canToggle = filteredSkills.length > visibleCount;
 
   return (
     <div
@@ -116,7 +138,7 @@ export default function SkillsExplorer({
 
       {filteredSkills.length > 0 ? (
         <>
-          <ul className={styles['skills-grid']}>
+          <ul ref={gridRef} className={styles['skills-grid']}>
             {visibleSkills.map((skill) => (
               <li key={skill.id} className={styles['skills-grid-item']}>
                 <SkillCard skill={skill} baseUrl={baseUrl} />
