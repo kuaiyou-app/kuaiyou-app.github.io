@@ -1,7 +1,7 @@
 {
   "meta.siteName": "autoace-cli",
-  "meta.home.title": "autoace-cli — Build Android automation skills with AI",
-  "meta.home.description": "autoace-cli helps AI understand Android screens, create skills, and run them locally on your phone.",
+  "meta.home.title": "autoace-cli — AI-driven Android RPA & Automation Tool",
+  "meta.home.description": "autoace-cli: Integrate AI tools with the Model Context Protocol (MCP) to generate zero-code Android automation skills, running locally without root.",
   "meta.docs.title": "Docs — Install and get started",
   "meta.docs.description": "Learn how to install autoace-cli, connect an AI client, and let the agent build skills.",
   "meta.notfound.title": "Page not found",
@@ -38,6 +38,14 @@
   "home.tag.bridge": "LAN connection",
 
   "home.how.title": "How It Works",
+
+  "home.faq.title": "Frequently Asked Questions (FAQ)",
+  "home.faq.q1": "What is autoace-cli?",
+  "home.faq.a1": "autoace-cli is an Android automation agent based on the Model Context Protocol (MCP). It allows AI models to directly read Android UI trees and deploy RPA skills for zero-code automation testing.",
+  "home.faq.q2": "Which AI tools are supported by autoace-cli?",
+  "home.faq.a2": "It broadly supports any AI tool or client compatible with the MCP protocol, including Claude Code, Cursor, Codex, Gemini, OpenClaw, and WorkBuddy, enabling seamless semantic UI analysis.",
+  "home.faq.q3": "Is root access required to run automation tasks?",
+  "home.faq.a3": "Not at all. autoace-cli relies on native Android Accessibility Services to fetch UI trees and execute clicks without root, ensuring both device safety and efficiency.",
   "home.how.subtitle": "From understanding a screen to running automation on your phone",
   "home.how.node1.title": "AI client",
   "home.how.node1.desc": "Understands the task and creates a skill",

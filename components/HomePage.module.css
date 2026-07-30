@@ -248,7 +248,35 @@
           gap: 12px;
           color: var(--text-secondary);
           line-height: 1.55;
-          padding-left: 1.25rem;
+        }
+
+        .faq-section {
+          margin-bottom: 48px;
+        }
+
+        .faq-list {
+          display: grid;
+          gap: 16px;
+          max-width: 800px;
+          margin: 0 auto;
+          text-align: left;
+        }
+
+        .faq-item {
+          padding: 22px;
+        }
+
+        .faq-item h3 {
+          font-size: 1.1rem;
+          margin-bottom: 12px;
+          color: #fff;
+        }
+
+        .faq-item p {
+          color: var(--text-secondary);
+          font-size: 0.95rem;
+          line-height: 1.6;
+          margin: 0;
         }
 
         .skills-toolbar {

@@ -26,6 +26,24 @@ export const metadata: Metadata = {
   },
   description:
     "快游大师 CLI（autoace-cli）：用 AI 理解 Android 界面，生成技能并下发到手机本地执行。",
+  keywords: [
+    "Android automation",
+    "Android RPA",
+    "AI Agent",
+    "Model Context Protocol",
+    "MCP",
+    "autoace-cli",
+    "LLM mobile testing",
+    "安卓自动化测试",
+    "快游大师",
+    "Claude Code",
+    "Cursor",
+    "免 Root 自动化",
+    "Zero-code UI testing",
+    "如何用 AI 编写手机脚本",
+    "如何用 AI 编写手机自动化",
+    "手机端自动化工具"
+  ],
   alternates: {
     canonical: "/",
   },
@@ -62,8 +80,24 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "快游大师 CLI (autoace-cli)",
+    operatingSystem: "Windows, macOS, Linux (CLI)",
+    applicationCategory: "DeveloperApplication",
+    description: "基于 MCP 协议的安卓自动化引擎，让 Claude Code, Cursor 等 AI 工具免 Root 操控 Android 手机。",
+    url: "https://kuaiyou-app.github.io"
+  };
+
   return (
     <html lang="zh-CN" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {/* suppressHydrationWarning: I18nProvider may change lang on client
         based on localStorage/URL query, causing server-client mismatch. */}

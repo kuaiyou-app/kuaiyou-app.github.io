@@ -191,7 +191,7 @@ export default function HomePage({ skills }: { skills: Skill[] }) {
         <SkillsExplorer skills={skills} baseUrl={SKILLS_PUBLIC_PATH} />
       </section>
 
-      <section
+    <section
         className={`${styles['security-section']} glass-panel`}
         aria-labelledby="security-title"
       >
@@ -205,6 +205,37 @@ export default function HomePage({ skills }: { skills: Skill[] }) {
           <li>{t("home.sec.3")}</li>
           <li>{t("home.sec.4")}</li>
         </ul>
+      </section>
+
+      <section
+        className={`${styles['faq-section']}`}
+        aria-labelledby="faq-title"
+        itemScope
+        itemType="https://schema.org/FAQPage"
+      >
+        <div className={styles['section-header']}>
+          <h2 id="faq-title">{t("home.faq.title")}</h2>
+        </div>
+        <div className={styles['faq-list']}>
+          {[1, 2, 3].map((i) => (
+            <div
+              key={i}
+              className={`${styles['faq-item']} glass-panel`}
+              itemScope
+              itemProp="mainEntity"
+              itemType="https://schema.org/Question"
+            >
+              <h3 itemProp="name">{t(`home.faq.q${i}` as Parameters<typeof t>[0])}</h3>
+              <div
+                itemScope
+                itemProp="acceptedAnswer"
+                itemType="https://schema.org/Answer"
+              >
+                <p itemProp="text">{t(`home.faq.a${i}` as Parameters<typeof t>[0])}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
     </main>
   );

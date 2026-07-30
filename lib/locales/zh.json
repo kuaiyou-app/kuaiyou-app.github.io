@@ -1,7 +1,7 @@
 {
   "meta.siteName": "快游大师 CLI",
-  "meta.home.title": "快游大师 CLI — 用 AI 构建 Android 自动化技能",
-  "meta.home.description": "快游大师 CLI（autoace-cli）：用 AI 理解 Android 界面，生成技能，校验后交给手机本地运行。",
+  "meta.home.title": "快游大师 CLI — 基于 AI 与 MCP 的 Android RPA 自动化工具",
+  "meta.home.description": "快游大师 CLI（autoace-cli）：结合 AI 工具与 Model Context Protocol (MCP)，零代码生成 Android 自动化技能，免 Root 手机本地运行。",
   "meta.docs.title": "文档 — 安装与上手指南",
   "meta.docs.description": "了解如何安装 autoace-cli、连接 AI 客户端，并开始让 Agent 编写与运行技能。",
   "meta.notfound.title": "页面未找到",
@@ -38,6 +38,14 @@
   "home.tag.bridge": "局域网连接",
 
   "home.how.title": "工作原理",
+  
+  "home.faq.title": "常见问题 (FAQ)",
+  "home.faq.q1": "什么是快游大师 CLI (autoace-cli)？",
+  "home.faq.a1": "快游大师 CLI 是一款基于 Model Context Protocol (MCP) 标准的 Android 自动化代理工具 (AI Agent for Android)，允许 AI 直接读取安卓手机界面并下发 RPA 技能执行自动化测试与任务。",
+  "home.faq.q2": "快游大师 CLI 支持哪些 AI 工具？",
+  "home.faq.a2": "它广泛支持所有兼容 MCP 协议的智能工具，包括 Claude Code、Cursor、Codex、Gemini、OpenClaw 以及 WorkBuddy 等，通过它们可以无缝进行零代码 (Zero-code) 的 UI 语义分析与操作生成。",
+  "home.faq.q3": "执行自动化任务需要 Root 权限吗？",
+  "home.faq.a3": "完全不需要。快游大师通过安卓原生无障碍服务 (Accessibility) 实现免 Root 获取 UI 树和执行自动化点击，兼顾设备安全与执行高效。",
   "home.how.subtitle": "从 AI 理解界面，到手机本地执行自动化技能",
   "home.how.node1.title": "AI 客户端",
   "home.how.node1.desc": "理解任务并生成技能",
