@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import CodeBlock from "@/components/CodeBlock";
 import SkillsExplorer from "@/components/SkillsExplorer";
 import type { Skill } from "@/lib/skills";
@@ -77,11 +78,24 @@ export default function HomePage({ skills, locale }: { skills: Skill[]; locale: 
             <span className={styles['workflow-live']} aria-hidden="true" />
             <span className="code-font">{t("home.workflow.eyebrow")}</span>
           </div>
-          <ol className={styles['workflow-steps']}>
-            <li><span>01</span><strong>{t("home.how.node1.title")}</strong><small>{t("home.how.node1.desc")}</small></li>
-            <li><span>02</span><strong>{t("home.how.node2.title")}</strong><small>{t("home.how.node2.desc")}</small></li>
-            <li><span>03</span><strong>{t("home.how.node3.title")}</strong><small>{t("home.how.node3.desc")}</small></li>
-          </ol>
+          <div className={styles['workflow-showcase']}>
+            <figure className={styles['workflow-screenshot']}>
+              <Image
+                src="/screenshots/skill-list.jpg"
+                alt={t("home.product.skill.alt")}
+                width={1440}
+                height={3168}
+                priority
+                decoding="async"
+              />
+              <figcaption>{t("home.product.heroCaption")}</figcaption>
+            </figure>
+            <ol className={styles['workflow-steps']}>
+              <li><span>01</span><strong>{t("home.how.node1.title")}</strong><small>{t("home.how.node1.desc")}</small></li>
+              <li><span>02</span><strong>{t("home.how.node2.title")}</strong><small>{t("home.how.node2.desc")}</small></li>
+              <li><span>03</span><strong>{t("home.how.node3.title")}</strong><small>{t("home.how.node3.desc")}</small></li>
+            </ol>
+          </div>
           <div className={styles['workflow-status']}>
             <span aria-hidden="true">✓</span>
             {t("home.workflow.status")}
@@ -168,6 +182,43 @@ export default function HomePage({ skills, locale }: { skills: Skill[]; locale: 
         </ol>
 
         <p className="sr-only">{t("home.how.sr")}</p>
+      </section>
+
+      <section className={styles['product-proof']} aria-labelledby="product-proof-title">
+        <div className={styles['section-header']}>
+          <h2 id="product-proof-title">{t("home.product.title")}</h2>
+          <p>{t("home.product.subtitle")}</p>
+        </div>
+        <div className={styles['product-proof-grid']}>
+          <figure className={`glass-panel ${styles['product-proof-card']}`}>
+            <Image
+              src="/screenshots/run-confirmation.jpg"
+              alt={t("home.product.confirm.alt")}
+              width={1440}
+              height={3168}
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>
+              <strong>{t("home.product.confirm.title")}</strong>
+              <span>{t("home.product.confirm.desc")}</span>
+            </figcaption>
+          </figure>
+          <figure className={`glass-panel ${styles['product-proof-card']}`}>
+            <Image
+              src="/screenshots/execution-result.jpg"
+              alt={t("home.product.result.alt")}
+              width={1440}
+              height={3168}
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>
+              <strong>{t("home.product.result.title")}</strong>
+              <span>{t("home.product.result.desc")}</span>
+            </figcaption>
+          </figure>
+        </div>
       </section>
 
       <section
