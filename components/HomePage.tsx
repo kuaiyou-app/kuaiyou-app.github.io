@@ -102,7 +102,7 @@ export default function HomePage({ skills, locale }: { skills: Skill[]; locale: 
         <li><strong>{exampleCount}</strong><span>{t("home.metrics.examples", { count: exampleCount })}</span></li>
         <li><strong>{testCount}</strong><span>{t("home.metrics.tests", { count: testCount })}</span></li>
         <li><strong>✓</strong><span>{t("home.metrics.local")}</span></li>
-        <li><strong>OSS</strong><span>{t("home.metrics.open")}</span></li>
+        <li><strong>✓</strong><span>{t("home.metrics.open")}</span></li>
       </ul>
 
       <section className={styles['use-cases-section']} aria-labelledby="use-cases-title">

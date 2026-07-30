@@ -46,7 +46,7 @@
   "home.metrics.examples": "可直接使用示例",
   "home.metrics.tests": "兼容性验证",
   "home.metrics.local": "手机确认后本地执行",
-  "home.metrics.open": "CLI 与 Agent Skill 开源",
+  "home.metrics.open": "CLI 与 Agent Skill 均已开源",
 
   "home.use.title": "适合哪些工作",
   "home.use.subtitle": "先从可观察、可校验、可重复的 Android 流程开始",
