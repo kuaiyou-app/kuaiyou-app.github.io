@@ -160,6 +160,7 @@
             position: static;
           }
           .docs-content {
+            width: 100%;
             padding: 24px 20px;
           }
         }

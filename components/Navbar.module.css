@@ -13,7 +13,7 @@
   align-items: center;
   width: 100%;
   max-width: 100%;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .nav-container {
@@ -42,6 +42,7 @@
 .logo-icon {
   color: var(--primary);
   font-size: 1.5rem;
+  border-radius: 4px;
 }
 
 .nav-logo-text {
@@ -106,6 +107,7 @@
 
 .lang-btn {
   appearance: none;
+  text-decoration: none;
   border: 0;
   background: transparent;
   color: var(--text-secondary);
@@ -126,8 +128,9 @@
   color: #fff;
 }
 
-.nav-docs-btn {
-  display: none;
+.nav-app-btn {
+  display: inline-flex;
+  align-items: center;
   background: rgba(0, 240, 255, 0.12);
   border: 1px solid rgba(0, 240, 255, 0.28);
   color: var(--primary);
@@ -136,14 +139,7 @@
   font-size: 0.88rem;
   font-weight: 600;
   white-space: nowrap;
-}
-
-.nav-docs-btn-short {
-  display: none;
-}
-
-.nav-docs-btn-full {
-  display: inline;
+  text-decoration: none;
 }
 
 .github-btn {
@@ -214,15 +210,16 @@
     border-bottom: 1px solid var(--glass-border);
     gap: 12px;
     z-index: 99;
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
   }
 
   .nav-links-open {
     display: flex;
   }
 
-  .nav-docs-btn { display: none; }
-  .nav-docs-btn-full { display: none; }
-  .nav-docs-btn-short { display: inline; }
+  .nav-app-btn { display: none; }
+  .github-btn { display: none; }
   .nav-container {
     padding: 0 12px;
     gap: 8px;
@@ -230,10 +227,6 @@
   .nav-actions {
     flex: 0 0 auto;
     gap: 8px;
-  }
-  .nav-docs-btn {
-    padding: 7px 10px;
-    font-size: 0.82rem;
   }
   .nav-logo-text {
     font-size: 0.98rem;

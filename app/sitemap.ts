@@ -1,20 +1,22 @@
 import type { MetadataRoute } from "next";
-import { SITE_URL } from "@/lib/site";
+import {
+  absoluteLocalizedUrl,
+  PUBLIC_LOCALES,
+  PUBLIC_ROUTES,
+  routeAlternates,
+} from "@/lib/routes";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
-  return [
-    {
-      url: `${SITE_URL}/`,
+  return PUBLIC_LOCALES.flatMap((locale) =>
+    PUBLIC_ROUTES.map((route) => ({
+      url: absoluteLocalizedUrl(locale, route),
       lastModified,
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: `${SITE_URL}/docs/`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-  ];
+      changeFrequency: "weekly" as const,
+      priority: route === "home" ? 1 : 0.8,
+      alternates: {
+        languages: routeAlternates(route),
+      },
+    })),
+  );
 }

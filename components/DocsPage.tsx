@@ -1,11 +1,13 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import CodeBlock from "@/components/CodeBlock";
-import { useI18n } from "@/lib/i18n";
+import { useI18n, type Locale } from "@/lib/i18n";
 import {
   AGENT_SKILL_NAME,
   AGENT_SKILL_RAW_URL,
-  CORE_REPO_URL,
+  AGENT_SKILL_SOURCE_URL,
+  APP_DOWNLOAD_URL,
   NPM_PACKAGE_URL,
 } from "@/lib/site";
 import styles from "./DocsPage.module.css";
@@ -16,8 +18,8 @@ const MCP_JSON = `{
       "command": "npx",
       "args": ["-y", "autoace-cli"],
       "env": {
-        "KUAIYOU_DEVICE_IP": "192.168.1.100:3847",
-        "KUAIYOU_MCP_PAIRING_CODE": "482917"
+        "KUAIYOU_DEVICE_IP": "<DEVICE_IP:PORT>",
+        "KUAIYOU_MCP_PAIRING_CODE": "<PAIRING_CODE>"
       }
     }
   }
@@ -32,9 +34,19 @@ curl -fsSL ${AGENT_SKILL_RAW_URL} -o ~/.codex/skills/autoace/SKILL.md`;
 const INSTALL_GLOBAL = `npm install -g autoace-cli
 autoace-cli`;
 
-const INSTALL_SKILLS_CLI = `npx skills add kuaiyou-app/kuaiyou-open-source --skill autoace`;
+const MCP_LAN_COMMAND = `KUAIYOU_DEVICE_IP=<DEVICE_IP:PORT> KUAIYOU_MCP_PAIRING_CODE=<PAIRING_CODE> npx -y autoace-cli`;
 
-const MCP_LAN_COMMAND = `KUAIYOU_DEVICE_IP=192.168.1.100:3847 KUAIYOU_MCP_PAIRING_CODE=482917 npx -y autoace-cli`;
+const DOC_NAV_ITEMS = [
+  ["introduction", "docs.nav.intro"],
+  ["names", "docs.nav.names"],
+  ["app-install", "docs.nav.app"],
+  ["install", "docs.nav.install"],
+  ["agent-skill", "docs.nav.agentSkill"],
+  ["quick-start", "docs.nav.quick"],
+  ["write-skill", "docs.nav.write"],
+  ["mcp-tools", "docs.nav.tools"],
+  ["boundaries", "docs.nav.boundaries"],
+] as const;
 
 const SKILL_EXAMPLE_JSON = `{
   "id": "reactive_click_confirm",
@@ -57,39 +69,52 @@ const SKILL_EXAMPLE_JSON = `{
   "termination": { "type": "timeout", "maxDurationMs": 30000 }
 }`;
 
-export default function DocsPageContent() {
+export default function DocsPageContent({ locale }: { locale: Locale }) {
   const { t } = useI18n();
+  const [activeSection, setActiveSection] = useState("introduction");
+
+  useEffect(() => {
+    if (window.location.hash) {
+      setActiveSection(window.location.hash.slice(1));
+    }
+    if (!("IntersectionObserver" in window)) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.find((entry) => entry.isIntersecting);
+        if (visible) setActiveSection(visible.target.id);
+      },
+      { rootMargin: "-18% 0px -70% 0px" }
+    );
+
+    DOC_NAV_ITEMS.forEach(([id]) => {
+      const section = document.getElementById(id);
+      if (section) observer.observe(section);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <main id="main-content" className={`${styles['docs-container']} animate-fade-in`}>
+    <main
+      id="main-content"
+      data-locale={locale}
+      className={`${styles['docs-container']} animate-fade-in`}
+    >
       <nav className={`${styles['docs-sidebar']} glass-panel`} aria-label={t("docs.navAria")}>
         <ul className={styles['docs-nav']}>
-          <li>
-            <a href="#introduction" className={styles.active}>
-              {t("docs.nav.intro")}
-            </a>
-          </li>
-          <li>
-            <a href="#names">{t("docs.nav.names")}</a>
-          </li>
-          <li>
-            <a href="#install">{t("docs.nav.install")}</a>
-          </li>
-          <li>
-            <a href="#agent-skill">{t("docs.nav.agentSkill")}</a>
-          </li>
-          <li>
-            <a href="#quick-start">{t("docs.nav.quick")}</a>
-          </li>
-          <li>
-            <a href="#write-skill">{t("docs.nav.write")}</a>
-          </li>
-          <li>
-            <a href="#mcp-tools">{t("docs.nav.tools")}</a>
-          </li>
-          <li>
-            <a href="#boundaries">{t("docs.nav.boundaries")}</a>
-          </li>
+          {DOC_NAV_ITEMS.map(([id, label]) => (
+            <li key={id}>
+              <a
+                href={`#${id}`}
+                className={activeSection === id ? styles.active : undefined}
+                aria-current={activeSection === id ? "location" : undefined}
+                onClick={() => setActiveSection(id)}
+              >
+                {t(label)}
+              </a>
+            </li>
+          ))}
         </ul>
       </nav>
 
@@ -119,11 +144,38 @@ export default function DocsPageContent() {
           </ul>
         </section>
 
+        <section id="app-install">
+          <h2>{t("docs.app.title")}</h2>
+          <p>{t("docs.app.p")}</p>
+          <p>
+            <a
+              href={APP_DOWNLOAD_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary"
+              data-analytics-event="app_download"
+              data-analytics-label="docs-app-install"
+            >
+              {t("docs.app.download")}
+              <span className="sr-only">{t("nav.opensNewTab")}</span>
+            </a>
+          </p>
+          <div className={`${styles.alert} ${styles.info}`}>
+            <strong>{t("docs.app.note.strong")}</strong> {t("docs.app.note")}
+          </div>
+        </section>
+
         <section id="install">
           <h2>{t("docs.install.title")}</h2>
           <p>{t("docs.install.p")}</p>
           <p>
-            <a href={NPM_PACKAGE_URL} target="_blank" rel="noopener noreferrer">
+            <a
+              href={NPM_PACKAGE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-analytics-event="npm_open"
+              data-analytics-label="docs-install"
+            >
               {t("docs.install.npmLink")}
             </a>
           </p>
@@ -136,11 +188,11 @@ export default function DocsPageContent() {
 
           <h3>{t("docs.install.npx")}</h3>
           <p>{t("docs.install.npx.desc")}</p>
-          <CodeBlock code="npx -y autoace-cli" />
+          <CodeBlock code="npx -y autoace-cli" analyticsEvent="config_copy" analyticsLabel="npx" />
 
           <h3>{t("docs.install.global")}</h3>
           <p>{t("docs.install.global.desc")}</p>
-          <CodeBlock code={INSTALL_GLOBAL} />
+          <CodeBlock code={INSTALL_GLOBAL} analyticsEvent="config_copy" analyticsLabel="npm-global" />
 
           <h3>{t("docs.install.verify")}</h3>
           <p>{t("docs.install.verify.desc")}</p>
@@ -156,7 +208,7 @@ export default function DocsPageContent() {
           <p>{t("docs.agent.p")}</p>
           <p>
             <a
-              href={`${CORE_REPO_URL}/tree/main/agent-skills/autoace`}
+              href={AGENT_SKILL_SOURCE_URL}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -165,18 +217,16 @@ export default function DocsPageContent() {
           </p>
 
           <h3>{t("docs.agent.claude")}</h3>
-          <CodeBlock code={CLAUDE_CODE_SKILL} />
+          <CodeBlock code={CLAUDE_CODE_SKILL} analyticsEvent="config_copy" analyticsLabel="claude-skill" />
           <p>{t("docs.agent.claude.invoke")}</p>
 
           <h3>{t("docs.agent.codex")}</h3>
-          <CodeBlock code={CODEX_SKILL} />
+          <CodeBlock code={CODEX_SKILL} analyticsEvent="config_copy" analyticsLabel="codex-skill" />
           <p>{t("docs.agent.codex.invoke")}</p>
 
           <h3>{t("docs.agent.cursor")}</h3>
           <p>{t("docs.agent.cursor.desc")}</p>
 
-          <h3>{t("docs.agent.npx")}</h3>
-          <CodeBlock code={INSTALL_SKILLS_CLI} />
         </section>
 
         <section id="quick-start">
@@ -194,13 +244,13 @@ export default function DocsPageContent() {
           <h3>{t("docs.quick.start")}</h3>
           <p>{t("docs.quick.npm")}</p>
           <p>{t("docs.quick.lan")}</p>
-          <CodeBlock code={MCP_LAN_COMMAND} />
+          <CodeBlock code={MCP_LAN_COMMAND} analyticsEvent="config_copy" analyticsLabel="mcp-lan" />
           <p>{t("docs.quick.usb")}</p>
-          <CodeBlock code="npx -y autoace-cli" />
+          <CodeBlock code="npx -y autoace-cli" analyticsEvent="config_copy" analyticsLabel="mcp-usb" />
 
           <h3>{t("docs.quick.connect")}</h3>
           <p>{t("docs.quick.claude")}</p>
-          <CodeBlock code={MCP_JSON} />
+          <CodeBlock code={MCP_JSON} analyticsEvent="config_copy" analyticsLabel="mcp-json" />
           <p>{t("docs.quick.clients")}</p>
           <ul>
             <li>{t("docs.quick.clients.1")}</li>

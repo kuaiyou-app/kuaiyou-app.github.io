@@ -3,8 +3,11 @@
 快游大师开源官网（Next.js 14 静态导出 → GitHub Pages）。
 
 - **站点**：https://kuaiyou-app.github.io/
-- **本仓**：https://github.com/kuaiyou-app/kuaiyou-website
+- **Android App**：https://autoace.kuaiyou-app.com/download
+- **本仓**：https://github.com/kuaiyou-app/kuaiyou-app.github.io
 - **核心生态仓**（MCP / schema / skills）：https://github.com/kuaiyou-app/kuaiyou-open-source
+
+公开页面采用静态多语言路由：中文 `/`、`/docs/`，英文 `/en/`、`/en/docs/`。旧的 `?lang=en` 链接会跳转到对应英文路径。
 
 ## Stack pin (do not major-upgrade)
 
@@ -22,6 +25,16 @@ npm run dev
 
 Open http://localhost:3000/
 
+## Privacy-first analytics
+
+网站默认不发送分析请求。只有同时满足以下条件时，受控 CTA 事件才会发送：
+
+1. 设置 `NEXT_PUBLIC_KUAIYOU_ANALYTICS_ENDPOINT` 为同源相对路径或 HTTPS 地址；
+2. 用户已明确同意，并在 localStorage 写入 `kuaiyou-analytics-consent=granted`；
+3. 浏览器未启用 Do Not Track。
+
+当前仅记录预定义事件名、页面路径、时间和站内定义的按钮标签，不采集输入内容。项目暂未提供同意弹窗，因此生产环境在接入合规同意管理前保持零请求。
+
 ### Skills source
 
 Canonical skills live in `kuaiyou-open-source`. This site vendors a snapshot under `public/skills` and refreshes it when possible:
@@ -37,4 +50,3 @@ Canonical skills live in `kuaiyou-open-source`. This site vendors a snapshot und
 
 Push to `main` runs GitHub Pages deploy (`.github/workflows/pages.yml`).
 Enable **Settings → Pages → Source: GitHub Actions** on the repo.
-

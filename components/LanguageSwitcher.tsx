@@ -1,14 +1,20 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useI18n, type I18nKey, type Locale } from "@/lib/i18n";
+import { localizedHref, routeForPath } from "@/lib/routes";
 import styles from "./Navbar.module.css";
+
 const OPTIONS: { id: Locale; labelKey: I18nKey }[] = [
   { id: "zh", labelKey: "lang.zh" },
   { id: "en", labelKey: "lang.en" },
 ];
 
 export default function LanguageSwitcher() {
-  const { locale, setLocale, t } = useI18n();
+  const pathname = usePathname();
+  const { locale, t } = useI18n();
+  const page = routeForPath(pathname ?? "/");
 
   return (
     <div
@@ -17,15 +23,16 @@ export default function LanguageSwitcher() {
       aria-label={t("lang.switch")}
     >
       {OPTIONS.map((option) => (
-        <button
+        <Link
           key={option.id}
-          type="button"
+          href={localizedHref(option.id, page)}
           className={`${styles['lang-btn']} ${locale === option.id ? styles.active : ""}`}
-          aria-pressed={locale === option.id}
-          onClick={() => setLocale(option.id)}
+          hrefLang={option.id === "zh" ? "zh-CN" : "en"}
+          lang={option.id === "zh" ? "zh-CN" : "en"}
+          aria-current={locale === option.id ? "page" : undefined}
         >
           {t(option.labelKey)}
-        </button>
+        </Link>
       ))}
     </div>
   );

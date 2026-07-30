@@ -1,20 +1,34 @@
 "use client";
 
-import { useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { useI18n } from "@/lib/i18n";
+import type { AnalyticsEventName } from "@/lib/analytics";
 import styles from "./DocsPage.module.css";
 
 interface CodeBlockProps {
   code: string;
   style?: CSSProperties;
+  analyticsEvent?: AnalyticsEventName;
+  analyticsLabel?: string;
 }
 
 type CopyState = "idle" | "copying" | "success" | "error";
 
-export default function CodeBlock({ code, style }: CodeBlockProps) {
+export default function CodeBlock({
+  code,
+  style,
+  analyticsEvent,
+  analyticsLabel,
+}: CodeBlockProps) {
   const { t } = useI18n();
   const [copyState, setCopyState] = useState<CopyState>("idle");
   const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (resetTimer.current) clearTimeout(resetTimer.current);
+    };
+  }, []);
 
   const handleCopy = async () => {
     if (copyState === "copying") return;
@@ -51,6 +65,8 @@ export default function CodeBlock({ code, style }: CodeBlockProps) {
         aria-label={t("code.copyAria")}
         aria-live="polite"
         data-state={copyState}
+        data-analytics-event={analyticsEvent}
+        data-analytics-label={analyticsLabel}
       >
         {buttonLabel}
       </button>

@@ -93,6 +93,8 @@ export default function SkillCard({ skill, baseUrl }: SkillCardProps) {
             href={`${baseUrl}/${skill.file}`}
             target="_blank"
             rel="noopener noreferrer"
+            data-analytics-event="skill_link_copy"
+            data-analytics-label={`view:${skill.id}`}
           >
             {t("skills.viewJson")}
             <span className="sr-only">{t("nav.opensNewTab")}</span>
@@ -103,6 +105,8 @@ export default function SkillCard({ skill, baseUrl }: SkillCardProps) {
             className={styles['copy-btn']}
             disabled={copyState === "copying"}
             aria-live="polite"
+            data-analytics-event="skill_link_copy"
+            data-analytics-label={`copy:${skill.id}`}
           >
             {buttonLabel}
           </button>

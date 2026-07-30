@@ -1,14 +1,12 @@
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { I18nProvider, useI18n } from "@/lib/i18n";
 
 function TestConsumer() {
-  const { locale, setLocale, t } = useI18n();
+  const { locale, t } = useI18n();
   return (
     <div>
       <span data-testid="locale">{locale}</span>
       <span data-testid="translated">{t("nav.home")}</span>
-      <button onClick={() => setLocale("en")}>Switch to EN</button>
     </div>
   );
 }
@@ -27,15 +25,14 @@ describe("I18nProvider", () => {
     expect(screen.getByTestId("translated")).toHaveTextContent("首页");
   });
 
-  it("switches to English and persists", async () => {
-    const user = userEvent.setup();
+  it("renders the locale fixed by its route provider", () => {
+    localStorage.setItem("kuaiyou-locale", "zh");
+    window.history.replaceState({}, "", "/?lang=zh");
     render(
-      <I18nProvider><TestConsumer /></I18nProvider>
+      <I18nProvider locale="en"><TestConsumer /></I18nProvider>
     );
-    await user.click(screen.getByText("Switch to EN"));
     expect(screen.getByTestId("locale")).toHaveTextContent("en");
     expect(screen.getByTestId("translated")).toHaveTextContent("Home");
-    expect(localStorage.getItem("kuaiyou-locale")).toBe("en");
   });
 
   it("throws when useI18n is used outside provider", () => {

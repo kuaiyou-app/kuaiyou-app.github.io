@@ -1,36 +1,58 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
-import { CORE_REPO_URL, BILIBILI_URL } from "@/lib/site";
+import { APP_DOWNLOAD_URL, CORE_REPO_URL, BILIBILI_URL } from "@/lib/site";
 import { useI18n } from "@/lib/i18n";
+import { localizedHref } from "@/lib/routes";
 import styles from "./Navbar.module.css";
+
+const MOBILE_MENU_ID = "primary-navigation-menu";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
-  const { t } = useI18n();
-  const isHome = pathname === "/" || pathname === "";
-  const isDocs = pathname === "/docs" || pathname === "/docs/";
+  const { locale, t } = useI18n();
+  const homeHref = localizedHref(locale, "home");
+  const docsHref = localizedHref(locale, "docs");
+  const isDocs = pathname === docsHref || pathname === docsHref.replace(/\/$/, "");
+  const isHome = !isDocs;
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [menuOpen]);
 
   return (
     <nav className={`${styles.navbar} glass-panel`} aria-label={t("nav.primary")}>
       <div className={styles['nav-container']}>
-        <Link href="/" className={styles['nav-brand']}>
+        <Link href={homeHref} className={styles['nav-brand']}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="Logo" className={styles['logo-icon']} width={28} height={28} style={{ borderRadius: '4px' }} />
-          <span className={styles['nav-logo-text']}>
+          <img src="/logo.png" alt={t("nav.brand")} className={styles['logo-icon']} width={28} height={28} />
+          <span className={styles['nav-logo-text']} aria-hidden="true">
             <span className={styles['nav-logo-full']}>{t("nav.brand")}</span>
             <span className={styles['nav-logo-short']}>{t("nav.brandShort")}</span>
           </span>
         </Link>
 
-        <div className={`${styles['nav-links']} ${menuOpen ? styles['nav-links-open'] : ""}`}>
+        <div
+          id={MOBILE_MENU_ID}
+          className={`${styles['nav-links']} ${menuOpen ? styles['nav-links-open'] : ""}`}
+        >
           <Link
-            href="/"
+            href={homeHref}
             className={`${styles['nav-link']} ${isHome ? styles.active : ""}`}
             aria-current={isHome ? "page" : undefined}
             onClick={() => setMenuOpen(false)}
@@ -38,7 +60,7 @@ export default function Navbar() {
             {t("nav.home")}
           </Link>
           <Link
-            href="/docs"
+            href={docsHref}
             className={`${styles['nav-link']} ${isDocs ? styles.active : ""}`}
             aria-current={isDocs ? "page" : undefined}
             onClick={() => setMenuOpen(false)}
@@ -49,16 +71,25 @@ export default function Navbar() {
 
         <div className={styles['nav-actions']}>
           <LanguageSwitcher />
-          <Link href="/docs#install" className={styles['nav-docs-btn']}>
-            <span className={styles['nav-docs-btn-full']}>{t("nav.getStarted")}</span>
-            <span className={styles['nav-docs-btn-short']}>{t("nav.docs")}</span>
-          </Link>
+          <a
+            href={APP_DOWNLOAD_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles['nav-app-btn']}
+            data-analytics-event="app_download"
+            data-analytics-label="navbar"
+          >
+            {t("home.cta.primary")}
+            <span className="sr-only">{t("nav.opensNewTab")}</span>
+          </a>
           <a
             href={CORE_REPO_URL}
             target="_blank"
             rel="noopener noreferrer"
             className={styles['github-btn']}
             aria-label={t("nav.starAria")}
+            data-analytics-event="source_open"
+            data-analytics-label="navbar"
           >
             <span className={styles['github-icon']} aria-hidden="true">
               ⭐
@@ -85,6 +116,7 @@ export default function Navbar() {
             onClick={() => setMenuOpen((v) => !v)}
             aria-label={menuOpen ? t("nav.menuClose") : t("nav.menuOpen")}
             aria-expanded={menuOpen}
+            aria-controls={MOBILE_MENU_ID}
           >
             <span className={styles['hamburger-line']} />
             <span className={styles['hamburger-line']} />

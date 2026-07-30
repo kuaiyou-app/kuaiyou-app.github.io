@@ -4,11 +4,12 @@ import Link from "next/link";
 import CodeBlock from "@/components/CodeBlock";
 import SkillsExplorer from "@/components/SkillsExplorer";
 import type { Skill } from "@/lib/skills";
-import { CORE_REPO_URL, SKILLS_PUBLIC_PATH } from "@/lib/site";
-import { useI18n } from "@/lib/i18n";
+import { APP_DOWNLOAD_URL, BILIBILI_URL, CORE_REPO_URL, SKILLS_PUBLIC_PATH } from "@/lib/site";
+import { useI18n, type Locale } from "@/lib/i18n";
+import { localizedHref } from "@/lib/routes";
 import styles from "./HomePage.module.css";
 
-export default function HomePage({ skills }: { skills: Skill[] }) {
+export default function HomePage({ skills, locale }: { skills: Skill[]; locale: Locale }) {
   const { t } = useI18n();
   const exampleCount = skills.filter((s) => s.category === "examples").length;
   const testCount = skills.filter(
@@ -18,41 +19,106 @@ export default function HomePage({ skills }: { skills: Skill[] }) {
   return (
     <main id="main-content" className={`${styles.container} animate-fade-in`}>
       <section className={styles.hero} aria-labelledby="hero-title">
-        <div className={`${styles['hero-badge']} code-font`}>{t("home.badge")}</div>
-        <h1 id="hero-title" className={styles['hero-title']}>
-          <span className={styles['hero-title-line']}>{t("home.title.line1")}</span>{" "}
-          <span className={`${styles['hero-title-line']} gradient-text`}>
-            {t("home.title.line2")}
-          </span>
-        </h1>
-        <p className={styles['hero-subtitle']}>{t("home.subtitle")}</p>
+        <div className={styles['hero-copy']}>
+          <div className={`${styles['hero-badge']} code-font`}>{t("home.badge")}</div>
+          <h1 id="hero-title" className={styles['hero-title']}>
+            <span className={styles['hero-title-line']}>{t("home.title.line1")}</span>{" "}
+            <span className={`${styles['hero-title-line']} gradient-text`}>
+              {t("home.title.line2")}
+            </span>
+          </h1>
+          <p className={styles['hero-subtitle']}>{t("home.subtitle")}</p>
 
-        <div className={styles['hero-actions']}>
-          <Link href="/docs#install" className="btn btn-primary">
-            {t("home.cta.primary")}
-          </Link>
-          <a href="#how-it-works" className="btn btn-secondary">
-            {t("home.cta.how")}
-          </a>
-          <a
-            href={CORE_REPO_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-ghost"
-          >
-            {t("home.cta.source")}
-            <span className="sr-only">{t("nav.opensNewTab")}</span>
-          </a>
+          <div className={styles['hero-actions']}>
+            <a
+              href={APP_DOWNLOAD_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary"
+              data-analytics-event="app_download"
+              data-analytics-label="hero"
+            >
+              {t("home.cta.primary")}
+              <span className="sr-only">{t("nav.opensNewTab")}</span>
+            </a>
+            <Link
+              href={localizedHref(locale, "docs", "app-install")}
+              className="btn btn-secondary"
+              data-analytics-event="docs_setup"
+              data-analytics-label="hero"
+            >
+              {t("home.cta.how")}
+            </Link>
+            <a
+              href={CORE_REPO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-ghost"
+              data-analytics-event="source_open"
+              data-analytics-label="hero"
+            >
+              {t("home.cta.source")}
+              <span className="sr-only">{t("nav.opensNewTab")}</span>
+            </a>
+          </div>
+
+          <p className={styles['hero-boundary']}>{t("home.boundary")}</p>
+
+          <ul className={styles['hero-tags']} aria-label={t("home.tags.aria")}>
+            <li>{t("home.tag.android")}</li>
+            <li>{t("home.tag.app")}</li>
+            <li>{t("home.tag.mcp")}</li>
+            <li>{t("home.tag.bridge")}</li>
+          </ul>
         </div>
 
-        <p className={styles['hero-boundary']}>{t("home.boundary")}</p>
+        <aside className={`${styles['workflow-preview']} glass-panel`} aria-label={t("home.workflow.aria")}>
+          <div className={styles['workflow-topline']}>
+            <span className={styles['workflow-live']} aria-hidden="true" />
+            <span className="code-font">{t("home.workflow.eyebrow")}</span>
+          </div>
+          <ol className={styles['workflow-steps']}>
+            <li><span>01</span><strong>{t("home.how.node1.title")}</strong><small>{t("home.how.node1.desc")}</small></li>
+            <li><span>02</span><strong>{t("home.how.node2.title")}</strong><small>{t("home.how.node2.desc")}</small></li>
+            <li><span>03</span><strong>{t("home.how.node3.title")}</strong><small>{t("home.how.node3.desc")}</small></li>
+          </ol>
+          <div className={styles['workflow-status']}>
+            <span aria-hidden="true">✓</span>
+            {t("home.workflow.status")}
+          </div>
+          <a
+            href={BILIBILI_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles['workflow-demo-link']}
+          >
+            {t("home.cta.demo")} →
+            <span className="sr-only">{t("nav.opensNewTab")}</span>
+          </a>
+        </aside>
+      </section>
 
-        <ul className={styles['hero-tags']} aria-label={t("home.tags.aria")}>
-          <li>{t("home.tag.android")}</li>
-          <li>{t("home.tag.app")}</li>
-          <li>{t("home.tag.mcp")}</li>
-          <li>{t("home.tag.bridge")}</li>
-        </ul>
+      <ul className={styles['proof-strip']} aria-label={t("home.metrics.aria")}>
+        <li><strong>{exampleCount}</strong><span>{t("home.metrics.examples", { count: exampleCount })}</span></li>
+        <li><strong>{testCount}</strong><span>{t("home.metrics.tests", { count: testCount })}</span></li>
+        <li><strong>✓</strong><span>{t("home.metrics.local")}</span></li>
+        <li><strong>OSS</strong><span>{t("home.metrics.open")}</span></li>
+      </ul>
+
+      <section className={styles['use-cases-section']} aria-labelledby="use-cases-title">
+        <div className={styles['section-header']}>
+          <h2 id="use-cases-title">{t("home.use.title")}</h2>
+          <p>{t("home.use.subtitle")}</p>
+        </div>
+        <div className={styles['use-cases-grid']}>
+          {[1, 2, 3].map((i) => (
+            <article key={i} className={`glass-panel ${styles['use-case-card']}`}>
+              <span className={`${styles['use-case-index']} code-font`}>0{i}</span>
+              <h3>{t(`home.use.${i}.title` as Parameters<typeof t>[0])}</h3>
+              <p>{t(`home.use.${i}.desc` as Parameters<typeof t>[0])}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section
@@ -152,6 +218,8 @@ export default function HomePage({ skills }: { skills: Skill[] }) {
             <CodeBlock
               code={t("home.qs.3.cmd")}
               style={{ marginTop: "0.75rem" }}
+              analyticsEvent="config_copy"
+              analyticsLabel="home-quickstart-command"
             />
             <p style={{ marginTop: "0.5rem", fontSize: "0.9em", opacity: 0.85 }}>
               {t("home.qs.3.alt")}
@@ -161,13 +229,28 @@ export default function HomePage({ skills }: { skills: Skill[] }) {
           <li>{t("home.qs.5")}</li>
         </ol>
         <div className={styles['quickstart-actions']}>
-          <Link href="/docs#install" className="btn btn-primary">
+          <Link
+            href={localizedHref(locale, "docs", "install")}
+            className="btn btn-primary"
+            data-analytics-event="docs_setup"
+            data-analytics-label="home-quickstart-app"
+          >
             {t("home.qs.installGuide")}
           </Link>
-          <Link href="/docs#quick-start" className="btn btn-secondary">
+          <Link
+            href={localizedHref(locale, "docs", "quick-start")}
+            className="btn btn-secondary"
+            data-analytics-event="docs_setup"
+            data-analytics-label="home-quickstart-guide"
+          >
             {t("home.qs.openGuide")}
           </Link>
-          <Link href="/docs#mcp-tools" className="btn btn-secondary">
+          <Link
+            href={localizedHref(locale, "docs", "mcp-tools")}
+            className="btn btn-secondary"
+            data-analytics-event="docs_setup"
+            data-analytics-label="home-quickstart-tools"
+          >
             {t("home.qs.tools")}
           </Link>
         </div>
@@ -191,7 +274,7 @@ export default function HomePage({ skills }: { skills: Skill[] }) {
         <SkillsExplorer skills={skills} baseUrl={SKILLS_PUBLIC_PATH} />
       </section>
 
-    <section
+      <section
         className={`${styles['security-section']} glass-panel`}
         aria-labelledby="security-title"
       >
@@ -217,7 +300,7 @@ export default function HomePage({ skills }: { skills: Skill[] }) {
           <h2 id="faq-title">{t("home.faq.title")}</h2>
         </div>
         <div className={styles['faq-list']}>
-          {[1, 2, 3].map((i) => (
+          {[1, 2, 3, 4, 5].map((i) => (
             <div
               key={i}
               className={`${styles['faq-item']} glass-panel`}
