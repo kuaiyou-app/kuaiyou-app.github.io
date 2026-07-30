@@ -24,9 +24,9 @@
   "nav.menuClose": "关闭菜单",
 
   "home.badge": "快游大师 CLI · autoace-cli",
-  "home.title.line1": "用 AI 构建",
-  "home.title.line2": "Android 自动化技能",
-  "home.subtitle": "autoace-cli 让 AI 看懂当前 Android 界面，生成技能，校验后交给手机本地运行。",
+  "home.title.line1": "让 AI 给你构建",
+  "home.title.line2": "手机自动化技能",
+  "home.subtitle": "让 AI 直接读取 Android 原生界面，零代码生成自动化执行流，并下发至手机本地安全运行，无需依赖Root、ADB等复杂操作。",
   "home.cta.primary": "快速开始 — 5 分钟上手",
   "home.cta.how": "了解工作原理",
   "home.cta.source": "查看源码",

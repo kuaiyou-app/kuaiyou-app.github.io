@@ -24,9 +24,9 @@
   "nav.menuClose": "Close menu",
 
   "home.badge": "autoace-cli",
-  "home.title.line1": "Build Android",
-  "home.title.line2": "automation skills",
-  "home.subtitle": "autoace-cli helps AI understand the current Android screen, create a skill, and run it locally on your phone.",
+  "home.title.line1": "Let AI build your",
+  "home.title.line2": "mobile automation skills",
+  "home.subtitle": "Let AI directly read native Android UIs and generate zero-code automation flows. Deploy and run securely on your phone locally, without needing Root, ADB, or complex setups.",
   "home.cta.primary": "Get started — 5 minute setup",
   "home.cta.how": "See how it works",
   "home.cta.source": "View source",
