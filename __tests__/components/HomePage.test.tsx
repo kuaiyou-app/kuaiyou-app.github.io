@@ -41,7 +41,7 @@ describe("HomePage", () => {
     expect(agentLinks[0]).toHaveAttribute("href", "/docs#agent-install");
     expect(
       screen.getByText(
-        "帮我安装快游大师 CLI，https://kuaiyou-app.github.io/autoace-cli-installation-guide.md"
+        "帮我安装快游大师 CLI 与 Agent Skill，并配置 MCP：https://kuaiyou-app.github.io/autoace-cli-installation-guide.md"
       )
     ).toBeInTheDocument();
   });
