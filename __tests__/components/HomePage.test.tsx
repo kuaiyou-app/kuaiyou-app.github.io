@@ -36,6 +36,13 @@ describe("HomePage", () => {
       </I18nProvider>
     );
 
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
+      "The Agentic Skills"
+    );
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
+      "用 AI 编写 Android 端侧自动化技能"
+    );
+
     const agentLinks = screen.getAllByRole("link", { name: "通过 AI Agent 安装" });
     expect(agentLinks.length).toBeGreaterThanOrEqual(1);
     expect(agentLinks[0]).toHaveAttribute("href", "/docs#agent-install");

@@ -23,32 +23,32 @@ const SEO_COPY: Record<Locale, Record<PublicRoute, SeoCopy>> = {
   zh: {
     home: {
       siteName: "快游大师 CLI",
-      title: "快游大师 CLI — 用一句话生成 Android 自动化技能",
+      title: "快游大师 CLI — The Agentic Skills｜用 AI 编写 Android 端侧自动化技能",
       description:
-        "用一句话生成 Android 自动化技能。AI 生成并校验后下发到快游大师，在手机端确认并本地执行。",
-      imageAlt: "快游大师 CLI：用一句话生成 Android 自动化技能",
+        "The Agentic Skills：用 AI 编写 Android 端侧自动化技能（MCP + 快游大师）。连接 AI 客户端看屏、校验并下发技能；手机确认后本地执行。",
+      imageAlt: "The Agentic Skills：用 AI 编写 Android 端侧自动化技能",
     },
     docs: {
       siteName: "快游大师 CLI",
       title: "文档 — 通过 AI Agent 安装并配置 MCP",
       description:
-        "用可复制提示词安装 autoace-cli 与 Agent Skill，配置 MCP，开始用一句话生成 Android 自动化技能。",
+        "用可复制提示词安装 autoace-cli 与 Agent Skill，配置 MCP，开始用 AI 编写 Android 端侧自动化技能。",
       imageAlt: "快游大师 CLI 安装与配置文档",
     },
   },
   en: {
     home: {
       siteName: "autoace-cli",
-      title: "autoace-cli — Generate Android automation skills in one sentence",
+      title: "autoace-cli — The Agentic Skills | Write Android on-device automation skills with AI",
       description:
-        "Generate Android automation skills in one sentence. AI builds and validates skills, then Kuaiyou Master runs them locally after you confirm.",
-      imageAlt: "autoace-cli: generate Android automation skills in one sentence",
+        "The Agentic Skills: write Android on-device automation skills with AI (MCP + Kuaiyou Master). Connect AI clients to inspect, validate, and push skills; confirm on the phone, then run locally.",
+      imageAlt: "The Agentic Skills: write Android on-device automation skills with AI",
     },
     docs: {
       siteName: "autoace-cli",
       title: "Docs — Install via AI Agent and configure MCP",
       description:
-        "Paste a prompt to install autoace-cli and the Agent Skill, configure MCP, then generate Android automation skills in one sentence.",
+        "Paste a prompt to install autoace-cli and the Agent Skill, configure MCP, then write Android on-device automation skills with AI.",
       imageAlt: "autoace-cli installation and setup documentation",
     },
   },
