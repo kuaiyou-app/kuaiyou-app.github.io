@@ -244,7 +244,7 @@
   "docs.bound.3": "Screen information passes through your local tooling. Whether it is shared with AI depends on the client you connect.",
   "docs.bound.4": "Works with Claude Code, Codex, Cursor, Claude Desktop, and similar clients.",
   "footer.brand": "autoace-cli",
-  "footer.desc": "Build Android automation skills with AI and run them locally on your phone.",
+  "footer.desc": "Generate Android automation skills in one sentence and run them locally on your phone.",
   "footer.nav": "Footer",
   "footer.github": "GitHub",
   "footer.app": "Get App",
