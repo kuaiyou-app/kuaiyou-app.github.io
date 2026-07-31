@@ -337,6 +337,9 @@ export default function DocsPageContent({ locale }: { locale: Locale }) {
             <li>{t("docs.tools.3")}</li>
             <li>{t("docs.tools.4")}</li>
           </ul>
+          <div className={`${styles.alert} ${styles.info}`}>
+            <strong>{t("docs.tools.tip.strong")}</strong> {t("docs.tools.tip")}
+          </div>
         </section>
 
         <section id="boundaries">

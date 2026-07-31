@@ -45,15 +45,20 @@ Agent 引导用户：打开快游大师 → 设置 → 高级设置 → 开启�
 
 USB 连接时通常可省略 `env`，由 CLI 自动发现设备。
 
+部分 App 版本要求先完成设备配对。若用户界面或「复制给 Agent」提示需 pair，先调用 `pair_device`，再继续看屏 / 下发。
+
 ## 第 3 步 验证
 
-刷新 MCP 连接后，确认工具列表包含：
+刷新 MCP 连接后，确认工具列表至少包含：
 
+- `pair_device`
 - `get_ui_tree`
 - `capture_screenshot`
 - `validate_kuaiyou_skill`
 - `push_reactive_skill`
 
-可选：调用 `capture_screenshot` 或 `get_ui_tree` 做一次冒烟验证。
+可选：先 `pair_device`，再调用 `capture_screenshot` 或 `get_ui_tree` 做冒烟验证。
+
+若客户端会话里的工具目录缺少上述工具，但 CLI 直连 `tools/list` 已包含它们：属于客户端会话缓存与 stdio `tools/list` 不一致。请**新开 Agent 对话**（必要时重启 MCP / 客户端）后再验，勿在旧长会话里继续排查。
 
 更多用法见 https://kuaiyou-app.github.io/docs/

@@ -9,6 +9,12 @@
 
 公开页面采用静态多语言路由：中文 `/`、`/docs/`，英文 `/en/`、`/en/docs/`。旧的 `?lang=en` 链接会跳转到对应英文路径。
 
+面向 AI Agent 的安装指南：[`/autoace-cli-installation-guide.md`](https://kuaiyou-app.github.io/autoace-cli-installation-guide.md)。
+
+### MCP 工具目录排查
+
+若 `autoace-cli` 直连 stdio 的 `tools/list` 已含某工具（如 `pair_device`），但 Cursor / 其他客户端的 **Agent 会话**工具目录没有：多为会话缓存未刷新，不是 CLI 未注册。请新开 Agent 对话或重启 MCP 后再验。
+
 ## Stack pin (do not major-upgrade)
 
 - **Pinned:** Next.js **14.2.x** (`output: 'export'` for GitHub Pages).
