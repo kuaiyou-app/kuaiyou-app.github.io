@@ -11,9 +11,10 @@
 
 面向 AI Agent 的安装指南：[`/autoace-cli-installation-guide.md`](https://kuaiyou-app.github.io/autoace-cli-installation-guide.md)。
 
-推荐安装 Agent Skill：
+推荐安装：
 
 ```bash
+npm install -g autoace-cli@latest
 npx -y skills add kuaiyou-app/kuaiyou-open-source --skill autoace -g -y
 ```
 
