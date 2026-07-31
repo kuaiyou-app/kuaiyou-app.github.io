@@ -39,6 +39,10 @@ describe("HomePage", () => {
     const agentLinks = screen.getAllByRole("link", { name: "通过 AI Agent 安装" });
     expect(agentLinks.length).toBeGreaterThanOrEqual(1);
     expect(agentLinks[0]).toHaveAttribute("href", "/docs#agent-install");
+    expect(agentLinks[0]).toHaveClass("btn-primary");
+    expect(
+      screen.getByRole("link", { name: /获取快游大师 App/ })
+    ).toHaveClass("btn-secondary");
     expect(
       screen.getByText(
         "帮我安装快游大师 CLI 与 Agent Skill，并配置 MCP：https://kuaiyou-app.github.io/autoace-cli-installation-guide.md"

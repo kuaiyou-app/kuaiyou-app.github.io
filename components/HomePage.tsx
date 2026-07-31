@@ -31,25 +31,25 @@ export default function HomePage({ skills, locale }: { skills: Skill[]; locale: 
           <p className={styles['hero-subtitle']}>{t("home.subtitle")}</p>
 
           <div className={styles['hero-actions']}>
+            <Link
+              href={localizedHref(locale, "docs", "agent-install")}
+              className="btn btn-primary"
+              data-analytics-event="docs_setup"
+              data-analytics-label="hero"
+            >
+              {t("home.cta.how")}
+            </Link>
             <a
               href={APP_DOWNLOAD_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-primary"
+              className="btn btn-secondary"
               data-analytics-event="app_download"
               data-analytics-label="hero"
             >
               {t("home.cta.primary")}
               <span className="sr-only">{t("nav.opensNewTab")}</span>
             </a>
-            <Link
-              href={localizedHref(locale, "docs", "agent-install")}
-              className="btn btn-secondary"
-              data-analytics-event="docs_setup"
-              data-analytics-label="hero"
-            >
-              {t("home.cta.how")}
-            </Link>
             <a
               href={CORE_REPO_URL}
               target="_blank"
