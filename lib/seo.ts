@@ -23,32 +23,32 @@ const SEO_COPY: Record<Locale, Record<PublicRoute, SeoCopy>> = {
   zh: {
     home: {
       siteName: "快游大师 CLI",
-      title: "快游大师 CLI — 面向 Android 自动化的 AI 与 MCP 工具链",
+      title: "快游大师 CLI — 用一句话生成 Android 自动化技能",
       description:
-        "使用 autoace-cli 连接 MCP AI 编程工具与快游大师 Android App，创建、调试并在手机端运行自动化技能。",
-      imageAlt: "快游大师 CLI Android 自动化工具链",
+        "用一句话生成 Android 自动化技能。AI 生成并校验后下发到快游大师，在手机端确认并本地执行。",
+      imageAlt: "快游大师 CLI：用一句话生成 Android 自动化技能",
     },
     docs: {
       siteName: "快游大师 CLI",
       title: "文档 — 通过 AI Agent 安装并配置 MCP",
       description:
-        "用可复制提示词让 AI Agent 安装 autoace-cli，配置 MCP 与 Agent Skill，开始创建 Android 自动化技能。",
+        "用可复制提示词安装 autoace-cli 与 Agent Skill，配置 MCP，开始用一句话生成 Android 自动化技能。",
       imageAlt: "快游大师 CLI 安装与配置文档",
     },
   },
   en: {
     home: {
       siteName: "autoace-cli",
-      title: "autoace-cli — AI and MCP tooling for Android automation",
+      title: "autoace-cli — Generate Android automation skills in one sentence",
       description:
-        "Connect MCP-capable AI coding tools to the Kuaiyou Master Android App with autoace-cli to build, debug, and run phone-side automation skills.",
-      imageAlt: "autoace-cli Android automation toolchain",
+        "Generate Android automation skills in one sentence. AI builds and validates skills, then Kuaiyou Master runs them locally after you confirm.",
+      imageAlt: "autoace-cli: generate Android automation skills in one sentence",
     },
     docs: {
       siteName: "autoace-cli",
       title: "Docs — Install via AI Agent and configure MCP",
       description:
-        "Paste a prompt so an AI Agent installs autoace-cli, configures MCP and the Agent Skill, then build Android automation skills.",
+        "Paste a prompt to install autoace-cli and the Agent Skill, configure MCP, then generate Android automation skills in one sentence.",
       imageAlt: "autoace-cli installation and setup documentation",
     },
   },
