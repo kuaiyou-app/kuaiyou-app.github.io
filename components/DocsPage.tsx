@@ -6,10 +6,8 @@ import { useI18n, type Locale } from "@/lib/i18n";
 import {
   AGENT_SKILL_INSTALL_CMD,
   AGENT_SKILL_NAME,
-  AGENT_SKILL_PAGES_DIR,
   AGENT_SKILL_SOURCE_URL,
   APP_DOWNLOAD_URL,
-  AUTOACE_CLI_VERSION,
   CLI_INSTALL_GUIDE_URL,
   NPM_PACKAGE_URL,
 } from "@/lib/site";
@@ -18,8 +16,8 @@ import styles from "./DocsPage.module.css";
 const MCP_JSON = `{
   "mcpServers": {
     "autoace": {
-      "command": "npx",
-      "args": ["-y", "autoace-cli@${AUTOACE_CLI_VERSION}"],
+      "command": "autoace-cli",
+      "args": [],
       "env": {
         "KUAIYOU_DEVICE_IP": "<DEVICE_IP:PORT>",
         "KUAIYOU_MCP_PAIRING_CODE": "<PAIRING_CODE>"
@@ -28,20 +26,9 @@ const MCP_JSON = `{
   }
 }`;
 
-const AGENT_SKILL_PAGES_INSTALL = (dest: string) =>
-  `mkdir -p ${dest}
-for f in SKILL.md reference.md craft.md; do
-  curl -fsSL ${AGENT_SKILL_PAGES_DIR}/$f -o ${dest}/$f
-done`;
+const INSTALL_GLOBAL = `npm install -g autoace-cli@latest`;
 
-const CLAUDE_CODE_SKILL = AGENT_SKILL_PAGES_INSTALL("~/.claude/skills/autoace");
-const CODEX_SKILL = AGENT_SKILL_PAGES_INSTALL("~/.codex/skills/autoace");
-const CURSOR_SKILL = AGENT_SKILL_PAGES_INSTALL("~/.cursor/skills/autoace");
-
-const INSTALL_GLOBAL = `npm install -g autoace-cli@${AUTOACE_CLI_VERSION}
-autoace-cli`;
-
-const MCP_LAN_COMMAND = `KUAIYOU_DEVICE_IP=<DEVICE_IP:PORT> KUAIYOU_MCP_PAIRING_CODE=<PAIRING_CODE> npx -y autoace-cli@${AUTOACE_CLI_VERSION}`;
+const MCP_LAN_COMMAND = `KUAIYOU_DEVICE_IP=<DEVICE_IP:PORT> KUAIYOU_MCP_PAIRING_CODE=<PAIRING_CODE> autoace-cli`;
 const DOC_NAV_ITEMS = [
   ["introduction", "docs.nav.intro"],
   ["names", "docs.nav.names"],
@@ -222,10 +209,6 @@ export default function DocsPageContent({ locale }: { locale: Locale }) {
             <li>{t("docs.install.req.2")}</li>
           </ul>
 
-          <h3>{t("docs.install.npx")}</h3>
-          <p>{t("docs.install.npx.desc")}</p>
-          <CodeBlock code={`npx -y autoace-cli@${AUTOACE_CLI_VERSION}`} analyticsEvent="config_copy" analyticsLabel="npx" />
-
           <h3>{t("docs.install.global")}</h3>
           <p>{t("docs.install.global.desc")}</p>
           <CodeBlock code={INSTALL_GLOBAL} analyticsEvent="config_copy" analyticsLabel="npm-global" />
@@ -251,27 +234,11 @@ export default function DocsPageContent({ locale }: { locale: Locale }) {
               {t("docs.agent.repoLink")}
             </a>
           </p>
-
-          <h3>{t("docs.agent.skillsCli")}</h3>
-          <p>{t("docs.agent.skillsCli.desc")}</p>
           <CodeBlock
             code={AGENT_SKILL_INSTALL_CMD}
             analyticsEvent="config_copy"
             analyticsLabel="skills-add"
           />
-
-          <h3>{t("docs.agent.claude")}</h3>
-          <CodeBlock code={CLAUDE_CODE_SKILL} analyticsEvent="config_copy" analyticsLabel="claude-skill" />
-          <p>{t("docs.agent.claude.invoke")}</p>
-
-          <h3>{t("docs.agent.codex")}</h3>
-          <CodeBlock code={CODEX_SKILL} analyticsEvent="config_copy" analyticsLabel="codex-skill" />
-          <p>{t("docs.agent.codex.invoke")}</p>
-
-          <h3>{t("docs.agent.cursor")}</h3>
-          <p>{t("docs.agent.cursor.desc")}</p>
-          <CodeBlock code={CURSOR_SKILL} analyticsEvent="config_copy" analyticsLabel="cursor-skill" />
-
         </section>
 
         <section id="quick-start">
@@ -286,21 +253,12 @@ export default function DocsPageContent({ locale }: { locale: Locale }) {
             <li>{t("docs.quick.prereq.4")}</li>
           </ul>
 
-          <h3>{t("docs.quick.start")}</h3>
-          <p>{t("docs.quick.npm")}</p>
-          <p>{t("docs.quick.lan")}</p>
-          <CodeBlock code={MCP_LAN_COMMAND} analyticsEvent="config_copy" analyticsLabel="mcp-lan" />
-          <p>{t("docs.quick.lan.note")}</p>
-
           <h3>{t("docs.quick.connect")}</h3>
           <p>{t("docs.quick.claude")}</p>
           <CodeBlock code={MCP_JSON} analyticsEvent="config_copy" analyticsLabel="mcp-json" />
-          <p>{t("docs.quick.clients")}</p>
-          <ul>
-            <li>{t("docs.quick.clients.1")}</li>
-            <li>{t("docs.quick.clients.2")}</li>
-            <li>{t("docs.quick.clients.3")}</li>
-          </ul>
+          <p>{t("docs.quick.lan")}</p>
+          <CodeBlock code={MCP_LAN_COMMAND} analyticsEvent="config_copy" analyticsLabel="mcp-lan" />
+          <p>{t("docs.quick.lan.note")}</p>
           <p>{t("docs.quick.compat")}</p>
         </section>
 

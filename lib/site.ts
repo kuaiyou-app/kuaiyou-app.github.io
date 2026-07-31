@@ -29,9 +29,6 @@ export const SECURITY_URL = `${GITHUB_REPO_URL}/security/advisories/new`;
 export const NPM_PACKAGE_URL = "https://www.npmjs.com/package/autoace-cli";
 export const NPM_PACKAGE_NAME = "autoace-cli";
 
-/** Pin MCP CLI in docs examples; bump deliberately with releases. */
-export const AUTOACE_CLI_VERSION = "1.0.8";
-
 /** Agent-facing CLI install guide (static markdown on Pages). */
 export const CLI_INSTALL_GUIDE_URL = `${SITE_URL}/autoace-cli-installation-guide.md`;
 
@@ -49,7 +46,7 @@ export const AGENT_SKILL_PAGES_DIR = `${SITE_URL}/agent-skills/autoace`;
 
 export const AGENT_SKILL_PAGES_URL = `${AGENT_SKILL_PAGES_DIR}/SKILL.md`;
 
-/** Recommended one-shot Agent Skill install (Vercel skills CLI). */
+/** Recommended one-shot Agent Skill install. */
 export const AGENT_SKILL_INSTALL_CMD =
   `npx -y skills add kuaiyou-app/kuaiyou-open-source --skill ${AGENT_SKILL_NAME} -g -y`;
 
