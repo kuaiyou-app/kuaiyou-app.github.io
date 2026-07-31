@@ -38,7 +38,7 @@ describe("DocsPageContent", () => {
     expect(appLink).toHaveAttribute("data-analytics-event", "app_download");
     expect(guideLink).toHaveAttribute("href", CLI_INSTALL_GUIDE_URL);
     expect(view.container).toHaveTextContent(
-      "帮我安装快游大师 CLI，https://kuaiyou-app.github.io/autoace-cli-installation-guide.md"
+      "帮我安装快游大师 CLI 与 Agent Skill，并配置 MCP：https://kuaiyou-app.github.io/autoace-cli-installation-guide.md"
     );
   });
 

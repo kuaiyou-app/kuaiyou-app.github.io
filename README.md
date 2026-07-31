@@ -11,6 +11,12 @@
 
 面向 AI Agent 的安装指南：[`/autoace-cli-installation-guide.md`](https://kuaiyou-app.github.io/autoace-cli-installation-guide.md)。
 
+推荐安装 Agent Skill：
+
+```bash
+npx -y skills add kuaiyou-app/kuaiyou-open-source --skill autoace -g -y
+```
+
 ### MCP 工具目录排查
 
 若 `autoace-cli` 直连 stdio 的 `tools/list` 已含某工具（如 `pair_device`），但 Cursor / 其他客户端的 **Agent 会话**工具目录没有：多为会话缓存未刷新，不是 CLI 未注册。请新开 Agent 对话或重启 MCP 后再验。

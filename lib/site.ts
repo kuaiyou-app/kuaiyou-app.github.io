@@ -29,22 +29,28 @@ export const SECURITY_URL = `${GITHUB_REPO_URL}/security/advisories/new`;
 export const NPM_PACKAGE_URL = "https://www.npmjs.com/package/autoace-cli";
 export const NPM_PACKAGE_NAME = "autoace-cli";
 
+/** Pin MCP CLI in docs examples; bump deliberately with releases. */
+export const AUTOACE_CLI_VERSION = "1.0.8";
+
 /** Agent-facing CLI install guide (static markdown on Pages). */
 export const CLI_INSTALL_GUIDE_URL = `${SITE_URL}/autoace-cli-installation-guide.md`;
 
 /** Agent Skill name (Claude Code / Codex / Cursor). Distinct from phone-side 技能 JSON. */
 export const AGENT_SKILL_NAME = "autoace";
 
-/** Immutable kuaiyou-open-source v1.0.1 commit; update deliberately with a release. */
-export const AGENT_SKILL_COMMIT =
-  "d0acaccc42945c6df49b640d4bd6647546a22bf5";
-
-export const AGENT_SKILL_RAW_URL =
-  `https://raw.githubusercontent.com/kuaiyou-app/kuaiyou-open-source/${AGENT_SKILL_COMMIT}/agent-skills/autoace/SKILL.md`;
+/** Core repo default branch (skills add / raw links). */
+export const AGENT_SKILL_REF = "develop";
 
 export const AGENT_SKILL_SOURCE_URL =
-  `${CORE_REPO_URL}/tree/${AGENT_SKILL_COMMIT}/agent-skills/autoace`;
+  `${CORE_REPO_URL}/tree/${AGENT_SKILL_REF}/agent-skills/autoace`;
 
-export const AGENT_SKILL_PAGES_URL = `${SITE_URL}/agent-skills/autoace/SKILL.md`;
+/** Pages mirror of the full skill directory (SKILL.md + reference.md + craft.md). */
+export const AGENT_SKILL_PAGES_DIR = `${SITE_URL}/agent-skills/autoace`;
+
+export const AGENT_SKILL_PAGES_URL = `${AGENT_SKILL_PAGES_DIR}/SKILL.md`;
+
+/** Recommended one-shot Agent Skill install (Vercel skills CLI). */
+export const AGENT_SKILL_INSTALL_CMD =
+  `npx -y skills add kuaiyou-app/kuaiyou-open-source --skill ${AGENT_SKILL_NAME} -g -y`;
 
 export const SKILLS_PUBLIC_PATH = `${SITE_BASE_PATH}/skills`;

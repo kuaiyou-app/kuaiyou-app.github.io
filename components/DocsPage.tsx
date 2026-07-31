@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import CodeBlock from "@/components/CodeBlock";
 import { useI18n, type Locale } from "@/lib/i18n";
 import {
+  AGENT_SKILL_INSTALL_CMD,
   AGENT_SKILL_NAME,
-  AGENT_SKILL_RAW_URL,
+  AGENT_SKILL_PAGES_DIR,
   AGENT_SKILL_SOURCE_URL,
   APP_DOWNLOAD_URL,
+  AUTOACE_CLI_VERSION,
   CLI_INSTALL_GUIDE_URL,
   NPM_PACKAGE_URL,
 } from "@/lib/site";
@@ -17,7 +19,7 @@ const MCP_JSON = `{
   "mcpServers": {
     "autoace": {
       "command": "npx",
-      "args": ["-y", "autoace-cli"],
+      "args": ["-y", "autoace-cli@${AUTOACE_CLI_VERSION}"],
       "env": {
         "KUAIYOU_DEVICE_IP": "<DEVICE_IP:PORT>",
         "KUAIYOU_MCP_PAIRING_CODE": "<PAIRING_CODE>"
@@ -26,17 +28,20 @@ const MCP_JSON = `{
   }
 }`;
 
-const CLAUDE_CODE_SKILL = `mkdir -p ~/.claude/skills/autoace
-curl -fsSL ${AGENT_SKILL_RAW_URL} -o ~/.claude/skills/autoace/SKILL.md`;
+const AGENT_SKILL_PAGES_INSTALL = (dest: string) =>
+  `mkdir -p ${dest}
+for f in SKILL.md reference.md craft.md; do
+  curl -fsSL ${AGENT_SKILL_PAGES_DIR}/$f -o ${dest}/$f
+done`;
 
-const CODEX_SKILL = `mkdir -p ~/.codex/skills/autoace
-curl -fsSL ${AGENT_SKILL_RAW_URL} -o ~/.codex/skills/autoace/SKILL.md`;
+const CLAUDE_CODE_SKILL = AGENT_SKILL_PAGES_INSTALL("~/.claude/skills/autoace");
+const CODEX_SKILL = AGENT_SKILL_PAGES_INSTALL("~/.codex/skills/autoace");
+const CURSOR_SKILL = AGENT_SKILL_PAGES_INSTALL("~/.cursor/skills/autoace");
 
-const INSTALL_GLOBAL = `npm install -g autoace-cli
+const INSTALL_GLOBAL = `npm install -g autoace-cli@${AUTOACE_CLI_VERSION}
 autoace-cli`;
 
-const MCP_LAN_COMMAND = `KUAIYOU_DEVICE_IP=<DEVICE_IP:PORT> KUAIYOU_MCP_PAIRING_CODE=<PAIRING_CODE> npx -y autoace-cli`;
-
+const MCP_LAN_COMMAND = `KUAIYOU_DEVICE_IP=<DEVICE_IP:PORT> KUAIYOU_MCP_PAIRING_CODE=<PAIRING_CODE> npx -y autoace-cli@${AUTOACE_CLI_VERSION}`;
 const DOC_NAV_ITEMS = [
   ["introduction", "docs.nav.intro"],
   ["names", "docs.nav.names"],
@@ -219,7 +224,7 @@ export default function DocsPageContent({ locale }: { locale: Locale }) {
 
           <h3>{t("docs.install.npx")}</h3>
           <p>{t("docs.install.npx.desc")}</p>
-          <CodeBlock code="npx -y autoace-cli" analyticsEvent="config_copy" analyticsLabel="npx" />
+          <CodeBlock code={`npx -y autoace-cli@${AUTOACE_CLI_VERSION}`} analyticsEvent="config_copy" analyticsLabel="npx" />
 
           <h3>{t("docs.install.global")}</h3>
           <p>{t("docs.install.global.desc")}</p>
@@ -247,6 +252,14 @@ export default function DocsPageContent({ locale }: { locale: Locale }) {
             </a>
           </p>
 
+          <h3>{t("docs.agent.skillsCli")}</h3>
+          <p>{t("docs.agent.skillsCli.desc")}</p>
+          <CodeBlock
+            code={AGENT_SKILL_INSTALL_CMD}
+            analyticsEvent="config_copy"
+            analyticsLabel="skills-add"
+          />
+
           <h3>{t("docs.agent.claude")}</h3>
           <CodeBlock code={CLAUDE_CODE_SKILL} analyticsEvent="config_copy" analyticsLabel="claude-skill" />
           <p>{t("docs.agent.claude.invoke")}</p>
@@ -257,6 +270,7 @@ export default function DocsPageContent({ locale }: { locale: Locale }) {
 
           <h3>{t("docs.agent.cursor")}</h3>
           <p>{t("docs.agent.cursor.desc")}</p>
+          <CodeBlock code={CURSOR_SKILL} analyticsEvent="config_copy" analyticsLabel="cursor-skill" />
 
         </section>
 
@@ -276,8 +290,7 @@ export default function DocsPageContent({ locale }: { locale: Locale }) {
           <p>{t("docs.quick.npm")}</p>
           <p>{t("docs.quick.lan")}</p>
           <CodeBlock code={MCP_LAN_COMMAND} analyticsEvent="config_copy" analyticsLabel="mcp-lan" />
-          <p>{t("docs.quick.usb")}</p>
-          <CodeBlock code="npx -y autoace-cli" analyticsEvent="config_copy" analyticsLabel="mcp-usb" />
+          <p>{t("docs.quick.lan.note")}</p>
 
           <h3>{t("docs.quick.connect")}</h3>
           <p>{t("docs.quick.claude")}</p>
