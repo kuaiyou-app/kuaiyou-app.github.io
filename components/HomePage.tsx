@@ -114,7 +114,9 @@ export default function HomePage({ skills, locale }: { skills: Skill[]; locale: 
 
       <ul className={styles['proof-strip']} aria-label={t("home.metrics.aria")}>
         <li><strong>{exampleCount}</strong><span>{t("home.metrics.examples", { count: exampleCount })}</span></li>
-        <li><strong>{testCount}</strong><span>{t("home.metrics.tests", { count: testCount })}</span></li>
+        {testCount > 0 ? (
+          <li><strong>{testCount}</strong><span>{t("home.metrics.tests", { count: testCount })}</span></li>
+        ) : null}
         <li><strong>✓</strong><span>{t("home.metrics.local")}</span></li>
         <li><strong>✓</strong><span>{t("home.metrics.open")}</span></li>
       </ul>
@@ -317,7 +319,6 @@ export default function HomePage({ skills, locale }: { skills: Skill[]; locale: 
           <p>
             {t("home.skills.subtitle", {
               examples: exampleCount,
-              tests: testCount,
             })}
           </p>
         </div>

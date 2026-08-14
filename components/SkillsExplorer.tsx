@@ -27,10 +27,15 @@ export default function SkillsExplorer({
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_COUNT);
   const gridRef = useRef<HTMLUListElement>(null);
 
+  const hasCompatibilityTests = skills.some(
+    (skill) => skill.category === "compatibility-tests"
+  );
   const filters: { id: Filter; label: string }[] = [
     { id: "all", label: t("skills.filter.all") },
     { id: "examples", label: t("skills.filter.examples") },
-    { id: "compatibility-tests", label: t("skills.filter.tests") },
+    ...(hasCompatibilityTests
+      ? [{ id: "compatibility-tests" as const, label: t("skills.filter.tests") }]
+      : []),
   ];
 
   const filteredSkills = useMemo(() => {

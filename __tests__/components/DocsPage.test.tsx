@@ -51,6 +51,16 @@ describe("DocsPageContent", () => {
     expect(view.container).not.toHaveTextContent("482917");
   });
 
+  it("recommends observe_screen on the default write path", () => {
+    const view = renderDocs();
+
+    expect(view.container).toHaveTextContent("observe_screen");
+    expect(view.container).toHaveTextContent("run: true");
+    expect(view.container).not.toHaveTextContent(
+      "先 capture_screenshot 和 get_ui_tree"
+    );
+  });
+
   it("marks only the current documentation location", () => {
     renderDocs();
 

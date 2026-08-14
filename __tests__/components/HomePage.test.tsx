@@ -56,4 +56,28 @@ describe("HomePage", () => {
       )
     ).toBeInTheDocument();
   });
+
+  it("hides compatibility-test metrics when the catalog has none", () => {
+    render(
+      <I18nProvider locale="zh">
+        <HomePage
+          locale="zh"
+          skills={[
+            {
+              id: "open_wechat",
+              name: "打开微信",
+              description: "打开微信",
+              executionMode: "REACTIVE",
+              file: "open_wechat.json",
+              category: "examples",
+              language: "zh",
+            },
+          ]}
+        />
+      </I18nProvider>
+    );
+
+    expect(screen.getByText("浏览 1 个社区技能。下载或复制后，校验并下发到手机运行。")).toBeInTheDocument();
+    expect(screen.queryByText("兼容性验证")).not.toBeInTheDocument();
+  });
 });

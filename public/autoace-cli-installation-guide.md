@@ -46,8 +46,9 @@ npx -y skills add kuaiyou-app/kuaiyou-open-source --skill autoace -g -y
 
 要点：
 
-- `KUAIYOU_DEVICE_IP` 必须含端口；每次开启 MCP 会变端口与配对码
-- 手机与电脑同一局域网；须设置地址与配对码（无 USB 自动发现）
+- env **可省略**。用户把 App「复制给 Agent」全文交给 `pair_device` 后，CLI 会写入本机 `~/.config/autoace/device.json`，不必为换地址改 mcp.json
+- 若仍写 env：`KUAIYOU_DEVICE_IP` 必须含端口；每次开启 MCP 会变端口与配对码
+- 手机与电脑同一局域网；无 USB 自动发现
 - 配对码不写仓库 / 不提交 Git
 - 配置后重载 MCP 或新开对话
 
@@ -55,14 +56,14 @@ npx -y skills add kuaiyou-app/kuaiyou-open-source --skill autoace -g -y
 
 ## 4. 验证
 
-确认工具至少有：`pair_device`、`get_ui_tree`、`capture_screenshot`、`validate_kuaiyou_skill`、`push_reactive_skill`。
+确认工具至少有：`pair_device`、`observe_screen`、`validate_kuaiyou_skill`、`push_reactive_skill`。
 
-可选：`pair_device` 后截屏或拉 UI 树冒烟。
+可选：`pair_device` 后调用 `observe_screen` 冒烟。完整 UI 树用 `get_ui_tree`，不要把拉完整树当默认验收。
 
-若会话工具目录缺工具但 CLI `tools/list` 已有：新开对话后再验。
+若会话工具目录缺工具但 CLI `tools/list` 已有：新开对话后再验。缺 `plans_*` 不挡写技能。
 
 ## 5. 收尾
 
-验证通过后告知用户新开对话，用自然语言写/推送技能；后续由 **autoace** Skill 接管。
+验证通过后告知用户新开对话，用自然语言写/推送技能；后续由 **autoace** Skill 接管。默认主路径：`pair_device` → `observe_screen` → prompts/schema → validate → push（可 `run: true` 等到结束）。导入和运行须用户在手机上确认。
 
 文档：https://kuaiyou-app.github.io/docs/
