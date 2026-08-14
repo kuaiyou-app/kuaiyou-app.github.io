@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 /**
- * Sync skill JSON into public/skills before Next build/dev.
+ * Sync skill JSON into public/skills and Agent Skill into public/agent-skills
+ * before Next build/dev.
  *
  * Source resolution (first hit wins):
- * 1. KUAIYOU_SKILLS_DIR
- * 2. ../kuaiyou-open-source/skills (local sibling monorepo)
- * 3. ./_skills_src/skills (CI checkout of the core repo)
- * 4. Existing public/skills (standalone vendored snapshot — no-op sync)
+ * 1. KUAIYOU_SKILLS_DIR / KUAIYOU_AGENT_SKILLS_DIR
+ * 2. ../kuaiyou-open-source/{skills,agent-skills} (local sibling)
+ * 3. ./_skills_src/{skills,agent-skills} (CI checkout of the core repo)
+ * 4. Existing public/{skills,agent-skills} (standalone vendored snapshot)
  *
  * Always regenerates public/skills/index.json (core repo does not commit it).
  */
@@ -35,6 +36,44 @@ const candidates = [
 
 function listJson(dir) {
   return readdirSync(dir).filter((f) => f.endsWith(".json"));
+}
+
+function syncAgentSkills() {
+  const agentTargetDir = join(websiteRoot, "public", "agent-skills");
+  const agentCandidates = [
+    process.env.KUAIYOU_AGENT_SKILLS_DIR,
+    join(websiteRoot, "..", "kuaiyou-open-source", "agent-skills"),
+    join(websiteRoot, "_skills_src", "agent-skills"),
+  ].filter(Boolean);
+
+  let agentSourceDir = null;
+  for (const dir of agentCandidates) {
+    if (existsSync(join(dir, "autoace", "SKILL.md"))) {
+      agentSourceDir = dir;
+      break;
+    }
+  }
+
+  if (!agentSourceDir) {
+    if (existsSync(join(agentTargetDir, "autoace", "SKILL.md"))) {
+      console.log(
+        "[sync-skills] no external Agent Skill source; keeping vendored public/agent-skills"
+      );
+      return;
+    }
+    console.warn(
+      "[sync-skills] Agent Skill not found. Set KUAIYOU_AGENT_SKILLS_DIR, clone kuaiyou-open-source as a sibling, or vendor files under public/agent-skills/autoace."
+    );
+    return;
+  }
+
+  mkdirSync(agentTargetDir, { recursive: true });
+  const dest = join(agentTargetDir, "autoace");
+  rmSync(dest, { recursive: true, force: true });
+  cpSync(join(agentSourceDir, "autoace"), dest, { recursive: true });
+  console.log(
+    `[sync-skills] synced agent-skills/autoace from ${agentSourceDir} → public/agent-skills`
+  );
 }
 
 function buildIndex(skillsDir) {
@@ -80,6 +119,7 @@ if (!sourceDir) {
       `[sync-skills] no external source; keeping vendored public/skills (${listJson(targetDir).length} files)`
     );
     buildIndex(targetDir);
+    syncAgentSkills();
     process.exit(0);
   }
   console.error(
@@ -105,3 +145,4 @@ console.log(
   `[sync-skills] synced ${files.length} skill JSON file(s) from ${sourceDir} → public/skills`
 );
 buildIndex(targetDir);
+syncAgentSkills();

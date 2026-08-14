@@ -50,14 +50,16 @@ Open http://localhost:3000/
 
 ### Skills source
 
-Canonical skills live in `kuaiyou-open-source`. This site vendors a snapshot under `public/skills` and refreshes it when possible:
+Canonical skills and the Agent Skill live in `kuaiyou-open-source`. This site vendors snapshots under `public/skills` and `public/agent-skills` and refreshes them when possible:
 
 | Priority | Source |
 | --- | --- |
-| 1 | `KUAIYOU_SKILLS_DIR` |
-| 2 | Sibling `../kuaiyou-open-source/skills` |
-| 3 | CI checkout `_skills_src/skills` |
-| 4 | Existing `public/skills` |
+| 1 | `KUAIYOU_SKILLS_DIR` / `KUAIYOU_AGENT_SKILLS_DIR` |
+| 2 | Sibling `../kuaiyou-open-source/{skills,agent-skills}` |
+| 3 | CI checkout `_skills_src/{skills,agent-skills}` |
+| 4 | Existing `public/skills` and `public/agent-skills` |
+
+GitHub Pages still checkouts the **published** core default branch at deploy time. Until that branch contains the new community catalog, a website-only deploy may still show the remote snapshot.
 
 ## Deploy
 
