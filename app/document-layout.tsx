@@ -34,7 +34,7 @@ export default function RootDocument({
 }) {
   return (
     <html lang={language}>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} animate-fade-in`}>
         {children}
       </body>
     </html>

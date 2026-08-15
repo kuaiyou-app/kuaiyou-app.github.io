@@ -7,7 +7,7 @@ export default function NotFound() {
   return (
     <main
       id="main-content"
-      className={`${homeStyles.container} animate-fade-in ${skillStyles["not-found"]}`}
+      className={`${homeStyles.container} ${skillStyles["not-found"]}`}
     >
       <div className={`glass-panel ${skillStyles["not-found-panel"]}`}>
         <p className={`${homeStyles["hero-badge"]} code-font`}>404</p>
