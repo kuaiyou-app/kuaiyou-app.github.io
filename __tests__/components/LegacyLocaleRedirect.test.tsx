@@ -23,12 +23,25 @@ describe("LegacyLocaleRedirect", () => {
 
   it("redirects the legacy English query and preserves query/hash state", async () => {
     query = "lang=en&source=legacy";
+    window.history.replaceState({}, "", "/docs/?lang=en&source=legacy#quickstart");
+    render(<LegacyLocaleRedirect />);
+
+    await waitFor(() => {
+      expect(replace).toHaveBeenCalledWith(
+        "/en/docs/?source=legacy#quickstart",
+        { scroll: false },
+      );
+    });
+  });
+
+  it("moves a retired docs hash onto the English tutorial page in one hop", async () => {
+    query = "lang=en&source=legacy";
     window.history.replaceState({}, "", "/docs/?lang=en&source=legacy#install");
     render(<LegacyLocaleRedirect />);
 
     await waitFor(() => {
       expect(replace).toHaveBeenCalledWith(
-        "/en/docs/?source=legacy#install",
+        "/en/docs/tutorial/?source=legacy#install",
         { scroll: false },
       );
     });

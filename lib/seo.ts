@@ -23,10 +23,10 @@ const SEO_COPY: Record<Locale, Record<PublicRoute, SeoCopy>> = {
   zh: {
     home: {
       siteName: "快游大师 CLI",
-      title: "快游大师 CLI — The Agentic Skills｜用 AI 编写 Android 端侧自动化技能",
+      title: "快游大师 CLI — The Agentic Skills｜使用 AI Agent 编写 Android 自动化技能",
       description:
-        "The Agentic Skills：用 AI 编写 Android 端侧自动化技能（MCP + 快游大师）。连接 AI 客户端看屏、校验并下发技能；手机确认后本地执行。",
-      imageAlt: "The Agentic Skills：用 AI 编写 Android 端侧自动化技能",
+        "The Agentic Skills：用 AI 编写 Android 自动化技能（MCP + 快游大师）。连接 AI 客户端看屏、校验并下发技能；手机确认后本地执行。",
+      imageAlt: "The Agentic Skills：用 AI 编写 Android 自动化技能",
     },
     docs: {
       siteName: "快游大师 CLI",
@@ -35,14 +35,21 @@ const SEO_COPY: Record<Locale, Record<PublicRoute, SeoCopy>> = {
         "用可复制提示词安装 autoace-cli 与 Agent Skill，配置 MCP，开始用 AI 编写 Android 端侧自动化技能。",
       imageAlt: "快游大师 CLI 安装与配置文档",
     },
+    tutorial: {
+      siteName: "快游大师 CLI",
+      title: "通用教程 — AI Agent 接入、场景与常见问题",
+      description:
+        "AI Agent 接入、默认工作流、可复制的场景提示词与常见问题排查：把 autoace 用起来。",
+      imageAlt: "快游大师 CLI 通用教程：多客户端接入与真实场景",
+    },
   },
   en: {
     home: {
       siteName: "autoace-cli",
-      title: "autoace-cli — The Agentic Skills | Write Android on-device automation skills with AI",
+      title: "autoace-cli — The Agentic Skills | Write Android automation skills with an AI Agent",
       description:
-        "The Agentic Skills: write Android on-device automation skills with AI (MCP + Kuaiyou Master). Connect AI clients to inspect, validate, and push skills; confirm on the phone, then run locally.",
-      imageAlt: "The Agentic Skills: write Android on-device automation skills with AI",
+        "The Agentic Skills: write Android automation skills with AI (MCP + Kuaiyou Master). Connect AI clients to inspect, validate, and push skills; confirm on the phone, then run locally.",
+      imageAlt: "The Agentic Skills: write Android automation skills with AI",
     },
     docs: {
       siteName: "autoace-cli",
@@ -50,6 +57,13 @@ const SEO_COPY: Record<Locale, Record<PublicRoute, SeoCopy>> = {
       description:
         "Paste a prompt to install autoace-cli and the Agent Skill, configure MCP, then write Android on-device automation skills with AI.",
       imageAlt: "autoace-cli installation and setup documentation",
+    },
+    tutorial: {
+      siteName: "autoace-cli",
+      title: "General Tutorial — AI Agent setup, scenarios, and common issues",
+      description:
+        "Set up your AI Agent, learn the default workflow, and copy ready-to-paste scenario prompts and common-issue scripts to get the most out of autoace.",
+      imageAlt: "autoace-cli general tutorial: multi-client setup and real scenarios",
     },
   },
 };
@@ -73,6 +87,13 @@ const SEO_KEYWORDS: Record<Locale, Record<PublicRoute, string[]>> = {
       "Codex Android 自动化",
       "Cursor MCP 配置",
     ],
+    tutorial: [
+      "autoace 教程",
+      "Cursor MCP 配置",
+      "Claude Code MCP",
+      "Codex MCP",
+      "通用 MCP 客户端",
+    ],
   },
   en: {
     home: [
@@ -88,6 +109,13 @@ const SEO_KEYWORDS: Record<Locale, Record<PublicRoute, string[]>> = {
       "Claude Code Android automation",
       "Codex Android automation",
       "Cursor MCP config",
+    ],
+    tutorial: [
+      "autoace tutorial",
+      "Cursor MCP config",
+      "Claude Code MCP setup",
+      "Codex MCP",
+      "generic MCP client",
     ],
   },
 };
@@ -110,7 +138,7 @@ export function createPageMetadata(
       languages,
     },
     openGraph: {
-      type: route === "docs" ? "article" : "website",
+      type: route === "home" ? "website" : "article",
       url,
       siteName: copy.siteName,
       title: copy.title,
@@ -209,6 +237,55 @@ export function createDocsJsonLd(locale: Locale) {
             position: 2,
             name: locale === "zh" ? "文档" : "Docs",
             item: docsUrl,
+          },
+        ],
+      },
+    ],
+  };
+}
+
+export function createTutorialJsonLd(locale: Locale) {
+  const copy = SEO_COPY[locale].tutorial;
+  const homeUrl = absoluteLocalizedUrl(locale, "home");
+  const docsUrl = absoluteLocalizedUrl(locale, "docs");
+  const tutorialUrl = absoluteLocalizedUrl(locale, "tutorial");
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "@id": `${tutorialUrl}#article`,
+        headline: copy.title,
+        description: copy.description,
+        url: tutorialUrl,
+        mainEntityOfPage: tutorialUrl,
+        inLanguage: locale === "zh" ? "zh-CN" : "en",
+        author: {
+          "@type": "Organization",
+          name: locale === "zh" ? "快游大师" : "Kuaiyou Master",
+          url: SITE_URL,
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: locale === "zh" ? "首页" : "Home",
+            item: homeUrl,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: locale === "zh" ? "文档" : "Docs",
+            item: docsUrl,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: locale === "zh" ? "通用教程" : "General Tutorial",
+            item: tutorialUrl,
           },
         ],
       },

@@ -72,6 +72,9 @@ jobs:
           fi
           test -f out/index.html
           test -f out/docs/index.html
+          test -f out/docs/tutorial/index.html
+          test -f out/en/docs/index.html
+          test -f out/en/docs/tutorial/index.html
           test -f out/skills/index.json
           ls out/skills | head
 

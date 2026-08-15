@@ -13,26 +13,22 @@ import styles from "./HomePage.module.css";
 export default function HomePage({ skills, locale }: { skills: Skill[]; locale: Locale }) {
   const { t } = useI18n();
   const exampleCount = skills.filter((s) => s.category === "examples").length;
-  const testCount = skills.filter(
-    (s) => s.category === "compatibility-tests"
-  ).length;
 
   return (
-    <main id="main-content" className={`${styles.container} animate-fade-in`}>
+    <main id="main-content" className={styles.container}>
       <section className={styles.hero} aria-labelledby="hero-title">
         <div className={styles['hero-copy']}>
           <div className={`${styles['hero-badge']} code-font`}>{t("home.badge")}</div>
           <h1 id="hero-title" className={styles['hero-title']}>
-            <span className={styles['hero-title-line']}>{t("home.title.line1")}</span>{" "}
+            <span className={styles['hero-title-line']}>{t("home.title.line1")}</span>
             <span className={`${styles['hero-title-line']} gradient-text`}>
               {t("home.title.line2")}
             </span>
           </h1>
-          <p className={styles['hero-subtitle']}>{t("home.subtitle")}</p>
 
           <div className={styles['hero-actions']}>
             <Link
-              href={localizedHref(locale, "docs", "agent-install")}
+              href={localizedHref(locale, "docs")}
               className="btn btn-primary"
               data-analytics-event="docs_setup"
               data-analytics-label="hero"
@@ -63,13 +59,10 @@ export default function HomePage({ skills, locale }: { skills: Skill[]; locale: 
             </a>
           </div>
 
-          <p className={styles['hero-boundary']}>{t("home.boundary")}</p>
-
           <ul className={styles['hero-tags']} aria-label={t("home.tags.aria")}>
             <li>{t("home.tag.android")}</li>
             <li>{t("home.tag.app")}</li>
             <li>{t("home.tag.mcp")}</li>
-            <li>{t("home.tag.bridge")}</li>
           </ul>
         </div>
 
@@ -112,22 +105,13 @@ export default function HomePage({ skills, locale }: { skills: Skill[]; locale: 
         </aside>
       </section>
 
-      <ul className={styles['proof-strip']} aria-label={t("home.metrics.aria")}>
-        <li><strong>{exampleCount}</strong><span>{t("home.metrics.examples", { count: exampleCount })}</span></li>
-        {testCount > 0 ? (
-          <li><strong>{testCount}</strong><span>{t("home.metrics.tests", { count: testCount })}</span></li>
-        ) : null}
-        <li><strong>✓</strong><span>{t("home.metrics.local")}</span></li>
-        <li><strong>✓</strong><span>{t("home.metrics.open")}</span></li>
-      </ul>
-
       <section className={styles['use-cases-section']} aria-labelledby="use-cases-title">
         <div className={styles['section-header']}>
           <h2 id="use-cases-title">{t("home.use.title")}</h2>
           <p>{t("home.use.subtitle")}</p>
         </div>
         <div className={styles['use-cases-grid']}>
-          {[1, 2, 3].map((i) => (
+          {[1, 2, 3, 4, 5, 6].map((i) => (
             <article key={i} className={`glass-panel ${styles['use-case-card']}`}>
               <span className={`${styles['use-case-index']} code-font`}>0{i}</span>
               <h3>{t(`home.use.${i}.title` as Parameters<typeof t>[0])}</h3>
@@ -259,52 +243,22 @@ export default function HomePage({ skills, locale }: { skills: Skill[]; locale: 
           <h2 id="quickstart-title">{t("home.qs.title")}</h2>
           <p>{t("home.qs.subtitle")}</p>
         </div>
-        <ol className={styles['quickstart-steps']}>
-          <li>
-            <strong>{t("home.qs.1.strong")}</strong> {t("home.qs.1.rest")}
-          </li>
-          <li>
-            <strong>{t("home.qs.2.strong")}</strong> {t("home.qs.2.rest")}
-          </li>
-          <li>
-            <strong>{t("home.qs.3.strong")}</strong> {t("home.qs.3.rest")}
-            <CodeBlock
-              code={t("home.qs.3.cmd")}
-              style={{ marginTop: "0.75rem" }}
-              analyticsEvent="config_copy"
-              analyticsLabel="home-quickstart-command"
-            />
-            <p style={{ marginTop: "0.5rem", fontSize: "0.9em", opacity: 0.85 }}>
-              {t("home.qs.3.alt")}
-            </p>
-          </li>
-          <li>{t("home.qs.4")}</li>
-          <li>{t("home.qs.5")}</li>
-        </ol>
+        <div className={styles['quickstart-prompt']}>
+          <p>{t("home.qs.lead")}</p>
+          <CodeBlock
+            code={t("home.qs.prompt")}
+            analyticsEvent="config_copy"
+            analyticsLabel="home-quickstart-command"
+          />
+        </div>
         <div className={styles['quickstart-actions']}>
           <Link
-            href={localizedHref(locale, "docs", "agent-install")}
+            href={localizedHref(locale, "docs", "#quickstart")}
             className="btn btn-primary"
             data-analytics-event="docs_setup"
-            data-analytics-label="home-quickstart-app"
+            data-analytics-label="home-quickstart-docs"
           >
-            {t("home.qs.installGuide")}
-          </Link>
-          <Link
-            href={localizedHref(locale, "docs", "mcp-config")}
-            className="btn btn-secondary"
-            data-analytics-event="docs_setup"
-            data-analytics-label="home-quickstart-guide"
-          >
-            {t("home.qs.openGuide")}
-          </Link>
-          <Link
-            href={localizedHref(locale, "docs", "mcp-tools")}
-            className="btn btn-secondary"
-            data-analytics-event="docs_setup"
-            data-analytics-label="home-quickstart-tools"
-          >
-            {t("home.qs.tools")}
+            {t("home.qs.docs")}
           </Link>
         </div>
       </section>
@@ -352,7 +306,7 @@ export default function HomePage({ skills, locale }: { skills: Skill[]; locale: 
           <h2 id="faq-title">{t("home.faq.title")}</h2>
         </div>
         <div className={styles['faq-list']}>
-          {[1, 2, 3, 4, 5].map((i) => (
+          {[1, 2, 3, 4].map((i) => (
             <div
               key={i}
               className={`${styles['faq-item']} glass-panel`}

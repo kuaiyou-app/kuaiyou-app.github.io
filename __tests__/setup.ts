@@ -8,7 +8,7 @@ vi.mock("next/font/local", () => ({
 // Mock next/navigation
 vi.mock("next/navigation", () => ({
   usePathname: () => "/",
-  useRouter: () => ({ push: vi.fn(), replace: vi.fn() }),
+  useRouter: vi.fn(() => ({ push: vi.fn(), replace: vi.fn() })),
 }));
 
 import React from "react";

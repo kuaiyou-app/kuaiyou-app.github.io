@@ -18,7 +18,10 @@ export default function Navbar() {
   const { locale, t } = useI18n();
   const homeHref = localizedHref(locale, "home");
   const docsHref = localizedHref(locale, "docs");
-  const isDocs = pathname === docsHref || pathname === docsHref.replace(/\/$/, "");
+  const isDocs =
+    pathname === docsHref ||
+    pathname === docsHref.replace(/\/$/, "") ||
+    (pathname?.startsWith(docsHref) ?? false);
   const isHome = !isDocs;
 
   useEffect(() => {
