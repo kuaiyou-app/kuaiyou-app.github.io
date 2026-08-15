@@ -291,7 +291,7 @@ export default function HomePage({ skills, locale }: { skills: Skill[]; locale: 
             {t("home.qs.installGuide")}
           </Link>
           <Link
-            href={localizedHref(locale, "docs", "quick-start")}
+            href={localizedHref(locale, "docs", "mcp-config")}
             className="btn btn-secondary"
             data-analytics-event="docs_setup"
             data-analytics-label="home-quickstart-guide"

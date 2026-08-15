@@ -5,7 +5,6 @@ import CodeBlock from "@/components/CodeBlock";
 import { useI18n, type Locale } from "@/lib/i18n";
 import {
   AGENT_SKILL_INSTALL_CMD,
-  AGENT_SKILL_NAME,
   AGENT_SKILL_SOURCE_URL,
   APP_DOWNLOAD_URL,
   CLI_INSTALL_GUIDE_URL,
@@ -29,16 +28,19 @@ const MCP_JSON = `{
 const INSTALL_GLOBAL = `npm install -g autoace-cli@latest`;
 
 const MCP_LAN_COMMAND = `KUAIYOU_DEVICE_IP=<DEVICE_IP:PORT> KUAIYOU_MCP_PAIRING_CODE=<PAIRING_CODE> autoace-cli`;
-const DOC_NAV_ITEMS = [
+const DOC_NAV_TOP_ITEMS = [
   ["introduction", "docs.nav.intro"],
-  ["names", "docs.nav.names"],
+  ["quickstart", "docs.nav.quickstart"],
+] as const;
+
+const DOC_NAV_ADVANCED_ITEMS = [
   ["app-install", "docs.nav.app"],
   ["agent-install", "docs.nav.agentInstall"],
   ["install", "docs.nav.install"],
   ["agent-skill", "docs.nav.agentSkill"],
-  ["quick-start", "docs.nav.quick"],
+  ["mcp-config", "docs.nav.mcp"],
   ["write-skill", "docs.nav.write"],
-  ["mcp-tools", "docs.nav.tools"],
+  ["tools", "docs.nav.tools"],
   ["boundaries", "docs.nav.boundaries"],
 ] as const;
 
@@ -81,7 +83,7 @@ export default function DocsPageContent({ locale }: { locale: Locale }) {
       { rootMargin: "-18% 0px -70% 0px" }
     );
 
-    DOC_NAV_ITEMS.forEach(([id]) => {
+    [...DOC_NAV_TOP_ITEMS, ...DOC_NAV_ADVANCED_ITEMS].forEach(([id]) => {
       const section = document.getElementById(id);
       if (section) observer.observe(section);
     });
@@ -97,7 +99,22 @@ export default function DocsPageContent({ locale }: { locale: Locale }) {
     >
       <nav className={`${styles['docs-sidebar']} glass-panel`} aria-label={t("docs.navAria")}>
         <ul className={styles['docs-nav']}>
-          {DOC_NAV_ITEMS.map(([id, label]) => (
+          {DOC_NAV_TOP_ITEMS.map(([id, label]) => (
+            <li key={id}>
+              <a
+                href={`#${id}`}
+                className={activeSection === id ? styles.active : undefined}
+                aria-current={activeSection === id ? "location" : undefined}
+                onClick={() => setActiveSection(id)}
+              >
+                {t(label)}
+              </a>
+            </li>
+          ))}
+          <li className={styles['docs-nav-group']} aria-hidden="true">
+            {t("docs.nav.advanced")}
+          </li>
+          {DOC_NAV_ADVANCED_ITEMS.map(([id, label]) => (
             <li key={id}>
               <a
                 href={`#${id}`}
@@ -116,26 +133,59 @@ export default function DocsPageContent({ locale }: { locale: Locale }) {
         <section id="introduction">
           <h1>{t("docs.intro.title")}</h1>
           <p>{t("docs.intro.p1")}</p>
-          <div className={`${styles.alert} ${styles.info}`}>
-            <strong>{t("docs.intro.note.strong")}</strong>{" "}
-            {t("docs.intro.note")}
-          </div>
         </section>
 
-        <section id="names">
-          <h2>{t("docs.names.title")}</h2>
-          <p>{t("docs.names.p")}</p>
-          <ul>
-            <li>
-              <strong>autoace-cli</strong> — {t("docs.names.cli")}
-            </li>
-            <li>
-              <strong>{AGENT_SKILL_NAME}</strong> — {t("docs.names.agent")}
-            </li>
-            <li>
-              <strong>{t("docs.names.skillLabel")}</strong> — {t("docs.names.skill")}
-            </li>
-          </ul>
+        <section id="quickstart">
+          <h2>{t("docs.quickstart.title")}</h2>
+          <p className={styles['quickstart-lead']}>{t("docs.quickstart.lead")}</p>
+
+          <div className={styles['step-card']}>
+            <h3>{t("docs.quickstart.prep.title")}</h3>
+            <ul className={styles['prep-list']}>
+              <li>{t("docs.quickstart.prep.1")}</li>
+              <li>{t("docs.quickstart.prep.2")}</li>
+              <li>{t("docs.quickstart.prep.3")}</li>
+            </ul>
+          </div>
+
+          <div className={styles['step-card']}>
+            <h3>{t("docs.quickstart.computer.title")}</h3>
+            <p>{t("docs.quickstart.computer.desc")}</p>
+            <div className={styles['prompt-card']}>
+              <CodeBlock
+                code={t("docs.agentInstall.prompt.text")}
+                analyticsEvent="config_copy"
+                analyticsLabel="quickstart-install-prompt"
+              />
+            </div>
+            <p>{t("docs.quickstart.computer.what")}</p>
+          </div>
+
+          <div className={styles['step-card']}>
+            <h3>{t("docs.quickstart.phone.title")}</h3>
+            <ol>
+              <li>{t("docs.quickstart.phone.1")}</li>
+              <li>{t("docs.quickstart.phone.2")}</li>
+            </ol>
+          </div>
+
+          <div className={styles['step-card']}>
+            <h3>{t("docs.quickstart.first.title")}</h3>
+            <p>{t("docs.quickstart.first.desc")}</p>
+            <div className={styles['prompt-card']}>
+              <CodeBlock
+                code={t("docs.write.prompt.sample")}
+                analyticsEvent="config_copy"
+                analyticsLabel="quickstart-first-skill"
+              />
+            </div>
+            <p>{t("docs.quickstart.first.what")}</p>
+          </div>
+
+          <div className={`${styles.alert} ${styles.success}`}>
+            <strong>{t("docs.quickstart.done.title")}</strong>{" "}
+            {t("docs.quickstart.done.p")}
+          </div>
         </section>
 
         <section id="app-install">
@@ -241,7 +291,7 @@ export default function DocsPageContent({ locale }: { locale: Locale }) {
           />
         </section>
 
-        <section id="quick-start">
+        <section id="mcp-config">
           <h2>{t("docs.quick.title")}</h2>
           <p>{t("docs.quick.p")}</p>
 

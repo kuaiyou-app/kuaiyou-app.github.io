@@ -19,9 +19,9 @@ export default function NotFound() {
         </p>
         <div className={homeStyles["hero-actions"]}>
           <Link href="/" className="btn btn-primary">中文首页</Link>
-          <Link href="/docs/#quick-start" className="btn btn-secondary">中文文档</Link>
+          <Link href="/docs/#quickstart" className="btn btn-secondary">中文文档</Link>
           <Link href="/en/" className="btn btn-primary">English home</Link>
-          <Link href="/en/docs/#quick-start" className="btn btn-secondary">English docs</Link>
+          <Link href="/en/docs/#quickstart" className="btn btn-secondary">English docs</Link>
         </div>
       </div>
     </main>
