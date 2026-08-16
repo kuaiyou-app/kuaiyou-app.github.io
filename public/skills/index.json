@@ -6,7 +6,7 @@
       "description": "拦截版本更新、青少年模式等打断主流程的弹窗；若出现「确认」按钮则点击，最多 3 次。请先打开目标 App，文案不同时用 observe_screen 改选择器。",
       "executionMode": "REACTIVE",
       "file": "dismiss_blocking_dialogs.json",
-      "updatedAt": "2026-08-14T16:00:41.169Z"
+      "updatedAt": "2026-08-16T08:41:24.180Z"
     },
     {
       "id": "open_alipay_home",
@@ -14,7 +14,7 @@
       "description": "启动支付宝，等到屏幕出现「首页」文案后播报完成。不同版本底栏文案可能不同，请用 observe_screen 改选择器。",
       "executionMode": "REACTIVE",
       "file": "open_alipay.json",
-      "updatedAt": "2026-08-14T16:00:41.170Z"
+      "updatedAt": "2026-08-16T08:41:24.181Z"
     },
     {
       "id": "open_wechat_home",
@@ -22,7 +22,7 @@
       "description": "启动微信，等到屏幕出现「微信」文案后播报完成。界面改版后请用 observe_screen 对着当前屏幕改选择器。",
       "executionMode": "REACTIVE",
       "file": "open_wechat.json",
-      "updatedAt": "2026-08-14T16:00:41.171Z"
+      "updatedAt": "2026-08-16T08:41:24.182Z"
     },
     {
       "id": "tap_checkin_once",
@@ -30,7 +30,7 @@
       "description": "请先打开目标 App 的签到页。屏幕出现「签到」文案时点击一次后结束。不绑定具体 App；支付宝/微信等请先用 observe_screen 确认文案，再按需改 launchApp 或选择器。",
       "executionMode": "REACTIVE",
       "file": "tap_checkin_once.json",
-      "updatedAt": "2026-08-14T16:00:41.171Z"
+      "updatedAt": "2026-08-16T08:41:24.183Z"
     }
   ]
 }
