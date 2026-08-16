@@ -5,7 +5,7 @@ import Image from "next/image";
 import CodeBlock from "@/components/CodeBlock";
 import SkillsExplorer from "@/components/SkillsExplorer";
 import type { Skill } from "@/lib/skills";
-import { APP_DOWNLOAD_URL, BILIBILI_URL, CORE_REPO_URL, SKILLS_PUBLIC_PATH } from "@/lib/site";
+import { BILIBILI_URL, SKILLS_PUBLIC_PATH } from "@/lib/site";
 import { useI18n, type Locale } from "@/lib/i18n";
 import { localizedHref } from "@/lib/routes";
 import styles from "./HomePage.module.css";
@@ -26,44 +26,27 @@ export default function HomePage({ skills, locale }: { skills: Skill[]; locale: 
             </span>
           </h1>
 
-          <div className={styles['hero-actions']}>
-            <Link
-              href={localizedHref(locale, "docs")}
-              className="btn btn-primary"
-              data-analytics-event="docs_setup"
-              data-analytics-label="hero"
-            >
-              {t("home.cta.how")}
-            </Link>
-            <a
-              href={APP_DOWNLOAD_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-secondary"
-              data-analytics-event="app_download"
-              data-analytics-label="hero"
-            >
-              {t("home.cta.primary")}
-              <span className="sr-only">{t("nav.opensNewTab")}</span>
-            </a>
-            <a
-              href={CORE_REPO_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-ghost"
-              data-analytics-event="source_open"
-              data-analytics-label="hero"
-            >
-              {t("home.cta.source")}
-              <span className="sr-only">{t("nav.opensNewTab")}</span>
-            </a>
+          <div className={styles['hero-prompt']}>
+            <CodeBlock
+              code={t("home.qs.prompt")}
+              header={<p>{t("home.qs.lead")}</p>}
+              copyIdleLabel={t("home.cta.how")}
+              copyButtonClassName={`btn btn-primary ${styles['hero-copy-btn']}`}
+              toolbarClassName={styles['hero-prompt-toolbar']}
+              analyticsEvent="config_copy"
+              analyticsLabel="home-hero-command"
+              toolbarExtra={
+                <Link
+                  href={localizedHref(locale, "docs", "#quickstart")}
+                  className={`btn btn-secondary ${styles['hero-docs-btn']}`}
+                  data-analytics-event="docs_setup"
+                  data-analytics-label="hero"
+                >
+                  {t("home.qs.title")}
+                </Link>
+              }
+            />
           </div>
-
-          <ul className={styles['hero-tags']} aria-label={t("home.tags.aria")}>
-            <li>{t("home.tag.android")}</li>
-            <li>{t("home.tag.app")}</li>
-            <li>{t("home.tag.mcp")}</li>
-          </ul>
         </div>
 
         <aside className={`${styles['workflow-preview']} glass-panel`} aria-label={t("home.workflow.aria")}>
@@ -71,37 +54,175 @@ export default function HomePage({ skills, locale }: { skills: Skill[]; locale: 
             <span className={styles['workflow-live']} aria-hidden="true" />
             <span className="code-font">{t("home.workflow.eyebrow")}</span>
           </div>
-          <div className={styles['workflow-showcase']}>
-            <figure className={styles['workflow-screenshot']}>
-              <Image
-                src="/screenshots/skill-list.jpg"
-                alt={t("home.product.skill.alt")}
-                width={1440}
-                height={3168}
-                priority
-                decoding="async"
-              />
-              <figcaption>{t("home.product.heroCaption")}</figcaption>
+          <div className={styles['workflow-stage']}>
+            <div className={styles['session-pane']}>
+              <div className={styles['terminal-window']}>
+                <div className={styles['terminal-chrome']}>
+                  <span className={styles['terminal-traffic']} aria-hidden="true">
+                    <span />
+                    <span />
+                    <span />
+                  </span>
+                  <span className={`${styles['terminal-title']} code-font`}>{t("home.workflow.paneAgent")}</span>
+                </div>
+                <div className={`${styles.session} code-font`} role="region" aria-label={t("home.workflow.sessionAria")}>
+                  <div className={`${styles['session-scene']} ${styles['session-scene-install']}`}>
+                    <p className={styles['session-line']}>
+                      <span className={styles['session-prompt-mark']} aria-hidden="true">❯</span>
+                      <span className={`${styles['session-typed']} ${styles['session-typed-install']}`}>
+                        {t("home.qs.prompt")}
+                      </span>
+                      <span className={`${styles['session-caret']} ${styles['session-caret-install']}`} aria-hidden="true" />
+                    </p>
+                    <div className={styles['session-block']}>
+                      <p className={styles['session-cmd']}>
+                        <span className={styles['session-prompt-mark']} aria-hidden="true">$</span>
+                        {t("home.session.install.cli")}
+                      </p>
+                      <p className={styles['session-ok']}>{t("home.session.install.cli.result")}</p>
+                    </div>
+                    <div className={styles['session-block']}>
+                      <p className={styles['session-cmd']}>
+                        <span className={styles['session-prompt-mark']} aria-hidden="true">$</span>
+                        {t("home.session.install.skill")}
+                      </p>
+                      <p className={styles['session-ok']}>{t("home.session.install.skill.result")}</p>
+                    </div>
+                    <div className={styles['session-block']}>
+                      <p className={styles['session-out']}>{t("home.session.install.mcp")}</p>
+                      <p className={styles['session-ok']}>{t("home.session.install.mcp.result")}</p>
+                    </div>
+                    <div className={styles['session-block']}>
+                      <p className={styles['session-ok']}>{t("home.session.install.ready")}</p>
+                    </div>
+                  </div>
+                  <div className={`${styles['session-scene']} ${styles['session-scene-pair']}`}>
+                    <p className={styles['session-line']}>
+                      <span className={styles['session-prompt-mark']} aria-hidden="true">❯</span>
+                      <span className={`${styles['session-typed']} ${styles['session-typed-pair']}`}>
+                        {t("home.session.pair.prompt")}
+                      </span>
+                      <span className={`${styles['session-caret']} ${styles['session-caret-pair']}`} aria-hidden="true" />
+                    </p>
+                    <div className={styles['session-block']}>
+                      <p className={styles['session-cmd']}>
+                        <span className={styles['session-prompt-mark']} aria-hidden="true">$</span>
+                        {t("home.session.pair.cmd")}
+                      </p>
+                      <p className={styles['session-ok']}>{t("home.session.pair.result")}</p>
+                    </div>
+                    <div className={styles['session-block']}>
+                      <p className={styles['session-ok']}>{t("home.session.pair.ready")}</p>
+                    </div>
+                  </div>
+                  <div className={`${styles['session-scene']} ${styles['session-scene-skill']}`}>
+                    <p className={styles['session-line']}>
+                      <span className={styles['session-prompt-mark']} aria-hidden="true">❯</span>
+                      <span className={`${styles['session-typed']} ${styles['session-typed-skill']}`}>
+                        {t("home.session.prompt")}
+                      </span>
+                      <span className={`${styles['session-caret']} ${styles['session-caret-skill']}`} aria-hidden="true" />
+                    </p>
+                    <div className={styles['session-block']}>
+                      <p className={styles['session-cmd']}>
+                        <span className={styles['session-prompt-mark']} aria-hidden="true">$</span>
+                        {t("home.session.observe")}
+                      </p>
+                      <div className={styles['session-observe']}>
+                        <Image
+                          src="/screenshots/skill-list.jpg"
+                          alt={t("home.session.observe.alt")}
+                          width={1440}
+                          height={3168}
+                          decoding="async"
+                        />
+                        <p>{t("home.session.observe.meta")}</p>
+                      </div>
+                    </div>
+                    <div className={styles['session-block']}>
+                      <p className={styles['session-out']}>{t("home.session.write")}</p>
+                      <pre className={styles['session-code']}>
+                        <code>
+                          {t("home.session.write.launch")}
+                          {"\n"}
+                          {t("home.session.write.wait")}
+                          {"\n"}
+                          {t("home.session.write.tapNav")}
+                          {"\n"}
+                          {t("home.session.write.tapPlay")}
+                        </code>
+                      </pre>
+                    </div>
+                    <div className={styles['session-block']}>
+                      <p className={styles['session-cmd']}>
+                        <span className={styles['session-prompt-mark']} aria-hidden="true">$</span>
+                        {t("home.session.validate")}
+                      </p>
+                      <p className={styles['session-ok']}>{t("home.session.validate.result")}</p>
+                    </div>
+                    <div className={styles['session-block']}>
+                      <p className={styles['session-cmd']}>
+                        <span className={styles['session-prompt-mark']} aria-hidden="true">$</span>
+                        {t("home.session.push")}
+                      </p>
+                      <p className={styles['session-ok']}>{t("home.session.push.result")}</p>
+                      <p className={styles['session-hint']}>{t("home.session.push.hint")}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className={styles['workflow-bridge']} aria-hidden="true">
+              <span className={`${styles['workflow-bridge-label']} code-font`}>{t("home.workflow.bridge")}</span>
+              <span className={styles['workflow-bridge-line']} />
+            </div>
+            <figure className={`${styles['workflow-screenshot']} ${styles['workflow-screenshot-live']}`}>
+              <p className={`${styles['pane-label']} code-font`}>{t("home.workflow.panePhone")}</p>
+              <div className={styles['workflow-phone']}>
+                <Image
+                  className={styles['workflow-phone-mcp']}
+                  src="/screenshots/mcp-settings.jpg"
+                  alt={t("home.product.mcp.alt")}
+                  width={1440}
+                  height={3168}
+                  priority
+                  decoding="async"
+                />
+                <Image
+                  className={styles['workflow-phone-confirm']}
+                  src="/screenshots/run-confirmation.jpg"
+                  alt={t("home.product.confirm.alt")}
+                  width={1440}
+                  height={3168}
+                  decoding="async"
+                  aria-hidden="true"
+                />
+                <Image
+                  className={styles['workflow-phone-result']}
+                  src="/screenshots/execution-result.jpg"
+                  alt={t("home.product.result.alt")}
+                  width={1440}
+                  height={3168}
+                  decoding="async"
+                  aria-hidden="true"
+                />
+              </div>
+              <figcaption>{t("home.workflow.phoneCaption")}</figcaption>
             </figure>
-            <ol className={styles['workflow-steps']}>
-              <li><span>01</span><strong>{t("home.how.node1.title")}</strong><small>{t("home.how.node1.desc")}</small></li>
-              <li><span>02</span><strong>{t("home.how.node2.title")}</strong><small>{t("home.how.node2.desc")}</small></li>
-              <li><span>03</span><strong>{t("home.how.node3.title")}</strong><small>{t("home.how.node3.desc")}</small></li>
-            </ol>
+            <div className={styles['workflow-status']}>
+              <span aria-hidden="true">✓</span>
+              {t("home.workflow.status")}
+            </div>
+            <a
+              href={BILIBILI_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles['workflow-demo-link']}
+            >
+              {t("home.cta.demo")} →
+              <span className="sr-only">{t("nav.opensNewTab")}</span>
+            </a>
           </div>
-          <div className={styles['workflow-status']}>
-            <span aria-hidden="true">✓</span>
-            {t("home.workflow.status")}
-          </div>
-          <a
-            href={BILIBILI_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles['workflow-demo-link']}
-          >
-            {t("home.cta.demo")} →
-            <span className="sr-only">{t("nav.opensNewTab")}</span>
-          </a>
         </aside>
       </section>
 
@@ -122,148 +243,6 @@ export default function HomePage({ skills, locale }: { skills: Skill[]; locale: 
       </section>
 
       <section
-        id="how-it-works"
-        className={`${styles['how-it-works']} glass-panel`}
-        aria-labelledby="how-it-works-title"
-      >
-        <div className={styles['section-header']}>
-          <h2 id="how-it-works-title">{t("home.how.title")}</h2>
-          <p>{t("home.how.subtitle")}</p>
-        </div>
-
-        <ol className={styles['architecture-flow']}>
-          <li className={styles['arch-node']}>
-            <div className={styles['node-icon']} aria-hidden="true">
-              🧠
-            </div>
-            <div className={styles['node-title']}>{t("home.how.node1.title")}</div>
-            <div className={styles['node-desc']}>{t("home.how.node1.desc")}</div>
-          </li>
-
-          <li className={styles['arch-arrow']} aria-hidden="true">
-            <div className={`${styles['arrow-text']} code-font`}>{t("home.how.arrow1")}</div>
-            <div className={styles['arrow-line']}></div>
-          </li>
-
-          <li className={`${styles['arch-node']} ${styles.highlight}`}>
-            <div className={styles['node-icon']} aria-hidden="true">
-              ⚡
-            </div>
-            <div className={styles['node-title']}>{t("home.how.node2.title")}</div>
-            <div className={styles['node-desc']}>{t("home.how.node2.desc")}</div>
-          </li>
-
-          <li className={styles['arch-arrow']} aria-hidden="true">
-            <div className={`${styles['arrow-text']} code-font`}>{t("home.how.arrow2")}</div>
-            <div className={styles['arrow-line']}></div>
-          </li>
-
-          <li className={styles['arch-node']}>
-            <div className={styles['node-icon']} aria-hidden="true">
-              📱
-            </div>
-            <div className={styles['node-title']}>{t("home.how.node3.title")}</div>
-            <div className={styles['node-desc']}>{t("home.how.node3.desc")}</div>
-          </li>
-        </ol>
-
-        <p className="sr-only">{t("home.how.sr")}</p>
-      </section>
-
-      <section className={styles['product-proof']} aria-labelledby="product-proof-title">
-        <div className={styles['section-header']}>
-          <h2 id="product-proof-title">{t("home.product.title")}</h2>
-          <p>{t("home.product.subtitle")}</p>
-        </div>
-        <div className={styles['product-proof-grid']}>
-          <figure className={`glass-panel ${styles['product-proof-card']}`}>
-            <Image
-              src="/screenshots/run-confirmation.jpg"
-              alt={t("home.product.confirm.alt")}
-              width={1440}
-              height={3168}
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption>
-              <strong>{t("home.product.confirm.title")}</strong>
-              <span>{t("home.product.confirm.desc")}</span>
-            </figcaption>
-          </figure>
-          <figure className={`glass-panel ${styles['product-proof-card']}`}>
-            <Image
-              src="/screenshots/execution-result.jpg"
-              alt={t("home.product.result.alt")}
-              width={1440}
-              height={3168}
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption>
-              <strong>{t("home.product.result.title")}</strong>
-              <span>{t("home.product.result.desc")}</span>
-            </figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section
-        className={styles['capabilities-section']}
-        aria-labelledby="capabilities-title"
-      >
-        <div className={styles['section-header']}>
-          <h2 id="capabilities-title">{t("home.cap.title")}</h2>
-          <p>{t("home.cap.subtitle")}</p>
-        </div>
-        <div className={styles['capabilities-grid']}>
-          <article className={`glass-panel ${styles['capability-card']}`}>
-            <h3>{t("home.cap.1.title")}</h3>
-            <p>{t("home.cap.1.desc")}</p>
-          </article>
-          <article className={`glass-panel ${styles['capability-card']}`}>
-            <h3>{t("home.cap.2.title")}</h3>
-            <p>{t("home.cap.2.desc")}</p>
-          </article>
-          <article className={`glass-panel ${styles['capability-card']}`}>
-            <h3>{t("home.cap.3.title")}</h3>
-            <p>{t("home.cap.3.desc")}</p>
-          </article>
-          <article className={`glass-panel ${styles['capability-card']}`}>
-            <h3>{t("home.cap.4.title")}</h3>
-            <p>{t("home.cap.4.desc")}</p>
-          </article>
-        </div>
-      </section>
-
-      <section
-        className={`${styles['quickstart-section']} glass-panel`}
-        aria-labelledby="quickstart-title"
-      >
-        <div className={styles['section-header']}>
-          <h2 id="quickstart-title">{t("home.qs.title")}</h2>
-          <p>{t("home.qs.subtitle")}</p>
-        </div>
-        <div className={styles['quickstart-prompt']}>
-          <p>{t("home.qs.lead")}</p>
-          <CodeBlock
-            code={t("home.qs.prompt")}
-            analyticsEvent="config_copy"
-            analyticsLabel="home-quickstart-command"
-          />
-        </div>
-        <div className={styles['quickstart-actions']}>
-          <Link
-            href={localizedHref(locale, "docs", "#quickstart")}
-            className="btn btn-primary"
-            data-analytics-event="docs_setup"
-            data-analytics-label="home-quickstart-docs"
-          >
-            {t("home.qs.docs")}
-          </Link>
-        </div>
-      </section>
-
-      <section
         id="skills"
         className={styles['skills-section']}
         aria-labelledby="skills-title"
@@ -278,22 +257,6 @@ export default function HomePage({ skills, locale }: { skills: Skill[]; locale: 
         </div>
 
         <SkillsExplorer skills={skills} baseUrl={SKILLS_PUBLIC_PATH} />
-      </section>
-
-      <section
-        className={`${styles['security-section']} glass-panel`}
-        aria-labelledby="security-title"
-      >
-        <div className={styles['section-header']}>
-          <h2 id="security-title">{t("home.sec.title")}</h2>
-          <p>{t("home.sec.subtitle")}</p>
-        </div>
-        <ul className={styles['security-list']}>
-          <li>{t("home.sec.1")}</li>
-          <li>{t("home.sec.2")}</li>
-          <li>{t("home.sec.3")}</li>
-          <li>{t("home.sec.4")}</li>
-        </ul>
       </section>
 
       <section

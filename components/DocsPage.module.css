@@ -304,6 +304,31 @@
           position: relative;
         }
 
+        .code-block-toolbar {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 12px;
+          margin-bottom: 12px;
+          flex-wrap: wrap;
+        }
+
+        .code-block-lead {
+          min-width: 0;
+          flex: 0 1 auto;
+        }
+
+        .code-block-lead p {
+          margin: 0;
+        }
+
+        .code-block-actions {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          flex-shrink: 0;
+        }
+
         .code-copy-btn {
           position: absolute;
           top: 8px;
