@@ -15,10 +15,10 @@ const TUTORIAL_IDS = [
   "client-pick",
   "workflow",
   "scenarios",
+  "recovery",
   "app-install",
   "install",
   "agent-skill",
-  "recovery",
 ];
 
 describe("TutorialPageContent (General Tutorial page)", () => {
@@ -35,6 +35,7 @@ describe("TutorialPageContent (General Tutorial page)", () => {
     expect(view.container.querySelector("#relations")).toBeNull();
     expect(nav.textContent).toContain("通用教程");
     expect(nav.textContent).toContain("快速开始");
+    expect(nav.textContent).toContain("附录");
     expect(within(nav as HTMLElement).getByRole("link", { name: "简介" })).toHaveAttribute(
       "href",
       "/docs#introduction"
@@ -43,7 +44,7 @@ describe("TutorialPageContent (General Tutorial page)", () => {
       within(nav as HTMLElement).getByRole("link", { name: "快速上手" })
     ).toHaveAttribute("href", "/docs#quickstart");
     const navLinks = within(nav as HTMLElement).getAllByRole("link");
-    expect(navLinks[navLinks.length - 1]).toHaveTextContent("常见问题");
+    expect(navLinks[navLinks.length - 1]).toHaveTextContent("手动安装 Agent Skill");
   });
 
   it("marks the first tutorial section as current by default", () => {
@@ -54,12 +55,22 @@ describe("TutorialPageContent (General Tutorial page)", () => {
       "aria-current",
       "location"
     );
-    expect(nav.getByRole("link", { name: "默认工作流" })).not.toHaveAttribute(
+    expect(nav.getByRole("link", { name: "一次完整流程" })).not.toHaveAttribute(
       "aria-current"
     );
     expect(nav.getByRole("link", { name: "简介" })).not.toHaveAttribute(
       "aria-current"
     );
+  });
+
+  it("orders recovery before the manual-install appendix", () => {
+    const view = renderTutorial();
+    const recovery = view.container.querySelector("#recovery")!;
+    const app = view.container.querySelector("#app-install")!;
+
+    expect(
+      recovery.compareDocumentPosition(app) & Node.DOCUMENT_POSITION_FOLLOWING
+    ).toBeTruthy();
   });
 
   it("orders app install before manual CLI before Agent Skill", () => {
@@ -87,7 +98,7 @@ describe("TutorialPageContent (General Tutorial page)", () => {
     expect(pick.textContent).toContain("pair_device");
   });
 
-  it("writes scenario paths observe_screen-first without capture_screenshot or get_ui_tree", () => {
+  it("keeps scenario text free of capture_screenshot or get_ui_tree", () => {
     const view = renderTutorial();
     const scenarios = view.container.querySelector("#scenarios")!;
 
@@ -137,9 +148,15 @@ describe("TutorialPageContent (General Tutorial page)", () => {
     const view = renderTutorial();
     const scenarios = view.container.querySelector("#scenarios")!;
 
-    expect(scenarios.querySelectorAll("button").length).toBe(7);
+    expect(scenarios.querySelectorAll("button").length).toBe(4);
     expect(scenarios.textContent).toContain("给 AI 的提示词");
-    expect(scenarios.textContent).toContain("主路径");
     expect(scenarios.textContent).toContain("打开微信并等到首页");
+    expect(scenarios.textContent).toContain("支付宝同理");
+    expect(scenarios.textContent).not.toContain("主路径");
+    expect(
+      within(scenarios as HTMLElement).queryByRole("heading", {
+        name: "打开支付宝并等到首页",
+      })
+    ).toBeNull();
   });
 });

@@ -3,6 +3,11 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import CodeBlock from "@/components/CodeBlock";
+import {
+  DOC_NAV_TOP_ITEMS,
+  DOC_NAV_TUTORIAL_ITEMS,
+  isNavLink,
+} from "@/lib/docs-nav";
 import { useI18n, type I18nKey, type Locale } from "@/lib/i18n";
 import { localizedHref } from "@/lib/routes";
 import {
@@ -47,70 +52,58 @@ const CLAUDE_MCP_ADD_NPX_CMD = `claude mcp add autoace -- npx -y autoace-cli@lat
 const CODEX_MCP_TOML = `[mcp_servers.autoace]
 command = "autoace-cli"`;
 
-const DOC_NAV_TOP_ITEMS = [
-  ["introduction", "docs.nav.intro"],
-  ["quickstart", "docs.nav.quickstart"],
-] as const;
+const WORKFLOW_STEPS = [
+  {
+    title: "docs.tutorial.workflow.step.1.title",
+    desc: "docs.tutorial.workflow.step.1.desc",
+  },
+  {
+    title: "docs.tutorial.workflow.step.2.title",
+    desc: "docs.tutorial.workflow.step.2.desc",
+  },
+  {
+    title: "docs.tutorial.workflow.step.3.title",
+    desc: "docs.tutorial.workflow.step.3.desc",
+  },
+  {
+    title: "docs.tutorial.workflow.step.4.title",
+    desc: "docs.tutorial.workflow.step.4.desc",
+  },
+] as const satisfies readonly { title: I18nKey; desc: I18nKey }[];
 
-const DOC_NAV_TUTORIAL_ITEMS = [
-  ["client-pick", "docs.tutorial.pick.title"],
-  ["workflow", "docs.tutorial.workflow.title"],
-  ["scenarios", "docs.tutorial.scenarios.title"],
-  ["app-install", "docs.nav.app"],
-  ["install", "docs.nav.install"],
-  ["agent-skill", "docs.nav.agentSkill"],
-  ["recovery", "docs.tutorial.recovery.title"],
-] as const;
-
-const SCENARIO_ROWS = [
+const SCENARIO_ROWS: readonly {
+  scene: I18nKey;
+  prompt: I18nKey;
+  what: I18nKey;
+  variant?: I18nKey;
+  note: I18nKey;
+}[] = [
   {
     scene: "docs.tutorial.scenarios.1.scene",
     prompt: "docs.tutorial.scenarios.1.prompt",
-    path: "docs.tutorial.scenarios.1.path",
+    what: "docs.tutorial.scenarios.1.what",
+    variant: "docs.tutorial.scenarios.1.variant",
     note: "docs.tutorial.scenarios.1.note",
-  },
-  {
-    scene: "docs.tutorial.scenarios.2.scene",
-    prompt: "docs.tutorial.scenarios.2.prompt",
-    path: "docs.tutorial.scenarios.2.path",
-    note: "docs.tutorial.scenarios.2.note",
   },
   {
     scene: "docs.tutorial.scenarios.3.scene",
     prompt: "docs.tutorial.scenarios.3.prompt",
-    path: "docs.tutorial.scenarios.3.path",
+    what: "docs.tutorial.scenarios.3.what",
     note: "docs.tutorial.scenarios.3.note",
   },
   {
     scene: "docs.tutorial.scenarios.4.scene",
     prompt: "docs.tutorial.scenarios.4.prompt",
-    path: "docs.tutorial.scenarios.4.path",
+    what: "docs.tutorial.scenarios.4.what",
     note: "docs.tutorial.scenarios.4.note",
   },
   {
     scene: "docs.tutorial.scenarios.5.scene",
     prompt: "docs.tutorial.scenarios.5.prompt",
-    path: "docs.tutorial.scenarios.5.path",
+    what: "docs.tutorial.scenarios.5.what",
     note: "docs.tutorial.scenarios.5.note",
   },
-  {
-    scene: "docs.tutorial.scenarios.6.scene",
-    prompt: "docs.tutorial.scenarios.6.prompt",
-    path: "docs.tutorial.scenarios.6.path",
-    note: "docs.tutorial.scenarios.6.note",
-  },
-  {
-    scene: "docs.tutorial.scenarios.7.scene",
-    prompt: "docs.tutorial.scenarios.7.prompt",
-    path: "docs.tutorial.scenarios.7.path",
-    note: "docs.tutorial.scenarios.7.note",
-  },
-] as const satisfies readonly {
-  scene: I18nKey;
-  prompt: I18nKey;
-  path: I18nKey;
-  note: I18nKey;
-}[];
+];
 
 const RECOVERY_ROWS = [
   { label: "docs.tutorial.recovery.1.case", prompt: "docs.tutorial.recovery.1.prompt" },
@@ -137,8 +130,8 @@ export default function TutorialPageContent({ locale }: { locale: Locale }) {
       { rootMargin: "-18% 0px -70% 0px" }
     );
 
-    DOC_NAV_TUTORIAL_ITEMS.forEach(([id]) => {
-      const section = document.getElementById(id);
+    DOC_NAV_TUTORIAL_ITEMS.filter(isNavLink).forEach((item) => {
+      const section = document.getElementById(item.id);
       if (section) observer.observe(section);
     });
 
@@ -156,99 +149,136 @@ export default function TutorialPageContent({ locale }: { locale: Locale }) {
           <li className={styles['docs-nav-group']} aria-hidden="true">
             {t("docs.nav.quickStartGroup")}
           </li>
-          {DOC_NAV_TOP_ITEMS.map(([id, label]) => (
-            <li key={id}>
-              <Link href={localizedHref(locale, "docs", `#${id}`)}>
-                {t(label)}
+          {DOC_NAV_TOP_ITEMS.map((item) => (
+            <li key={item.id}>
+              <Link href={localizedHref(locale, "docs", `#${item.id}`)}>
+                {t(item.label)}
               </Link>
             </li>
           ))}
           <li className={styles['docs-nav-group']} aria-hidden="true">
             {t("docs.nav.tutorialGroup")}
           </li>
-          {DOC_NAV_TUTORIAL_ITEMS.map(([id, label]) => (
-            <li key={id}>
-              <Link
-                href={`#${id}`}
-                className={activeSection === id ? styles.active : undefined}
-                aria-current={activeSection === id ? "location" : undefined}
-                onClick={() => setActiveSection(id)}
+          {DOC_NAV_TUTORIAL_ITEMS.map((item) =>
+            isNavLink(item) ? (
+              <li key={item.id}>
+                <Link
+                  href={`#${item.id}`}
+                  className={activeSection === item.id ? styles.active : undefined}
+                  aria-current={activeSection === item.id ? "location" : undefined}
+                  onClick={() => setActiveSection(item.id)}
+                >
+                  {t(item.label)}
+                </Link>
+              </li>
+            ) : (
+              <li
+                key={item.group}
+                className={styles['docs-nav-group']}
+                aria-hidden="true"
               >
-                {t(label)}
-              </Link>
-            </li>
-          ))}
+                {t(item.group)}
+              </li>
+            )
+          )}
         </ul>
       </nav>
 
       <div className={`${styles['docs-content']} glass-panel`}>
+        <h1>{t("docs.tutorial.title")}</h1>
+        <p className={styles['quickstart-lead']}>{t("docs.tutorial.lead")}</p>
+
         <section id="client-pick">
           <h2>{t("docs.tutorial.pick.title")}</h2>
           <p>{t("docs.tutorial.pick.lead")}</p>
 
-          <h3>{t("docs.tutorial.pick.cursor.title")}</h3>
-          <p>{t("docs.tutorial.pick.cursor.steps")}</p>
-          <CodeBlock
-            code={MCP_STDIO_JSON}
-            analyticsEvent="config_copy"
-            analyticsLabel="tutorial-cursor-mcp"
-          />
+          <div className={styles['step-card']}>
+            <h3>{t("docs.tutorial.pick.cursor.title")}</h3>
+            <p>{t("docs.tutorial.pick.cursor.steps")}</p>
+            <div className={styles['prompt-card']}>
+              <CodeBlock
+                code={MCP_STDIO_JSON}
+                analyticsEvent="config_copy"
+                analyticsLabel="tutorial-cursor-mcp"
+              />
+            </div>
+            <p>{t("docs.tutorial.pick.cursor.what")}</p>
+          </div>
 
-          <h3>{t("docs.tutorial.pick.claude.title")}</h3>
-          <p>{t("docs.tutorial.pick.claude.steps")}</p>
-          <CodeBlock
-            code={CLAUDE_MCP_ADD_CMD}
-            analyticsEvent="config_copy"
-            analyticsLabel="tutorial-claude-mcp"
-          />
-          <p>{t("docs.tutorial.pick.claude.npx")}</p>
-          <CodeBlock
-            code={CLAUDE_MCP_ADD_NPX_CMD}
-            analyticsEvent="config_copy"
-            analyticsLabel="tutorial-claude-mcp-npx"
-          />
+          <div className={styles['step-card']}>
+            <h3>{t("docs.tutorial.pick.claude.title")}</h3>
+            <p>{t("docs.tutorial.pick.claude.steps")}</p>
+            <div className={styles['prompt-card']}>
+              <CodeBlock
+                code={CLAUDE_MCP_ADD_CMD}
+                analyticsEvent="config_copy"
+                analyticsLabel="tutorial-claude-mcp"
+              />
+            </div>
+            <p>{t("docs.tutorial.pick.claude.what")}</p>
+            <details className={styles['tutorial-details']}>
+              <summary>{t("docs.tutorial.pick.npxSummary")}</summary>
+              <CodeBlock
+                code={CLAUDE_MCP_ADD_NPX_CMD}
+                analyticsEvent="config_copy"
+                analyticsLabel="tutorial-claude-mcp-npx"
+              />
+            </details>
+          </div>
 
-          <h3>{t("docs.tutorial.pick.codex.title")}</h3>
-          <p>{t("docs.tutorial.pick.codex.steps")}</p>
-          <CodeBlock
-            code={CODEX_MCP_TOML}
-            analyticsEvent="config_copy"
-            analyticsLabel="tutorial-codex-mcp"
-          />
+          <div className={styles['step-card']}>
+            <h3>{t("docs.tutorial.pick.codex.title")}</h3>
+            <p>{t("docs.tutorial.pick.codex.steps")}</p>
+            <div className={styles['prompt-card']}>
+              <CodeBlock
+                code={CODEX_MCP_TOML}
+                analyticsEvent="config_copy"
+                analyticsLabel="tutorial-codex-mcp"
+              />
+            </div>
+            <p>{t("docs.tutorial.pick.codex.what")}</p>
+          </div>
 
-          <h3>{t("docs.tutorial.pick.generic.title")}</h3>
-          <p>{t("docs.tutorial.pick.generic.steps")}</p>
-          <CodeBlock
-            code={MCP_NPX_JSON}
-            analyticsEvent="config_copy"
-            analyticsLabel="tutorial-generic-mcp"
-          />
-          <p>{t("docs.tutorial.pick.envNote")}</p>
-          <CodeBlock
-            code={MCP_JSON}
-            analyticsEvent="config_copy"
-            analyticsLabel="tutorial-env-variant"
-          />
+          <div className={styles['step-card']}>
+            <h3>{t("docs.tutorial.pick.generic.title")}</h3>
+            <p>{t("docs.tutorial.pick.generic.steps")}</p>
+            <div className={styles['prompt-card']}>
+              <CodeBlock
+                code={MCP_NPX_JSON}
+                analyticsEvent="config_copy"
+                analyticsLabel="tutorial-generic-mcp"
+              />
+            </div>
+            <p>{t("docs.tutorial.pick.generic.what")}</p>
+            <details className={styles['tutorial-details']}>
+              <summary>{t("docs.tutorial.pick.envSummary")}</summary>
+              <p>{t("docs.tutorial.pick.envNote")}</p>
+              <CodeBlock
+                code={MCP_JSON}
+                analyticsEvent="config_copy"
+                analyticsLabel="tutorial-env-variant"
+              />
+            </details>
+          </div>
 
           <h3>{t("docs.tutorial.pick.common.title")}</h3>
           <ul>
             <li>{t("docs.tutorial.pick.common.1")}</li>
             <li>{t("docs.tutorial.pick.common.2")}</li>
-            <li>{t("docs.tutorial.pick.common.3")}</li>
-            <li>{t("docs.tutorial.pick.common.4")}</li>
           </ul>
         </section>
 
         <section id="workflow">
           <h2>{t("docs.tutorial.workflow.title")}</h2>
           <p>{t("docs.tutorial.workflow.lead")}</p>
-          <ol>
-            <li>{t("docs.tutorial.workflow.step.1")}</li>
-            <li>{t("docs.tutorial.workflow.step.2")}</li>
-            <li>{t("docs.tutorial.workflow.step.3")}</li>
-            <li>{t("docs.tutorial.workflow.step.4")}</li>
-            <li>{t("docs.tutorial.workflow.step.5")}</li>
-          </ol>
+
+          {WORKFLOW_STEPS.map((step) => (
+            <div className={styles['step-card']} key={step.title}>
+              <h3>{t(step.title)}</h3>
+              <p>{t(step.desc)}</p>
+            </div>
+          ))}
+
           <div className={`${styles.alert} ${styles.info}`}>
             {t("docs.tutorial.workflow.plans")}
           </div>
@@ -272,9 +302,10 @@ export default function TutorialPageContent({ locale }: { locale: Locale }) {
                 />
               </div>
               <p>
-                <strong>{t("docs.tutorial.scenarios.label.path")}：</strong>
-                {t(row.path)}
+                <strong>{t("docs.tutorial.scenarios.label.what")}：</strong>
+                {t(row.what)}
               </p>
+              {row.variant ? <p>{t(row.variant)}</p> : null}
               <p>
                 <strong>{t("docs.tutorial.scenarios.label.note")}：</strong>
                 {t(row.note)}
@@ -292,8 +323,29 @@ export default function TutorialPageContent({ locale }: { locale: Locale }) {
           </div>
         </section>
 
+        <section id="recovery">
+          <h2>{t("docs.tutorial.recovery.title")}</h2>
+          <p>{t("docs.tutorial.recovery.lead")}</p>
+
+          {RECOVERY_ROWS.map((row) => (
+            <div className={styles['step-card']} key={row.label}>
+              <h3>{t(row.label)}</h3>
+              <div className={styles['prompt-card']}>
+                <CodeBlock
+                  code={t(row.prompt)}
+                  analyticsEvent="config_copy"
+                  analyticsLabel="tutorial-recovery"
+                />
+              </div>
+            </div>
+          ))}
+        </section>
+
         <section id="app-install">
           <h2>{t("docs.app.title")}</h2>
+          <p className={styles['quickstart-lead']}>
+            {t("docs.tutorial.appendix.lead")}
+          </p>
           <p>{t("docs.app.p")}</p>
           <p>
             <a
@@ -364,36 +416,6 @@ export default function TutorialPageContent({ locale }: { locale: Locale }) {
             analyticsEvent="config_copy"
             analyticsLabel="skills-add"
           />
-        </section>
-
-        <section id="recovery">
-          <h2>{t("docs.tutorial.recovery.title")}</h2>
-          <p>{t("docs.tutorial.recovery.lead")}</p>
-
-          <div className={styles['table-scroll']}>
-            <table className={styles['scenario-table']}>
-              <thead>
-                <tr>
-                  <th scope="col">{t("docs.tutorial.recovery.col.case")}</th>
-                  <th scope="col">{t("docs.tutorial.recovery.col.prompt")}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {RECOVERY_ROWS.map((row) => (
-                  <tr key={row.label}>
-                    <td className={styles['scene-name']}>{t(row.label)}</td>
-                    <td>
-                      <CodeBlock
-                        code={t(row.prompt)}
-                        analyticsEvent="config_copy"
-                        analyticsLabel="tutorial-recovery"
-                      />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
         </section>
       </div>
     </main>

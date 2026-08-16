@@ -4,24 +4,14 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import CodeBlock from "@/components/CodeBlock";
+import {
+  DOC_NAV_TOP_ITEMS,
+  DOC_NAV_TUTORIAL_ITEMS,
+  isNavLink,
+} from "@/lib/docs-nav";
 import { useI18n, type Locale } from "@/lib/i18n";
 import { localizedHref, resolveDocsHashRedirect } from "@/lib/routes";
 import styles from "./DocsPage.module.css";
-
-const DOC_NAV_TOP_ITEMS = [
-  ["introduction", "docs.nav.intro"],
-  ["quickstart", "docs.nav.quickstart"],
-] as const;
-
-const DOC_NAV_TUTORIAL_ITEMS = [
-  ["client-pick", "docs.tutorial.pick.title"],
-  ["workflow", "docs.tutorial.workflow.title"],
-  ["scenarios", "docs.tutorial.scenarios.title"],
-  ["app-install", "docs.nav.app"],
-  ["install", "docs.nav.install"],
-  ["agent-skill", "docs.nav.agentSkill"],
-  ["recovery", "docs.tutorial.recovery.title"],
-] as const;
 
 export default function DocsPageContent({ locale }: { locale: Locale }) {
   const { t } = useI18n();
@@ -47,8 +37,8 @@ export default function DocsPageContent({ locale }: { locale: Locale }) {
       { rootMargin: "-18% 0px -70% 0px" }
     );
 
-    DOC_NAV_TOP_ITEMS.forEach(([id]) => {
-      const section = document.getElementById(id);
+    DOC_NAV_TOP_ITEMS.forEach((item) => {
+      const section = document.getElementById(item.id);
       if (section) observer.observe(section);
     });
 
@@ -66,28 +56,38 @@ export default function DocsPageContent({ locale }: { locale: Locale }) {
           <li className={styles['docs-nav-group']} aria-hidden="true">
             {t("docs.nav.quickStartGroup")}
           </li>
-          {DOC_NAV_TOP_ITEMS.map(([id, label]) => (
-            <li key={id}>
+          {DOC_NAV_TOP_ITEMS.map((item) => (
+            <li key={item.id}>
               <Link
-                href={`#${id}`}
-                className={activeSection === id ? styles.active : undefined}
-                aria-current={activeSection === id ? "location" : undefined}
-                onClick={() => setActiveSection(id)}
+                href={`#${item.id}`}
+                className={activeSection === item.id ? styles.active : undefined}
+                aria-current={activeSection === item.id ? "location" : undefined}
+                onClick={() => setActiveSection(item.id)}
               >
-                {t(label)}
+                {t(item.label)}
               </Link>
             </li>
           ))}
           <li className={styles['docs-nav-group']} aria-hidden="true">
             {t("docs.nav.tutorialGroup")}
           </li>
-          {DOC_NAV_TUTORIAL_ITEMS.map(([id, label]) => (
-            <li key={id}>
-              <Link href={localizedHref(locale, "tutorial", `#${id}`)}>
-                {t(label)}
-              </Link>
-            </li>
-          ))}
+          {DOC_NAV_TUTORIAL_ITEMS.map((item) =>
+            isNavLink(item) ? (
+              <li key={item.id}>
+                <Link href={localizedHref(locale, "tutorial", `#${item.id}`)}>
+                  {t(item.label)}
+                </Link>
+              </li>
+            ) : (
+              <li
+                key={item.group}
+                className={styles['docs-nav-group']}
+                aria-hidden="true"
+              >
+                {t(item.group)}
+              </li>
+            )
+          )}
         </ul>
       </nav>
 

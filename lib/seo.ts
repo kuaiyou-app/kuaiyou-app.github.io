@@ -37,9 +37,9 @@ const SEO_COPY: Record<Locale, Record<PublicRoute, SeoCopy>> = {
     },
     tutorial: {
       siteName: "快游大师 CLI",
-      title: "通用教程 — AI Agent 接入、场景与常见问题",
+      title: "通用教程 — 接入、场景提示词与常见问题",
       description:
-        "AI Agent 接入、默认工作流、可复制的场景提示词与常见问题排查：把 autoace 用起来。",
+        "接好 AI 客户端、复制场景提示词、出问题时把那句话丢给 AI：把 autoace 用起来。",
       imageAlt: "快游大师 CLI 通用教程：多客户端接入与真实场景",
     },
   },
@@ -60,9 +60,9 @@ const SEO_COPY: Record<Locale, Record<PublicRoute, SeoCopy>> = {
     },
     tutorial: {
       siteName: "autoace-cli",
-      title: "General Tutorial — AI Agent setup, scenarios, and common issues",
+      title: "General Tutorial — Setup, scenario prompts, and common issues",
       description:
-        "Set up your AI Agent, learn the default workflow, and copy ready-to-paste scenario prompts and common-issue scripts to get the most out of autoace.",
+        "Wire up your AI client, copy ready-to-paste scenario prompts, and drop the right line into your AI when something goes wrong — get autoace working for you.",
       imageAlt: "autoace-cli general tutorial: multi-client setup and real scenarios",
     },
   },

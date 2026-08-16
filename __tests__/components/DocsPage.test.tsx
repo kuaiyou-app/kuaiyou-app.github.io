@@ -49,10 +49,10 @@ describe("DocsPageContent (Quick Start page)", () => {
       "/docs/tutorial#client-pick"
     );
     const navLinks = within(nav as HTMLElement).getAllByRole("link");
-    expect(navLinks[navLinks.length - 1]).toHaveTextContent("常见问题");
+    expect(navLinks[navLinks.length - 1]).toHaveTextContent("手动安装 Agent Skill");
     expect(navLinks[navLinks.length - 1]).toHaveAttribute(
       "href",
-      "/docs/tutorial#recovery"
+      "/docs/tutorial#agent-skill"
     );
   });
 
