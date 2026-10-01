@@ -42,7 +42,7 @@ npx -y skills add kuaiyou-app/kuaiyou-open-source --skill autoace -g -y
 }
 ```
 
-若客户端更习惯用 npx：`command` 为 `npx`，`args` 为 `["-y","autoace-cli@latest"]`。按客户端配置格式改写（JSON / toml 等）即可。
+若客户端更习惯用 npx：`command` 为 `npx`，`args` 为 `["-y","autoace-cli@1"]`（钉住主版本）。按客户端配置格式改写（JSON / toml 等）即可。
 
 要点：
 
