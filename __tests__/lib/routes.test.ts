@@ -93,4 +93,15 @@ describe("localized routes", () => {
     ]);
     expect(entries.every((entry) => entry.alternates?.languages)).toBe(true);
   });
+
+  it("dates sitemap entries from content history, not the build clock", () => {
+    const before = Date.now();
+    const entries = sitemap();
+    for (const entry of entries) {
+      if (entry.lastModified === undefined) continue; // shallow checkout
+      const time = new Date(entry.lastModified).getTime();
+      expect(Number.isFinite(time)).toBe(true);
+      expect(time).toBeLessThan(before);
+    }
+  });
 });

@@ -41,13 +41,14 @@ const MCP_STDIO_JSON = `{
 
 const MCP_NPX_JSON = `{
   "mcpServers": {
-    "autoace": { "command": "npx", "args": ["-y", "autoace-cli@latest"] }
+    "autoace": { "command": "npx", "args": ["-y", "autoace-cli@1"] }
   }
 }`;
 
 const CLAUDE_MCP_ADD_CMD = `claude mcp add autoace -- autoace-cli`;
 
-const CLAUDE_MCP_ADD_NPX_CMD = `claude mcp add autoace -- npx -y autoace-cli@latest`;
+// npx re-resolves on every MCP launch; pin the major so a breaking release is opt-in.
+const CLAUDE_MCP_ADD_NPX_CMD = `claude mcp add autoace -- npx -y autoace-cli@1`;
 
 const CODEX_MCP_TOML = `[mcp_servers.autoace]
 command = "autoace-cli"`;

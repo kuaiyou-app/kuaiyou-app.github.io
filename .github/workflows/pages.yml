@@ -28,6 +28,9 @@ jobs:
     steps:
       - name: Checkout website
         uses: actions/checkout@v7
+        with:
+          # Full history so app/sitemap.ts can read the last content commit time.
+          fetch-depth: 0
 
       - name: Checkout skills from core repo
         uses: actions/checkout@v7

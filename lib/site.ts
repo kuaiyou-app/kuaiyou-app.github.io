@@ -23,7 +23,8 @@ export const USER_AGREEMENT_URL = `${APP_PRODUCT_URL}/user-agreement`;
 
 /** Public issue tracker for usage questions and reproducible toolchain bugs. */
 export const SUPPORT_URL = `${CORE_REPO_URL}/issues`;
-export const SECURITY_URL = `${GITHUB_REPO_URL}/security/advisories/new`;
+/** Vulnerability reports go to the core repo: the CLI is the real attack surface, not this static site. */
+export const SECURITY_URL = `${CORE_REPO_URL}/security/advisories/new`;
 
 /** Published MCP CLI on npm. */
 export const NPM_PACKAGE_URL = "https://www.npmjs.com/package/autoace-cli";

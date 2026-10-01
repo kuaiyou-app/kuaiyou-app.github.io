@@ -18,9 +18,9 @@
 
 - Patch-level bumps **within 14.2.x** if a real 14-line CVE lands and a patch exists.
 - Revisit major upgrade only if product requirements change (SSR, auth middleware, non-static hosting) **or** the user explicitly requests it.
-- Org-root Pages (`kuaiyou-app.github.io`) by renaming this repo and clearing `basePath` — only when asked.
+- Org-root Pages: done. The repo is now `kuaiyou-app/kuaiyou-app.github.io` with `basePath: ""`.
 
 ### Related pinned stack
 
-- Primary Node: `.nvmrc` → 20; engines allow ≥18.17 for Next 14.
+- Primary Node: `.nvmrc` → 20; `engines` requires ≥20 (Node 18 is EOL).
 - Skills content is owned by `kuaiyou-app/kuaiyou-open-source`; this repo vendors / syncs for display only.
